@@ -1,7 +1,8 @@
 ﻿# Paduan Dasar Untuk HTML dan CSS
 
-**Document writer:  Hastho Rahtomo
-Markdown by: Muhammad Fauzan Arrafi**
+**Document writer:  Hastho Rahtomo**
+
+**Markdown by: Muhammad Fauzan Arrafi**
 
 **17 October 2023**
 
