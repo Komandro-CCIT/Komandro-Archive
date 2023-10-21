@@ -351,6 +351,7 @@ Font-family adalah kode CSS pertama yang akan kamu pelajari, font-family digunak
 ```
 
 ![](https://lh3.googleusercontent.com/pw/ADCreHeW7yudEj56n8TVqrRVi3RiI8w-pUC2JIRqHOi3Z4tQ6S8UFb-Qt_wj2ddYkuBxuF1mi7MGesmDQRFfnuF2rdH1Y12gnlxXKjbCwuUue40KTO_66FZg_BtMDEC-c-BP0l8AJty298XchivvzRPxPqk=w142-h90-s-no?authuser=4)
+
 Hasilnya adalah seperti berikut.
 
 Dapat kamu lihat perbedaan dari tipe font pertama dan kedua, teks pertama adalah teks yang tidak menggunakan "font-family" dan yang kedua menggunakannya, font yang dipilih adalah "Helvetica".
@@ -466,20 +467,28 @@ komandro<br>
 Digunakan untuk membuat batas border pada ujung element, banyak tipe border yang dapat kamu gunakan, berikut adalah beberapa contoh border yang dapat kamu gunakan dan cara menggunakannya.
 
 
-  **border**   
+  **border**
+  
   ``<h2 style="border: 1px solid black;"> Komandro</h2>``
+  
   ![enter image description here](https://lh3.googleusercontent.com/pw/ADCreHfzUsWgiRPc1ZPLBlS9YLmRvVv7SjT-FTfAQ-YXAWmsVfBNNBTtFLqw_Zxu0W3wjeve7juiMX51x35jHr_nYHN79ho2FxrbonXmjrgxOyN3gxgZObIhQ6lQcF7rqS7ULAT8dnMDThQZOKebZ31ni_0=w154-h37-s-no?authuser=4)            
 
-  **dash** 
-  `` <h2 style="border: 2px dashed black;"> Komandro</h2> ``          
+  **dash**
+  
+  `` <h2 style="border: 2px dashed black;"> Komandro</h2> ``
+  
   ![enter image description here](https://lh3.googleusercontent.com/pw/ADCreHfWdT4oXDCxwIQ6v7nzXBIvfpYKy7uSm2uQygKKjuv__OrOjYAjP4Z1lcwbcGuMKilY8404UYAShDvlkho-5zK8iH-OV4p-N8HHNNEKbJpFNV4noGUvL7UAm8ZNHFn_rULM0tQENUshoDBSqVbJ9lU=w141-h44-s-no?authuser=4)
   
-  **dotted**    
-  ``<h2 style="border: 2px dotted black;"> Komandro</h2>``     
+  **dotted**
+  
+  ``<h2 style="border: 2px dotted black;"> Komandro</h2>``  
+  
 ![enter image description here](https://lh3.googleusercontent.com/pw/ADCreHf8FUtxcHermSEQ4PZ8RokWztdrgkEklOqJAWxNlOo92oQuw-niKGrPToF61QX3okVLfAoA8wGgsbeYx-6o9TpohZmEbdIo6cq_rdbo-AczS-EtFpAHkSllsiRN6SnST1jLbPTdEnZc6y0T64Q6qe8=w149-h39-s-no?authuser=4)
 
 **double**    
- ``\<h2 style=\"border: 3px double black;\"\> Komandro\</h2\>     ``          
+
+ ``\<h2 style=\"border: 3px double black;\"\> Komandro\</h2\>     ``   
+ 
 ![enter image description here](https://lh3.googleusercontent.com/pw/ADCreHeE41AYjNbausPTX5t3IPrYE4pP2lWH1Y9VEN4gdl8Nmz8CxySo7gc_UiuFZdgQ1Gr36fSPoF2zxIKIsSp3qm4vuymYJCu2ewBXocVs5RWJZq-WO0egCP6zKuGA-ONNuwwdbBxC3WnY09N1N3gcYI8=w160-h41-s-no?authuser=4)
 
   ---------------------------------------------------------------------------------------------------------------------------------------------------
