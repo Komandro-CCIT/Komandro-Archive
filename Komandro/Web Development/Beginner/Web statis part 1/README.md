@@ -1,11 +1,10 @@
 ﻿# Paduan Dasar Untuk HTML dan CSS
 
 **Document writer:  Hastho Rahtomo**
+
 **Markdown by: Muhammad Fauzan Arrafi**
 
 **17 October 2023**
-
-Untuk implementasi dari materi ini, kalian bisa cek di bagian Mini project!
 
 
 # **Chapter 1: Pengenalan**
@@ -106,6 +105,7 @@ Bagian berwarna ungu adalah daerah dari \<head\> dan bagian berwarnkuning adalah
 Kamu dapat memperhatikan contoh berikut.
 
 ![](https://lh3.googleusercontent.com/pw/ADCreHdGB2qP2e5lI7LSJl1URuIngOv_pUvvPDy_NnO0pkeMzMx9X413_9Nzs11YgHlb9jpxgyC-Eu5F00VK98V4VxT-JrR7tbYBsdsDReiOJI885iZPg0KKlT-7EfPGMjhu3-nAAX6suK51diZku0--Z6w=w164-h70-s-no?authuser=4)
+
 kode \<kode\> memiliki isi yaitu "aku ganteng" karena "aku ganteng" berada dalam daerah \<kode\> otomatis "aku ganteng" akan menjadi value dari \<kode\>
 
 ## **Header \<h\>**
@@ -675,3 +675,5 @@ Margin kanan dan kiri dapat mengubah posisi gambar menjadi ditengah.
 Ayo mencoba
 
 Ubah posisi agar gambar berada di arah kanan lalu ubah gambar ke arah kiri. Sebagai clue, kamu dapat melihat pada bagian "margin" dan "width" pada kodingan mu!
+
+Untuk implementasi dari materi ini, kalian bisa cek di bagian Mini project!
