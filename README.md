@@ -45,4 +45,5 @@ Connect with us:
 -   Medium:
 
 
-We look forward to your involvement and the incredible contributions you'll bring to the Komandro community. Happy coding!
+We look forward to your involvement and the incredible contributions you'll bring to the Komandro community.   
+Happy coding!
