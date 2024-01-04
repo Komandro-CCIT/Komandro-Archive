@@ -1,7 +1,7 @@
 # Basic Bootstrap
 
-author: HasthoRahtomo   
-markdown: Ifarra 
+author: HasthoRahtomo
+markdown: Ifarra
 
 ---
 
@@ -21,7 +21,6 @@ project kita.
 
     ![image1](https://github.com/Komandro-CCIT/Komandro-Archive/assets/125471579/e81ab87e-535b-4b05-b43f-2c04ca348625)
 
-
 3. Bootstrap sudah terpasang dan siap digunakan.
 
     Perlu diingat penggunaan bootstrap tanpa melakukan pengistalan
@@ -35,7 +34,6 @@ menggunakan kode-kode yang ada didalam bootstrap. Berikut adalah
 caranya:
 
 ![image2](https://github.com/Komandro-CCIT/Komandro-Archive/assets/125471579/1ea00bad-66b6-4a43-8198-dfd5f6f27a23)
-
 
 Kita dapat mencari kode apa yang kita ingin kan pada search bar, kita
 juga dapat mencari nya secara manual pada bagian kiri website.
@@ -55,10 +53,9 @@ Sebagai Contoh, kita akan menggunakan slider dari Bootstrap.
     `<body>`
     ![image4](https://github.com/Komandro-CCIT/Komandro-Archive/assets/125471579/8c349020-14e9-49c1-aca8-def924b51512)
 
-
 5. Run dan lihat hasilnya.
 
-### Contoh 2, kita akan menggunakan Cards dari Bootstrap.
+### Contoh 2, kita akan menggunakan Cards dari Bootstrap
 
 1. Ketik "cards" pada search bar kemudian klik ENTER.
 
@@ -67,14 +64,13 @@ digunakan.
 
     ![image5](https://github.com/Komandro-CCIT/Komandro-Archive/assets/125471579/95c5f5a0-ffb9-4201-91a1-dd63744a45ae)
 
-
 3. Copy code yang berada dibawah desain yang diinginkan.
 
 4. Masukan kode yang sudah di copy tadi kedalam project.
 
 5. Perhatikan hasilnya
 
-## Penggunaan Bootstrap 
+## Penggunaan Bootstrap
 
 Walaupun kita hanya meng-copy kode dari bootstrap, kita tetap dapat
 mengatur element yang telah di copy tersebut, seperti mengubah warna,
@@ -90,20 +86,18 @@ warna.
 
     ![image6](https://github.com/Komandro-CCIT/Komandro-Archive/assets/125471579/f3b638c9-d858-43d6-9fa1-8fbf41be3f57)
 
-
 3. Paste kode yang telah di copy sebelumnya pada bagian "Class"
 element. dan hapus titik (.) pada awal kode
 
     ![image7](https://github.com/Komandro-CCIT/Komandro-Archive/assets/125471579/b7819ad1-88ba-4138-a4d0-79f61a43fdfd)
 
-
 4. Perhatikan output yang keluar
 
     ![image8](https://github.com/Komandro-CCIT/Komandro-Archive/assets/125471579/e1fd5b34-751c-4e02-89dc-999d86443da8)
 
-
 Untuk mengubah warna text sebenarnya sama. Secara general, cara mengubah
 style dari element dari bootstrap adalah mencari apa yang ingin diubah
+
 - copy kode yang diinginkan
 
 - letakan kode yang telah dicopy pada bagian "class" dengan titik (.)

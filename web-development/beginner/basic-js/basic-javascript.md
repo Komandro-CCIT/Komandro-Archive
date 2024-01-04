@@ -1,17 +1,13 @@
 
-
-# JavaScript Basics 
-
+# JavaScript Basics
 
 Author : M.Fauzan Arrafi
 
 ---
 
-
 ![js](https://it.telkomuniversity.ac.id/wp-content/uploads/2023/01/Javascript-adalah-1.jpg)
 
-
-## Introduction 
+## Introduction
 
 JavaScript is an immensely popular and versatile programming language primarily used for web development. Its ability to add dynamic and interactive behavior to web pages has made it a cornerstone of modern web development. In this comprehensive tutorial, we will delve into the fundamentals of JavaScript, equipping you with the knowledge to create powerful and engaging web applications.
 
@@ -128,7 +124,7 @@ greet("John"); // Output: Hello, John!
 
 In this example, the `greet` function has a default parameter for `name` set to "Anonymous". If no argument is provided, it will use the default value.
 
-### Anonymous Function:
+### Anonymous Function
 
 ```javascript
 // Anonymous function assigned to a variable
@@ -141,7 +137,7 @@ sayHello(); // Output: Hello!
 
 Anonymous functions are functions without a name. They can be assigned to variables and invoked just like named functions.
 
-### Arrow Function:
+### Arrow Function
 
 ```javascript
 // Arrow function
@@ -152,7 +148,7 @@ console.log(multiply(2, 3)); // Output: 6
 
 Arrow functions provide a concise syntax for writing functions. They are especially useful for writing one-liner functions.
 
-### Higher-Order Function:
+### Higher-Order Function
 
 ```javascript
 // Higher-order function
@@ -169,7 +165,7 @@ console.log(calculate(add, 2, 3)); // Output: 5
 
 Higher-order functions are functions that accept other functions as arguments or return functions as results. In this example, `calculate` is a higher-order function that takes an operation function as a parameter.
 
-### Recursive Function:
+### Recursive Function
 
 ```javascript
 // Recursive function to calculate factorial
@@ -195,8 +191,7 @@ JavaScript's integration with the Document Object Model (DOM) enables you to man
 
 JavaScript allows manipulation of the Document Object Model (DOM) to dynamically modify HTML elements and their properties.
 
-
-### **Selecting and Modifying Elements**:
+### **Selecting and Modifying Elements**
 
 ```javascript
 // Selecting an element by its ID and changing its text content
@@ -212,7 +207,7 @@ for (let i = 0; i < paragraphs.length; i++) {
 
 In this example, we select an element with the ID "myHeading" and change its text content. Then, we select elements with the class name "myParagraph" and modify their styles by changing their color.
 
-### **Creating and Appending New Elements**:
+### **Creating and Appending New Elements**
 
 ```javascript
 // Creating a new paragraph element and appending it to an existing div
@@ -224,7 +219,7 @@ existingDiv.appendChild(newParagraph);
 
 Here, we create a new `<p>` element, set its text content, and then append it to an existing `<div>` element with the ID "myDiv".
 
-### **Handling Events**:
+### **Handling Events**
 
 ```javascript
 // Adding an event listener to a button element
@@ -236,7 +231,7 @@ myButton.addEventListener("click", function() {
 
 In this example, we add an event listener to a button element with the ID "myButton". When the button is clicked, an alert message saying "Button clicked!" will be displayed.
 
-### **Traversing the DOM Tree**:
+### **Traversing the DOM Tree**
 
 ```javascript
 // Accessing child elements and modifying their properties
@@ -256,7 +251,7 @@ These are just a few examples of how you can manipulate the DOM using JavaScript
 
 JavaScript enables event handling to respond to user interactions or other events on web pages.
 
-### **Handling Form Submission**:
+### **Handling Form Submission**
 
 ```javascript
 // Handling form submission event
@@ -270,7 +265,7 @@ form.addEventListener("submit", function(event) {
 
 In this example, we handle the form submission event and prevent the default form submission behavior. We then access the input element and log its value to the console.
 
-### **Handling Mouse Events**:
+### **Handling Mouse Events**
 
 ```javascript
 // Handling mouse over and mouse out events
@@ -286,7 +281,7 @@ element.addEventListener("mouseout", function() {
 
 Here, we handle the mouse over and mouse out events on an element with the ID "myElement". When the mouse cursor enters or leaves the element, the corresponding event handler functions are executed, logging messages to the console.
 
-### **Handling Keyboard Events**:
+### **Handling Keyboard Events**
 
 ```javascript
 // Handling keydown event
@@ -297,7 +292,7 @@ document.addEventListener("keydown", function(event) {
 
 In this example, we handle the keydown event on the entire document. When any key is pressed, the event handler function logs the pressed key to the console.
 
-### **Handling Window Resize Event**:
+### **Handling Window Resize Event**
 
 ```javascript
 // Handling window resize event

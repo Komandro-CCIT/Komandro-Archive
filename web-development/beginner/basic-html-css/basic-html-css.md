@@ -6,12 +6,11 @@
 
 **17 October 2023**
 
-
 # **Chapter 1: Pengenalan**
 
 Pernah kah kamu membuka website pada gadget mu? Kamu pasti pernah mengakses website hiburan seperti Spotify dan Youtube, jejaring sosial seperti Twitter dan Instagram maupun website untuk belajar seperti Ruang Guru dan Brainly. Mereka dibuat menggunakan bahasa pemograman ***HTML***, namun apa itu HTML?
 
-## **HTML** 
+## **HTML**
 
 ![](https://lh3.googleusercontent.com/pw/ADCreHeqKHqBNHEly80exzyISunSN13tomYfmRSc_f50RaZ4zRHu49EXR651fCPV3C7_3lNoxr1cImjFnBLXypjoFL8zl6zRlb3-hlxBzW16yDHIpcsgIFKW0Xf1iqkftigHbF-Tl4wih5trXv9kw6fBc4s=w586-h199-s-no)
 
@@ -26,7 +25,7 @@ Namun, HTML Tidak dapat bekerja sendiri. HTML membutuhkan bantuan dari bahasa la
 CSS adalah singkatan dari Cascading Style Sheets, yang dalam bahasa Indonesia dapat diterjemahkan sebagai \"Lembar Gaya Berkaskelana.\" CSS adalah bahasa pemrograman yang digunakan untuk mengontrol tampilan dan format dari elemen-elemen yang ditandai dalam sebuah dokumen HTML, seperti teks, gambar, tautan, dan elemen-elemen lainnya dalam halaman web.
 
 Kita akan menggunakan ***Text Editor*** untuk membantu kita dalam menggunakan bahasa pemograman HTML dan CSS. Terdapat banyak text editor yang dapat kamu gunakan, seperti Atom, Notepad++ dan Visual Studio Code tetapi untuk kali ini kita akan menggunakan Visual Studio Code. Kamu dapat mengakses website Visual Studio Code lewat link berikut,
-https://code.visualstudio.com/
+<https://code.visualstudio.com/>
 
 ## **Visual Studio Code**
 
@@ -305,7 +304,6 @@ Eksternal CSS menggunakan file terpisah untuk men-style file HTML mu.
 
 ![](https://lh3.googleusercontent.com/pw/ADCreHfuMjkvurntBdGi8GIFYJL2EYmAzMn6dUgjaSylWdV1NGmfGqmhAk9NwPf1Zqq2IeLKbTl8N69qDPjWmFwfvBVwgQMXtBgbIdLBy4_AQQwQF5Fbm4kUmLxVFJjD60JUPXxC84cUaCXeFX61wq8LAQY=w179-h94-s-no?authuser=4)
 
-
 Kamu dapat memperhatikan kode dibawah ini.
 
 ``<link rel="stylesheet" type="text" href="style.css">``
@@ -317,6 +315,7 @@ Kamu dapat mengcopy kode tersebut dan menaruhnya didalam \<head\>, seperti berik
 Sekarang, kamu telah menghubungkan file HTML mu dengan CSS.
 
 ### **Internal CSS**
+
 Berbeda dengan styling secara eksternal, internla css mengarah kepada tag \<style\> yang bisa kalian tulis di didalam \<head\> tag, berikut adalah contohd dari penggunaan internal css
 
 ```html
@@ -466,12 +465,11 @@ komandro<br>
 
 Digunakan untuk membuat batas border pada ujung element, banyak tipe border yang dapat kamu gunakan, berikut adalah beberapa contoh border yang dapat kamu gunakan dan cara menggunakannya.
 
-
   **border**
   
   ``<h2 style="border: 1px solid black;"> Komandro</h2>``
   
-  ![enter image description here](https://lh3.googleusercontent.com/pw/ADCreHfzUsWgiRPc1ZPLBlS9YLmRvVv7SjT-FTfAQ-YXAWmsVfBNNBTtFLqw_Zxu0W3wjeve7juiMX51x35jHr_nYHN79ho2FxrbonXmjrgxOyN3gxgZObIhQ6lQcF7rqS7ULAT8dnMDThQZOKebZ31ni_0=w154-h37-s-no?authuser=4)            
+  ![enter image description here](https://lh3.googleusercontent.com/pw/ADCreHfzUsWgiRPc1ZPLBlS9YLmRvVv7SjT-FTfAQ-YXAWmsVfBNNBTtFLqw_Zxu0W3wjeve7juiMX51x35jHr_nYHN79ho2FxrbonXmjrgxOyN3gxgZObIhQ6lQcF7rqS7ULAT8dnMDThQZOKebZ31ni_0=w154-h37-s-no?authuser=4)
 
   **dash**
   
@@ -485,10 +483,10 @@ Digunakan untuk membuat batas border pada ujung element, banyak tipe border yang
   
 ![enter image description here](https://lh3.googleusercontent.com/pw/ADCreHf8FUtxcHermSEQ4PZ8RokWztdrgkEklOqJAWxNlOo92oQuw-niKGrPToF61QX3okVLfAoA8wGgsbeYx-6o9TpohZmEbdIo6cq_rdbo-AczS-EtFpAHkSllsiRN6SnST1jLbPTdEnZc6y0T64Q6qe8=w149-h39-s-no?authuser=4)
 
-**double**    
+**double**
 
- ``\<h2 style=\"border: 3px double black;\"\> Komandro\</h2\>     ``   
- 
+ ``\<h2 style=\"border: 3px double black;\"\> Komandro\</h2\>``
+
 ![enter image description here](https://lh3.googleusercontent.com/pw/ADCreHeE41AYjNbausPTX5t3IPrYE4pP2lWH1Y9VEN4gdl8Nmz8CxySo7gc_UiuFZdgQ1Gr36fSPoF2zxIKIsSp3qm4vuymYJCu2ewBXocVs5RWJZq-WO0egCP6zKuGA-ONNuwwdbBxC3WnY09N1N3gcYI8=w160-h41-s-no?authuser=4)
 
   ---------------------------------------------------------------------------------------------------------------------------------------------------
@@ -511,16 +509,13 @@ Terdapat 4 arah untuk menentukan ukuran margin dan padding.
 
 Kamu dapat menggunakannya adalah seperti contoh berikut.
 
-  
-  - Margin-top              
-  - Margin-bottom  
-   - Margin-left
+- Margin-top
+- Margin-bottom  
+- Margin-left
 
-  - Padding-top             
-  - Padding-right           
-  - Padding-bottom
-
-  
+- Padding-top
+- Padding-right
+- Padding-bottom
 
 Untuk penjelasan yang lebih jelas perhatikan kode berikut.
 
@@ -544,19 +539,13 @@ Adalah kode yang dipakai untuk mengatur lebar dan tinggi dari sebuah elemen.
 
   Width, adalah kode untuk mengatur kelebaran yang bersifat statis                                                                                                           (tidak akan berubah valuenya).  
   
- ``                                                                                           <img   src=""    alt="" width="100px">          
- ``                                                     
-                                                                                                      
+ ``                                                                                           <img   src=""    alt="" width="100px">
+ ``
 
-  Height, adalah kode untuk mengatur Ketinggian yang bersifat statis (tidak akan berubah valuenya).    
+  Height, adalah kode untuk mengatur Ketinggian yang bersifat statis (tidak akan berubah valuenya).
   ``
-  <img src=""  alt="" height="50px">   
-  ``                                                            
-                                                                                                            
-                                                                                                            
-     
-                                                                                                    
-
+  <img src=""  alt="" height="50px">
+  ``
 
 ## **Min dan Max**
 
@@ -564,21 +553,21 @@ Kamu juga dapat mengatur ukuran minimal dan maksimal dari suatu elemen,
 kamu dapat memilih kode kode berikut.
 
   Min-Width, digunakan untuk mengatur Min-width: ukuran bebas;
-  batas kelebaran minimal untuk suatu 
-  elemen.                             
+  batas kelebaran minimal untuk suatu
+  elemen.
 
   Max-Width, digunakan untuk mengatur Max-width: ukuran bebas;
-  batas kelebaran maksimal untuk      
-  suatu elemen.                       
+  batas kelebaran maksimal untuk
+  suatu elemen.
 
   Min-height, digunakan untuk         Min-height: ukuran bebas;
-  mengatur batas ketinggian minimal   
-  untuk suatu elemen.                 
+  mengatur batas ketinggian minimal
+  untuk suatu elemen.
 
   Max-height, digunakan untuk         Max-height: ukuran bebas;
-  mengatur batas ketinggian maksmal   
-  untuk suatu elemen.     
-              
+  mengatur batas ketinggian maksmal
+  untuk suatu elemen.
+
   -----------------------------------------------------------------------
 
 ## **Class dan ID**
@@ -614,7 +603,6 @@ color: blue;
 }
 ```
 
-
 Hasilnya akan seperti berikut.
 
 ![](https://lh3.googleusercontent.com/pw/ADCreHdGd-QK2Lhf0euC7Jrx4ddZf9x2aNuJAdOodZ6IXzI8uac3-mmtWjL3w6urBxB4AKaM8ZOhWzLrRp-SydcEyh5yuASrlQd2MQUfIMVFc54ES5N8GBQOpB2eV3aD_EasHhXPCvbkazwXwsmz4Y95voI=w196-h111-s-no?authuser=4)
@@ -627,6 +615,7 @@ memilih salah satu nya untuk dipakai pada website projek mu.
 Mengacu pada keadaan ketika pengguna mengarahkan kursor mouse mereka ke elemen HTML tertentu, seperti tautan (link) atau elemen yang dapat diinteraksi. Saat pengguna mengarahkan kursor ke elemen tersebut, terkadang tindakan atau perubahan visual khusus dapat terjadi, dan ini disebut \"hover effect". Perhatikan kode berikut.
 
 Index.HTML
+
 ```html
 <body>
 
@@ -652,7 +641,6 @@ color:yellow;
 Hasilnya akan seperti berikut.
 
 ![](https://lh3.googleusercontent.com/pw/ADCreHck1tLNeXDU97AVeiKF7pstmtNs0zB-1ywBoeMDsgVk7aUtl4Qf_bBMZgMIr_JKmcdJvX6XJeT5wo0_RFGbpcBe-DSvWNzeFlnZHg7kJr5ar50A6kxWg2kIcyDnWm15pptP2J6-wG61LjD7It9LyJo=w209-h151-s-no?authuser=4)
-
 
 ![](https://lh3.googleusercontent.com/pw/ADCreHel7RxfO7Un7Cdu3jJflDsE6mqffw5gL8iQV7pht0oyY9x2Ke_PRc5r2FQSocAiFfuTItiIePc1Up-sJ8XmnY-ixFvUmz1_Y6i_w8soE2nOpoHz-Nzhs8_251oY1qjIHFSnavobCZ61-E52RxYnOtQ=w213-h134-s-no?authuser=4)
 
