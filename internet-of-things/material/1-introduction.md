@@ -156,9 +156,12 @@ Setelah mendownload ISO Raspberry OS, sekarang buka Virtualbox dan coba buat OS 
 
 Ringkasan:
 - Masukkan nama Raspberry OS
-- Pilih OS Linux - Debian 32 Bit
+- Pilih OS Linux - Other Linux 32-bit
 - Masukkan Memory sesuka kalian, umumnya akan lebih baik kalau: 2048 (2 GB), 4096 (4 GB).
-- Masukkan disk size sesuka kalian, agar tidak lag, masukkan minimal 30 GB
+- Masukkan disk size sesuka kalian, agar tidak lag, masukkan minimal 30 GB,tapi 16 GB saja sudah cukup untuk belajar.
+
+> [!NOTE]
+> Jangan memilih Debian 32-bit karena nanti kamu akan mengalami corrupt. Tested by Pak Hudya
 
 Sekarang waktunya booting, tapi kita perlu memilih ISO pada saat melakukan booting, perhatikan GIF berikut:
 
