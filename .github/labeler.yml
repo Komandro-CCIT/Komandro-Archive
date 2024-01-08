@@ -3,21 +3,17 @@ Documentation:
   - any-glob-to-any-file: '**/*.md'
 
 IoT:
-- head-branch: ['^iot', 'iot']
 - changed-files:
-  - any-glob-to-any-file: 'internet-of-things/**'
+  - any-glob-to-any-file: internet-of-things/**
 
 Web:
-- head-branch: ['^web', 'web']
 - changed-files:
-  - any-glob-to-any-file: 'web-development/**'
+  - any-glob-to-any-file: web-development/**
 
 UI/UX:
-- head-branch: ['^uiux', 'uiux']
 - changed-files:
-  - any-glob-to-any-file: 'ui-ux/**'
+  - any-glob-to-any-file: ui-ux/**
 
 Android:
-- head-branch: ['^android', 'android']
 - changed-files:
-  - any-glob-to-any-file: 'android/**'
+  - any-glob-to-any-file: android/**
