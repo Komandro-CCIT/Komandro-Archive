@@ -4,16 +4,16 @@ Documentation:
 
 IoT:
 - changed-files:
-  - any-glob-to-any-file: internet-of-things/**
+  - any-glob-to-any-file: 'internet-of-things/*'
 
 Web:
 - changed-files:
-  - any-glob-to-any-file: web-development/**
+  - any-glob-to-any-file: 'web-development/*'
 
 UI/UX:
 - changed-files:
-  - any-glob-to-any-file: ui-ux/**
+  - any-glob-to-any-file: 'ui-ux/*'
 
 Android:
 - changed-files:
-  - any-glob-to-any-file: android/**
+  - any-glob-to-any-file: 'android/*'
