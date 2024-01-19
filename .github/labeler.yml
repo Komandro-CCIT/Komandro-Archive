@@ -1,0 +1,19 @@
+Documentation:
+- changed-files:
+  - any-glob-to-any-file: '**/*.md'
+
+IoT:
+- changed-files:
+  - any-glob-to-any-file: 'internet-of-things/**'
+
+Web:
+- changed-files:
+  - any-glob-to-any-file: 'web-development/**'
+
+UI/UX:
+- changed-files:
+  - any-glob-to-any-file: 'ui-ux/**'
+
+Android:
+- changed-files:
+  - any-glob-to-any-file: 'android/**'
