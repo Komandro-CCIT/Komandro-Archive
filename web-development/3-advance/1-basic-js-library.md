@@ -66,6 +66,15 @@ Berikut adalah beberapa contoh penggunaan jQuery:
 
 ### Contoh implementasi jQuery untuk manipulasi DOM
 
+Pertama kita harus menambahkan link dari jQuery untuk memulai menggunakan jquery :
+
+```html
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+```
+
+setelah itu kalian dapat menggunakan tag `<script>` untuk menulis kode js ke dalam file html kalian, kalian juga dapat menggunakan eksternal js untuk menggunakan jQuery.
+
+
 ### 1. Menambahkan Element Baru ke Halaman
 
 ```javascript
