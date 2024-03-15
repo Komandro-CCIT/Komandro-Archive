@@ -109,5 +109,12 @@ Selamat datang kembali di dunia desain Figma yang penuh kreativitas! Agar perjal
 
 *Plugin Figma skala tipe*
 
+## **14. Eksplor Creativity anda 📏**
+   Dengan alat desain dan produktivitas terdepan untuk mempercepat alur kerja Anda.
+   
+![image](https://github.com/Hanifxys/Komandro-Archive/assets/135254497/9c809e37-3820-47b2-9d14-4e4881e496fc)
+
+*Plugin Figma Brandfetch*
+
 # **Apa Selanjutnya?**
-Jangan bosan ya!!!, setelah Anda mengenal plugin-plugin ini, mari jelajahi lebih dalam dan tingkatkan pengalaman desain Figma Anda dengan membuat halaman login, keep fighting yaaw! 🚀
+Jangan bosan ya!!!, setelah Anda mengenal plugin-plugin ini, mari jelajahi lebih dalam dan tingkatkan pengalaman desain Figma Anda dengan membuat halaman login register, keep fighting yaa! 🚀
