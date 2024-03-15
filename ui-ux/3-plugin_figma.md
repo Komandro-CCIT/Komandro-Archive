@@ -111,8 +111,8 @@ Selamat datang kembali di dunia desain Figma yang penuh kreativitas! Agar perjal
 
 ## **14. Eksplor Creativity anda 📏**
    Dengan alat desain dan produktivitas terdepan untuk mempercepat alur kerja Anda.
-
- [image](https://github.com/Hanifxys/Komandro-Archive/assets/135254497/e07c7e55-d634-4774-a723-ca3c485d63a9)
+   
+![image](https://github.com/Hanifxys/Komandro-Archive/assets/135254497/9c809e37-3820-47b2-9d14-4e4881e496fc)
 
 *Plugin Figma Brandfetch*
 
