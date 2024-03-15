@@ -28,15 +28,15 @@ Anda dapat mengikuti langkah-langkah selanjutnya di bawah ini, dengan gambar pro
 
 Style yang digunakan:
 
-1.Text-font-poppins, weight-regular, size-18, color: #000
-2.Rectangle-border radius-15, color:#ddd
-3.Text-font-poppins, size-10, weight-light
-4.Rectangle-border radius-15, color: #454545
-5.Text-font-poppins, size-12, weight-light
-6.Text-font-poppins, size-14, weight-light
-7.Rectangle-border radius-3, color: #454545
-8.Text-font-poppins, weight-regular, size-18, color: #fff
-9.Eclipse --olor:#c4c4c4
+1. Text-font-poppins, weight-regular, size-18, color: #000
+2. Rectangle-border radius-15, color:#ddd
+3. Text-font-poppins, size-10, weight-light
+4. Rectangle-border radius-15, color: #454545
+5. Text-font-poppins, size-12, weight-light
+6. Text-font-poppins, size-14, weight-light
+7. Rectangle-border radius-3, color: #454545
+8. Text-font-poppins, weight-regular, size-18, color: #fff
+9. Eclipse --olor:#c4c4c4
 
 Jika kalian liat, di bawah Prototype terdapat Icon Google dan Facebook. Nah kali ini kita akan mendownload plugin Brandfetch. Kalian klik menu lalu ke plugins, lallu klik browser plugins in community
 
@@ -79,20 +79,20 @@ Nah untuk touching terakhirnya, Saya merubah warna gambarnya menjadi lebih gelap
 
 **MEMBUAT REGISTER PAGE**
 
-Hal pertama yang harus kalian lakukan adalah duplicate hasil login page yang sudah jadi dengan shortcut Alt + Shift lalu geser ke tempat yang kalian inginkan, lalu ikuti seperti gambar dibawah ini:
+Hal pertama yang harus kalian lakukan adalah duplicate hasil login page yang sudah jadi dengan shortcut Alt + Shift lalu geser ke tempat yang kalian inginkan, lalu ikuti seperti gambar dibawah ini:
 
-![image](https://github.com/Hanifxys/Komandro-Archive/assets/135254497/c7d2d02d-d15e-413d-bbe7-f475775a4eb5)
+![image](https://github.com/Hanifxys/Komandro-Archive/assets/135254497/3858f790-14b9-4f59-9a1d-b8814f373f02)
 
 1.Ganti text "Register" menjadi "Login"
+
 2.Download gambar berbeda dari sebelumnya di sini https://undraw.co/search Kalian bisa search dengan menggunakan keyword "Register" dan pilih sesuai selera kalian. Setelah itu copy seperti gambar diatas
+
 3.Ganti text "Login" menjadi "Register"
+
 4.Ganti text "Login" menjadi "Register"
+
 5.Duplicate salah satu label text dan textfieldnya. Lalu ubah menjadi "Email"
+
 6.Ubah text menjadi seperti diatas.
 
-Nah desain halaman Login dan Halaman Register kita sudah selesai nih, gampang banget kan ? Sekian dulu Tutorial Figma dari Saya.
-
-
-
-
-
+Nah desain halaman Login dan Halaman Register kita sudah selesai nih, gampang banget kan ? Sekian dulu Tutorial Figma dari Admin
