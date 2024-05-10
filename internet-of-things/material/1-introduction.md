@@ -142,102 +142,200 @@ Saking ajaibnya raspberry ini, banyak sekali yang menggunakannya untuk membuat b
 
 <br/>
 
-Kami dari Komunitas Android CCIT - FTUI akan membagikan langkah-langkah dasar dalam pembelajaran IoT menggunakan raspberry, namun kamu jangan khawatir apabila kamu tidak memiliki raspberry, selalu ada solusi pembelajaran. Pada materi ini, kamu akan mensimulasikan raspberry dengan Raspbian, Raspbian sendiri adalah Raspbbery PI OS yang berbasis Debian. Dulunya memang namanya Raspbian.
+Kami dari Komunitas Android CCIT - FTUI akan membagikan langkah-langkah dasar dalam pembelajaran IoT menggunakan raspberry, namun kamu jangan khawatir apabila kamu tidak memiliki raspberry, selalu ada solusi pembelajaran. Pada materi ini, kamu akan mensimulasikan raspberry dengan Ubuntu.
 
-Pertama, kamu butuh VirtualBox. Pergi saja ke website [resminya](https://www.virtualbox.org/wiki/Downloads) dan download sesuai OS kamu.
-
-Kedua, kamu butuh OS Raspberry itu sendiri, pergi ke website [resminya](https://www.raspberrypi.com/software/raspberry-pi-desktop/) dan klik download. Kamu akan mendownload iso-nya terlebih dahulu.
-
-![Alt text](./assets/1-introduction/2.png)
-
-Setelah mendownload ISO Raspberry OS, sekarang buka Virtualbox dan coba buat OS baru, perhatikan GIF berikut:
-
-![Alt Text](./assets/1-introduction/1.gif)
-
-Ringkasan:
-- Masukkan nama Raspberry OS
-- Pilih OS Linux - Other Linux 32-bit
-- Masukkan Memory sesuka kalian, umumnya akan lebih baik kalau: 2048 (2 GB), 4096 (4 GB).
-- Masukkan disk size sesuka kalian, agar tidak lag, masukkan minimal 30 GB,tapi 16 GB saja sudah cukup untuk belajar.
+Sebelum kita menjelajah Internet of Things menggunakan Raspbian OS, mari kita fokus untuk mempelajari logika dari Internet of Things itu sendiri menggunakan **Ubuntu OS dibantu dengan Multipass dan Visual Studio Code.**
+>Kenapa kita gak langsung menggunakan Raspbian OS saja?
+Ada beberapa alasan mengapa saat ini kita lebih baik menggunakan Ubuntu OS melalui Multipass dibanding langsung menggunakan Raspbian OS :
+- Beginner Friendly. Jadi sangat cocok untuk kita yang baru mulai belajar tentang struktur logika Internet of Things
+- Multipass lebih ringan dibanding virtual maching lainnya (seperti virtual box, etc)
+- Praktis. Kita bisa bulak balik buka browser dan Visual Studio agar dapat melihat dokumentasi/tutorial sekalian kita mempraktekannya
 
 > [!NOTE]
-> Jangan memilih Debian 32-bit karena nanti kamu akan mengalami corrupt. Tested by Pak Hudya
+> Kalian harus mempunyai Visual Studio Code terlebih dahulu sebelum kita mulai install multipassnya.[klik disini untuk download Visual Studio code](https://code.visualstudio.com/download).
 
-Sekarang waktunya booting, tapi kita perlu memilih ISO pada saat melakukan booting, perhatikan GIF berikut:
+Pertama, pastinya kalian wajib download multipass di website resminya. [klik disini untuk langsung menuju website resminya](https://multipass.run/install).
+Jika sudah berada diwebsitenya, pilih OS kalian (pada kasus ini kita memakai OS Windows) dan klik "Download Multipass for Windows"
 
-![Alt Text](assets/1-introduction/2.gif)
+![Alt Text](./assets/1-introduction/0.png)
 
-Setelah muncul layar instalasi, saatnya melakukan instalasi:
+Setelah kalian download, buka file setup multipassnya hingga tampilan awalnya akan seperti dibawah ini
 
-![Alt text](./assets/1-introduction/3.gif)
+![Alt Text](./assets/1-introduction/2.png)
 
-Ringkasan:
-- Pilih Keyboard American English
-- Klik iya untuk recommended users, supaya tidak bingung untuk pemilihan disk
-- Klik iya untuk perubahan
+Kalian pencet next saja terus sampai finish install. Setelah selesai install multipass, lalu restart komputer kalian.
+Setelah restart, kalian cari "powershell" pada menu start kalian dan pilih "Run as Administrator" seperti gambar yang ada dibawah ini.
 
-Kalau sudah begini, kamu harus menunggu terlebih dahulu ya:
+![Alt Text](./assets/1-introduction/3.jpeg)
 
-![Alt text](./assets/1-introduction/3.png)
+Habis itu kalian klik "yes" dan akan muncul tampilan seperti dibawah ini
 
-Sekarang kamu akan ditanya soal grub, tinggal pilih saja yes, dan pilih disk yang kamu punya:
+![Alt Text](./assets/1-introduction/4.png)
 
-![Alt text](./assets/1-introduction/4.png)
+Setelah itu coba kalian ketik "multipass" pada powershell tersebut dan pencet tombol enter, nantinya akan muncul menu yang bisa digunakan di multipass.
+Selamat kalian sudah mencoba multipass untuk pertama kalinya!
 
-![Alt text](./assets/1-introduction/5.png)
+![Alt Text](./assets/1-introduction/5.png)
 
-> [!NOTE]
-> GNU GRUB (singkatan dari GNU GRand Unified Bootloader, yang biasa disebut GRUB) adalah boot loader default untuk sebagian besar sistem operasi Linux. Pada kasus ini kita cukup yes saja biar cepat. Kalau no, ya tidak mengapa juga sih sebenarnya.
-
-<br />
-
-
-Kalau sudah selesai maka akan muncul seperti ini:
-
-![Alt text](./assets/1-introduction/6.png)
-
-
-Lalu gambar ini:
-
-![Alt text](./assets/1-introduction/7.png)
-
-
-Setelahnya tinggal set country dan pilih zona waktu:
-
-![Alt text](./assets/1-introduction/8.png)
-
-
-Setup selesai, tinggal restart aja :)
-
-![Alt text](./assets/1-introduction/9.png)
-
----
-
-Setelah restart, kamu akan melihat GNU GRUB Loader apabila kamu tadi memilih yes, klik saja yang paling atas dengan menekan tombol `enter` atau diamkan saja beberapa detik.
-
-Setelah berhasil booting kamu akan melihat layar desktop Raspberry OS.
-
-![Alt text](./assets/1-introduction/10.png)
-
-Sekarang kita akan melakukan update terhadap library OS ini, agar up to date dan memudahkan development. Sekarang coba klik terminal pada logo bagian atas lalu ketik:
+<br/>
+Selanjutnya kita akan membuat instance sebagai wadah dari Ubuntu.
 
 ```bash
-sudo apt update
+multipass launch --name [nama instance kalian]
 ```
-
-Dilanjutkan dengan:
+Kita akan coba menamai instance kita dengan nama "komandro", kodenya akan menjadi seperti ini
 
 ```bash
-sudo apt upgrade -Y
+multipass launch --name komandro
 ```
 
+Setelah itu, multipass akan otomatis membuat instance baru lalu download dan install ubuntunya, disini kalian tunggu saja sampai selesai download semuanya.
+**Pastikan koneksi internet kalian lancar!**
+
+![Alt Text](./assets/1-introduction/6.png)
+
 > [!NOTE]
-> Mohon jangan lakukan ini apabila kamu masih menggunakan internet kuota.
+> Jika kalian mengalami error "launch failed: Remote "" is unknown or unreachable", masukkan kode dibawah ini pada powershall
+>```bash
+Get-HNSNetwork | ? Name -Like "Default Switch" | Remove-HNSNetwork```
+>Setelah itu restart komputer kalian lalu buka powershall as administrator dan launch kembali seperti cara diatas
 
-Perhatikan GIF berikut:
+Jika sudah selesai launchnya, kita akan lihat apakah instance 'komandro' sudah berjalan atau belum. Coba kalian masukkan kode ini pada powershell
 
-![Alt text](./assets/1-introduction/4.gif)
+```bash
+multipass list
+```
+![Alt Text](./assets/1-introduction/7.png)
 
-Dua perintah di atas digunakan untuk mendapatkan library terbaru dari raspberry, perlu diperhatikan karena ini akan mendownload banyak library terbaru agar up to date, **diperlukan koneksi internet yang stabil dan tidak dibatasi (kuota).**
+Jika instance 'komandro' sudah running dan ada alamat IP nya, berarti kalian sudah berhasil untuk membuat instance pertama kalian! ^^
+<br/>
 
-Viola! Kamu baru saja berhasil menyelesaikan instalasi Raspberry OS versi desktop yang nantinya kita gunakan untuk development di tutorial IoT ini.
+Next, kita akan membuka shell dengan instance kita yang bernama 'komandro'
+
+```bash
+multipass shell komandro
+```
+Jika sudah masukkan kode tersebut, powershell akan menampilkan shell dari instance 'komandro' seperti gambar dibawah ini
+
+![Alt Text](./assets/1-introduction/8.png)
+
+Habis itu, kita akan melakukan konfigurasi. Masukan perintah dibawah ini :
+
+```bash
+cd /etc/ssh/sshd_config.d
+```
+
+Dilanjutkan dengan :
+
+```bash
+sudo nano 60-cloudimg-settings.conf
+```
+
+Setelah itu akan muncul tampilan seperti dibawah ini
+
+![Alt Text](./assets/1-introduction/9.png)
+
+Jika sudah seperti itu, ikuti langkah berikut (lihat gif dibawah ini untuk lebih jelasnya) :
+1. Ganti kata 'no' menjadi 'yes'
+2. Pencet CTRL+SHIFT+X
+3. Ketik 'y' lalu pencet Enter 2 kali
+
+![Alt Text](./assets/1-introduction/10.gif)
+
+Jika kalian sudah kembali ke halaman utama lagi, sekarang kita akan membuat password baru untuk ubuntu kita dengan perintah berikut ini :
+
+```bash
+sudo passwd ubuntu
+```
+Lalu kalian akan diminta untuk memasukkan password baru. Mari kita buat passwordnya itu '123456' (opsional, biar simpel wkwk). 
+
+>[!NOTE]
+>Jika saat kalian masukkan passwordnya tapi tidak muncul di powershellnya, tenang itu fitur agar password tersebut jadi rahasia. Jadi, coba kalian masukkan passwordnya saja lalu tekan enter
+
+Setelah itu kalian akan diminta untuk masukkan password tadi lagi (Untuk konfirmasi). Voilaa! akhirnya kamu sudah selesai membuat akun Ubuntu kalian di Multipass ^^
+
+![Alt Text](./assets/1-introduction/11.png)
+
+<br/>
+
+Sekarang kalian reboot server instance kalian dengan menggunakan perintah :
+
+```bash
+sudo reboot
+```
+
+Kalian akan dibawa ke tampilan powershell seperti awal lagi, disini kita akan cek lagi apakah instance kita sudah berjalan dan ada alamat IP nya atau belum dengan menggunakan perintah :
+
+```bash
+multipass list
+```
+
+Jika sudah running dan ada alamat IPnya, kita akan menjalankan ubuntu kita dengan perintah :
+
+```bash
+ssh ubuntu@ip
+```
+
+Di setelah simbol '@', masukkan alamat IP kalian yang sudah kita lihat di list tadi. Pada kasus ini, alamat IP instance pada powershell saya yaitu '172.21.179.92'. Berarti saya memasukan perintah seperti ini :
+
+```bash
+ssh ubuntu@172.21.179.92
+```
+
+Selanjutnya, kalian ketik 'yes' lalu enter, dan masukkan password yang telah kita buat tadi yaitu '123456'. 
+
+![Alt Text](./assets/1-introduction/12.png)
+
+Jika sudah masukkan password, akan muncul tampilan jadi seperti ini
+
+![Alt Text](./assets/1-introduction/13.png)
+
+Setelah itu kita keluar dari servernya dengan cara masukkan perintah "exit". Sekarang kita buka Visual Studio Code untuk remote Ubuntu melalui VS Code
+
+<br/>
+Kalau sudah buka Visual Studio Code, ikuti langkah dibawah ini (lihat gif dibawah yang lebih jelasnya) :
+1. Pencet tombol warna biru dipojok kiri bawah pada window Visual Studio Code 
+2. klik opsi "Connect to Host"
+3. Ketik ```ubuntu@[ip]```. Masukkan IP instance kalian seperti yang ada di powershell. Misalnya kalau saya yaitu ```ubuntu@172.21.179.92```
+4. Lalu kita akan dibawa ke window baru (windows sebelumnya diclose saja), setelah itu kalian pilih opsi "Linux"
+5. Masukkan password yang telah kita bikin tadi, yaitu '123456' 
+6. Tunggu beberapa menit dikarenakan sedang download dan install beberapa data
+
+![Alt Text](./assets/1-introduction/15.gif)
+
+Yeyy! kita sudah selesai menghubungkan Multipass dengan Visual Studio Code ^^
+
+> [!NOTE]
+> Jika disebelah kiri bawah ada tulisan "SSH : (IP Kalian)" berarti Window Visual Studio Code tersebut sedang remote Instance Multipass kita
+
+![Alt Text](./assets/1-introduction/16.png)
+
+<br/>
+
+Sekarang kita coba buat program python pertama kita di Ubuntu ini. 
+Pertama kalian buka terminal di VS Code dengan cara pencet titik tiga di tab atas > Terminal > New Terminal
+
+![Alt Text](./assets/1-introduction/17.png)
+
+Selanjutnya kita akan membuat direktori baru dengan nama 'projek1' dengan perintah :
+
+```bash
+mkdir projek1
+```
+
+Kalau sudah, kita buka folder 'projek1' tadi. Lalu masukkan passwordnya. Perhatikan GIF dibawah ini :
+
+![Alt Text](./assets/1-introduction/18.gif)
+
+Dan selamat kamu sudah masuk ke dalam instance multipass yang telah kamu buat. Setelah itu, buatlah file python dan isi kode sederhana didalam file python tersebut. Misalnya :
+
+```bash
+print("Hello World!")
+```
+Lalu buka terminal untuk menjalankan file python yang telah kita buat sebelumnya.
+Perhatikan gif dibawah ini :
+
+![Alt Text](./assets/1-introduction/19.gif)
+
+Hasil/Outputnya akan terlihat di terminal seperti yang terdapat di gif tersebut.
+Selamatt kamu sudah membuat python pertama kamu di multipass. ^^
