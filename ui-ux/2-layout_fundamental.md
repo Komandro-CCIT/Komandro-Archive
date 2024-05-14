@@ -32,7 +32,9 @@ Dengan mengimplementasi pengetahuan Layout ke design yang kita buat, pengguna da
 
 ## Spacing
 
-![enter image description here](https://i.pinimg.com/originals/5b/29/25/5b292589c7193669d377a171391c26d5.png)
+<p align="center">
+  <img src="https://i.pinimg.com/originals/5b/29/25/5b292589c7193669d377a171391c26d5.png" width="50%">
+</p>
 
 Spacing merupakan sekumpulan aturan yang menjelaskan bagaimana elemen-elemen dalam sebuah antarmuka seharusnya disusun. Hal ini mencakup nilai-nilai terukur yang mendefinisikan jarak di dalam dan di luar elemen-elemen tersebut. Ketika spacing diterapkan secara konsisten, hal ini dapat membantu menjaga layout tetap bersih dan terorganisir, serta mempermudah pengguna dalam menjelajahi produk.
 
@@ -47,7 +49,10 @@ Ada dua jenis pengaturan spacing yang perlu diperhatikan dalam desain UIUX, yait
 
 ## Margins
 
-![enter image description here](https://uxengineer.com/img/v1-blog/image-29.png)
+<p align="center">
+  <img src="https://uxengineer.com/img/v1-blog/image-29.png" width="50%">
+</p>
+
 
 Margin adalah ruang/jarak di antara elemen-elemen. Ini bisa berupa ruang di sekitar sebuah tombol, di antara kolom-kolom, atau antara gambar dan konten teks di sekelilingnya. Margin merupakan blok bangunan dasar dari pengaturan layout spacing.
 
@@ -58,7 +63,9 @@ Dengan menerapkan aturan margin yang tepat, kita dapat menciptakan komposisi vis
 
 ##  Padding
 
-![enter image description here](https://miro.medium.com/v2/resize:fit:984/1*E2PI5xNw9p4JCqkrAtbzRg.png)
+<p align="center">
+  <img src="https://miro.medium.com/v2/resize:fit:984/1*E2PI5xNw9p4JCqkrAtbzRg.png" width="50%">
+</p>
 
 Padding adalah ruang di dalam batas elemen, dimulai dari batas (border) dan meluas hingga elemen dalam berikutnya. Sebagai contoh, jika sebuah tombol adalah komponen, maka jarak antara label tombol dan tepi tombol adalah padding.
 
@@ -69,7 +76,9 @@ Jadi, margin mengatur jarak antar elemen, sedangkan padding mengatur jarak inter
 
 ## Keylines
 
-![enter image description here](https://miro.medium.com/v2/resize:fit:1400/1*3ZVf8XHX-Ae8O5M2zT_pgQ.png)
+<p align="center">
+  <img src="https://miro.medium.com/v2/resize:fit:1400/1*3ZVf8XHX-Ae8O5M2zT_pgQ.png" width="50%">
+</p>
 
 Keyline adalah garis-garis imajiner yang membantu menyelaraskan elemen-elemen yang ditempatkan di luar grid tata letak (layout grid). Keyline juga memungkinkan desainer untuk menentukan jarak antar elemen dari tepi layar.
 
@@ -77,7 +86,10 @@ Dengan menggunakan keyline, seorang UIUX designer dapat memastikan elemen-elemen
 
 ### Alignment
 
-![enter image description here](https://assets-global.website-files.com/5f82ddcbaca6c9354bc485e1/60d40be44939d53b88d26f09_BLOG%20COVER%20Visual%20design%20principles.png)
+<p align="center">
+  <img src="https://assets-global.website-files.com/5f82ddcbaca6c9354bc485e1/60d40be44939d53b88d26f09_BLOG%20COVER%20Visual%20design%20principles.png" width="50%">
+</p>
+
 
 Alignment dalam desain UI/UX mengacu pada cara elemen-elemen visual (teks, gambar, tombol, dll.) diposisikan dan disejajarkan satu sama lain dalam sebuah layout atau antarmuka. Alignment adalah salah satu prinsip dasar dalam desain yang membantu menciptakan komposisi yang teratur, konsisten, dan mudah dibaca.
 
@@ -133,7 +145,9 @@ Bottom alignment memposisikan elemen-elemen secara rapi di sepanjang garis horiz
 
 ### Aspect ratio
 
-![enter image description here](https://img.uxcel.com/tags/aspect-ratio-1689755793767-2x.jpg)
+<p align="center">
+  <img src="https://img.uxcel.com/tags/aspect-ratio-1689755793767-2x.jpg" width="50%">
+</p>
 
 Aspek rasio mengacu pada proporsi antara dimensi lebar dan tinggi suatu elemen. Ini sangat penting saat berurusan dengan konten yang diunggah pengguna, karena orang-orang mengunggah gambar dengan ukuran yang berbeda-beda. Menampilkan gambar-gambar ini secara konsisten akan mempertahankan harmoni visual.
 
