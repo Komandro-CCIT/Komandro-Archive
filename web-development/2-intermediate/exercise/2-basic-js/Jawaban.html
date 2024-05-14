@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tutorial web satis part 4</title>
+  <script>
+    // Soal 1: Conditional Statements
+    function checkNumber() {
+      var number = parseInt(document.getElementById('number').value);
+      var message = '';
+
+      if (number > 0) {
+        message = 'Angka ' + number + ' adalah positif.';
+      } else if (number < 0) {
+        message = 'Angka ' + number + ' adalah negatif.';
+      } else {
+        message = 'Angka ' + number + ' adalah nol.';
+      }
+
+      document.getElementById('result1').innerHTML = message;
+    }
+
+    // Soal 2: Loop
+    function printNumbers() {
+      var start = parseInt(document.getElementById('start').value);
+      var end = parseInt(document.getElementById('end').value);
+      var numbers = '';
+
+      for (var i = start; i <= end; i++) {
+        numbers += i + ' ';
+      }
+
+      document.getElementById('result2').innerHTML = 'Deret angka: ' + numbers;
+    }
+
+    // Soal 3: Functions
+    function calculateFactorial() {
+      var number = parseInt(document.getElementById('factorial').value);
+      var factorial = 1;
+
+      for (var i = 2; i <= number; i++) {
+        factorial *= i;
+      }
+
+      document.getElementById('result3').innerHTML = number + '! = ' + factorial;
+    }
+
+    // Soal 4: DOM Manipulation
+    function changeColor() {
+      var color = document.getElementById('color').value;
+      document.getElementById('text').style.color = color;
+    }
+
+    // Soal 5: Event Handling
+    function showMessage() {
+      alert('Tombol telah diklik!');
+    }
+  </script>
+</head>
+<body>
+  <h1>Latihan Soal JavaScript</h1>
+  
+  <h2>Soal 1: Conditional Statements</h2>
+  <p>Masukkan sebuah angka:</p>
+  <input type="number" id="number">
+  <button onclick="checkNumber()">Periksa</button>
+  <p id="result1"></p>
+
+  <h2>Soal 2: Loop</h2>
+  <p>Masukkan angka awal dan akhir:</p>
+  <input type="number" id="start">
+  <input type="number" id="end">
+  <button onclick="printNumbers()">Cetak</button>
+  <p id="result2"></p>
+
+  <h2>Soal 3: Functions</h2>
+  <p>Masukkan sebuah angka:</p>
+  <input type="number" id="factorial">
+  <button onclick="calculateFactorial()">Hitung Faktorial</button>
+  <p id="result3"></p>
+
+  <h2>Soal 4: DOM Manipulation</h2>
+  <p>Masukkan warna teks:</p>
+  <input type="text" id="color">
+  <button onclick="changeColor()">Ubah Warna</button>
+  <p id="text">Teks berubah warna.</p>
+
+  <h2>Soal 5: Event Handling</h2>
+  <button onclick="showMessage()">Klik Saya</button>
+
+</body>
+</html>
