@@ -84,7 +84,7 @@ Keyline adalah garis-garis imajiner yang membantu menyelaraskan elemen-elemen ya
 
 Dengan menggunakan keyline, seorang UIUX designer dapat memastikan elemen-elemen pada antarmuka pengguna tetap teratur dan selaras, bahkan jika mereka tidak berada tepat pada grid tata letak. Ini membantu menciptakan komposisi visual yang terstruktur dan menyenangkan bagi pengguna.
 
-### Alignment
+## Alignment
 
 <p align="center">
   <img src="https://assets-global.website-files.com/5f82ddcbaca6c9354bc485e1/60d40be44939d53b88d26f09_BLOG%20COVER%20Visual%20design%20principles.png" width="50%">
@@ -143,7 +143,7 @@ Bottom alignment memposisikan elemen-elemen secara rapi di sepanjang garis horiz
     -   Menciptakan kesan fokus dan keseimbangan.
     -   Sering digunakan untuk konten penting, call-to-action, atau elemen-elemen kunci.
 
-### Aspect ratio
+## Aspect ratio
 
 <p align="center">
   <img src="https://img.uxcel.com/tags/aspect-ratio-1689755793767-2x.jpg" width="50%">
