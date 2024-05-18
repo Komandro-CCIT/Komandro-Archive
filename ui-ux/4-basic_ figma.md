@@ -2,7 +2,9 @@
 ### Author : Muhammad Fauzan Arrafi (Ifarra)
 ---
 
-![enter image description here](https://149611589.v2.pressablecdn.com/wp-content/uploads/2018/11/Screen-Shot-2018-11-19-at-8.43.27-PM.png)
+<p align="center">
+  <img src="https://149611589.v2.pressablecdn.com/wp-content/uploads/2018/11/Screen-Shot-2018-11-19-at-8.43.27-PM.png" width="100%">
+</p>
 
 Figma telah menjadi alat desain yang penting bagi desainer UI/UX. Platform ini menawarkan kolaborasi real-time, pustaka aset yang dapat digunakan kembali, dan fitur prototyping canggih - meningkatkan produktivitas, konsistensi, dan komunikasi proyek. Semakin banyak perusahaan di Indonesia yang mengadopsi Figma, menyadari manfaatnya bagi alur kerja desain modern.
 
@@ -11,7 +13,7 @@ Bagi seorang UIUX designer, menguasai Figma adalah hal yang wajib untuk di lakuk
 ## Figma tools
 
 
-<p>
+<p align="center">
   <img src="https://pbs.twimg.com/media/FXYyXxmUEAUDqPA.jpg" width="60%">
 </p>
 
@@ -21,9 +23,9 @@ Toolbar Figma, yang terletak di bagian atas layar kamu, memberikan akses ke alat
 
 	Move tool di Figma memungkinkan pengguna untuk memilih dan memindahkan elemen desain dengan mudah.
 	
-	Ketika Move tool dipilih, kursor berubah menjadi panah khusus Panah ini berbeda dari kursor panah web stkamur dan dirancang khusus untuk pekerjaan desain Ini berfungsi sebagai indikator visual yang jelas bahwa kamu sedang dalam mode untuk memanipulasi elemen desain secara aktif
+	Ketika Move tool dipilih, kursor berubah menjadi panah khusus sebagai indikator visual yang jelas bahwa kamu sedang dalam mode untuk memanipulasi elemen desain secara aktif
 
-	Kursor panah kustom ini memudahkan untuk memilih dan mengatur lapisan di dalam Panel Lapisan Ini juga memungkinkan pergerakan yang tepat pada objek di kanvas Untuk memindahkan objek, cukup klik dan seret menggunakan mouse atau touchpad Untuk kontrol yang lebih halus dan penyesuaian kecil, tombol panah dapat digunakan.
+	Kursor panah kustom ini memudahkan untuk memilih dan mengatur lapisan di dalam Panel Lapisan, Ini juga memungkinkan pergerakan yang tepat pada objek di kanvas Untuk memindahkan objek, cukup klik dan seret menggunakan mouse atau touchpad, Untuk kontrol yang lebih halus dan penyesuaian kecil, kamu dapat menggunakan arrow key.
 
 	>Tip: Kalian dapat menggunakan shortcut "V" untuk Move menggunakan Move tool
 
@@ -32,7 +34,7 @@ Toolbar Figma, yang terletak di bagian atas layar kamu, memberikan akses ke alat
 
 	Scale Tool di Figma memungkinkan pengguna untuk mengubah ukuran elemen desain. Saat alat ini dipilih, kursor berubah menjadi ikon skala khusus, memberi tahu pengguna bahwa mereka berada dalam mode scale.
 
-	Untuk menemukannya, klik panah di sebelah Move tool pada Toolbar Ini akan menampilkan alat tambahan, termasuk Scale tool yang dapat dikenali dari ikon berbentuk kotak berbingkai dengan panah dua sisi di sudut kanan kamu juga dapat mengaktifkannya dengan cepat dengan menekan "K" pada Windows dan Mac
+	Untuk menemukannya, klik panah di sebelah Move tool pada Toolbar Ini akan menampilkan alat tambahan, termasuk Scale tool yang dapat dikenali dari ikon berbentuk kotak berbingkai dengan panah dua sisi di sudut kanan, kamu juga dapat mengaktifkannya dengan cepat dengan menekan "K" pada Windows dan Mac
 
 	Dengan Scale tool, pengguna dapat memilih satu atau lebih objek, lalu mengeklik dan menyeret untuk mengubah ukurannya. Scaling dapat dilakukan secara proporsional dengan menekan tombol Shift saat menyeret. Pengguna juga dapat menggunakan panel kontrol ukuran untuk memasukkan nilai numerik yang tepat.
 	>Tip : Untuk menskalakan objek secara proporsional di Figma, pilih objek dengan alat Skala, lalu tahan Shift sambil menyeret gagang sudut untuk mempertahankan rasio aspeknya.
@@ -41,7 +43,7 @@ Toolbar Figma, yang terletak di bagian atas layar kamu, memberikan akses ke alat
 
 	Frame tool di Figma memungkinkan pengguna untuk membuat dan mengelola komponen layout dasar dalam desain mereka. Saat alat Frame dipilih, kursor berubah menjadi ikon khusus, memberi tahu pengguna bahwa mereka berada dalam mode pembingkaian.
 
-	Di Figma, frame mirip dengan artboard di alat desain lainnya, digunakan untuk menentukan area khusus di kanvas untuk desain kamu Ini sangat penting untuk mengatur elemen desain, memungkinkan tata letak terstruktur dan alur kerja yang efisien
+	Di Figma, frame mirip dengan artboard di alat desain lainnya, digunakan untuk menentukan area khusus di kanvas, untuk desain kamu Ini sangat penting untuk mengatur elemen desain, memungkinkan tata letak terstruktur dan alur kerja yang efisien
 
 	Dengan Frame tool, desainer dapat dengan cepat membuat kotak pembatas untuk mengelompokkan dan mengatur elemen pada kanvas. Frame berfungsi sebagai kontainer untuk menampung berbagai objek, seperti teks, ikon, dan widget UI lainnya.
 
@@ -67,7 +69,7 @@ Toolbar Figma, yang terletak di bagian atas layar kamu, memberikan akses ke alat
 
 	Dengan Pencil tool, desainer dapat mengeklik dan menyeret untuk menggambar garis, lengkungan, dan bentuk tidak beraturan pada kanvas. Alat ini berfungsi seperti menggambar dengan pensil di atas kertas, memberikan efek yang lebih spontan dan alami dibandingkan dengan alat Pen vektor.
 
-	Pen tool menawarkan freehand approach untuk menambahkan sketsa, catatan, atau sentuhan seni pada desain kamu, Ideal untuk menuliskan ide-ide atau menambahkan sketsa, alat Pensil menghadirkan nuansa organik pada desain digital. 
+	Pen tool menawarkan freehand approach untuk menambahkan sketsa, catatan, atau sentuhan seni pada desain kamu, Ideal untuk menuliskan ide-ide atau menambahkan sketsa, Pencil tool di gunakan untuk menghadirkan nuansa organik pada desain digital. 
 
 	>Tip: Untuk mengakses Pencil Tool kamu dapat menekan tombol "Sift" + "P" pada keyboard, ini berlaku untuk Mac dan Windows!
 
@@ -93,7 +95,7 @@ Toolbar Figma, yang terletak di bagian atas layar kamu, memberikan akses ke alat
 
 	Text tool di Figma memungkinkan pengguna untuk menambahkan dan mengelola teks dalam desain mereka.
 
-	Untuk membuat layer teks instan, kalian bisa klik sekali pada kanvas. Jika kamu lebih suka layer teks dengan proporsi tetap, klik dan seret untuk mengatur ukurannya. Fleksibilitas dalam membangun lapisan teks ini menjamin bahwa informasi tekstual kamu sesuai dengan dan menambah koherensi visual desain kamu.
+	Untuk membuat layer teks instan, kalian bisa klik sekali pada kanvas. Jika kamu lebih suka layer teks dengan proporsi tetap, klik dan seret untuk mengatur ukurannya. Fleksibilitas dalam membangun lapisan teks ini menjamin bahwa informasi tekstual kamu sesuai dan menambah koherensi visual desain kamu.
 
 	>Tip : Kalian dapat menggunakan shortcut "T" untuk menggunakan Text Tool
 
@@ -103,7 +105,7 @@ Toolbar Figma, yang terletak di bagian atas layar kamu, memberikan akses ke alat
 
 10. **Comment Tool**
 
-	Comment tool di Figma, yang ditkamui dengan ikon bubble chat, memudahkan komunikasi lancar dengan tim kamu Cocok untuk membahas perubahan, merespons umpan balik, dan menyempurnakan desain langsung di dalam file desain itu sendiri Setelah diaktifkan, kursor berubah menjadi ikon gelembung obrolan, memungkinkan pengguna mengklik di mana saja pada desain untuk meninggalkan komentar.
+	Comment tool di Figma, yang dapat diketahui dengan ikon bubble chat, memudahkan komunikasi lancar dengan tim kamu, Cocok untuk membahas perubahan, merespons umpan balik, dan menyempurnakan desain langsung di dalam file desain itu sendiri Setelah diaktifkan, kursor berubah menjadi ikon gelembung obrolan, memungkinkan pengguna mengklik di mana saja pada desain untuk meninggalkan komentar.
 
 	>Tip: Kalian dapat menggunakan Comment Tool dengan click "C" pada keyboard
 
@@ -111,7 +113,7 @@ Toolbar Figma, yang terletak di bagian atas layar kamu, memberikan akses ke alat
 ## Figma Design Panel
 
 
-<p>
+<p align="center">
   <img src="https://static-assets.codecademy.com/Courses/intro-to-ui-and-ux/prototyping-with-figma/review-card-screenshots/properties-panel.png" width="60%">
 </p>
 
@@ -129,7 +131,7 @@ Namun, ketika sebuah layer/elemen di kanvas dipilih, kemampuan design panel menj
 
 ## Figma Layer Panel
 
-<p>
+<p align="center">
   <img src="https://static-assets.codecademy.com/Courses/intro-to-ui-and-ux/prototyping-with-figma/review-card-screenshots/layers-panel.png" width="60%">
 </p>
 
@@ -146,17 +148,20 @@ Berikut penjelasan lebih detailnya:
     -   Layers panel menampilkan daftar lengkap semua elemen yang ada dalam proyek kamu.
     -   Elemen-elemen ini bisa berupa teks, bentuk, gambar, grup, frame, dan lainnya.
     -   Setiap elemen memiliki ikon spesifik yang menunjukkan jenis elemennya.
+    
 2.  Hierarki dan Susunan:
     
     -   Elemen-elemen dalam Layers panel ditampilkan dalam struktur hierarki.
     -   Hal ini menunjukkan bagaimana elemen-elemen tersebut ditumpuk atau disarangkan di dalam proyek.
     -   Urutan dan susunan elemen di Layers panel menentukan tata letak dan tampilan akhir di kanvas.
+    
 3.  Operasi pada Elemen:
     
     -   Melalui Layers panel, kamu dapat memilih, menata ulang, mengelompokkan, dan menyembunyikan elemen-elemen.
     -   Pilih beberapa elemen sekaligus dengan menekan Shift atau Command/Ctrl.
-    -   Klik gkamu pada elemen untuk mengganti namanya agar lebih mudah diidentifikasi.
+    -   Klik double pada elemen untuk mengganti namanya agar lebih mudah diidentifikasi.
     -   Klik kanan pada elemen untuk mendapatkan opsi tambahan seperti menggkamukan atau menghapus.
+    
 4.  Pengaturan Visual:
     
     -   Terdapat pengaturan untuk menyorot elemen saat diarahkan kursor, di Menu > Preferences.
