@@ -169,4 +169,4 @@ Berikut penjelasan lebih detailnya:
 
 ## Catatan akhir
 
-Dengan mengetahui basic penggunaan Figma di atas, kalian bisa merealisasikan ide design kalian kedalam kanvas digital di mana kalian juga dapat berklaborasi dengan tim kalian. untuk penjelasain lebih, kalian bisa menunjungi folder figma_modul!
+Dengan mengetahui basic penggunaan Figma di atas, kalian bisa merealisasikan ide design kalian kedalam kanvas digital di mana kalian juga dapat berklaborasi dengan tim kalian. untuk penjelasain lebih, kalian bisa menunjungi folder [figma_modul!](https://github.com/Komandro-CCIT/Komandro-Archive/tree/main/ui-ux/figma_module)
