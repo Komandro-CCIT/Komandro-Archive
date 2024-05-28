@@ -5,9 +5,9 @@
 PHP, singkatan dari Hypertext Preprocessor, merupakan bahasa pemrograman yang dirancang khusus untuk pengembangan web. Bersifat _server-side_, PHP dieksekusi di komputer server, bukan di komputer client (seperti browser pengguna).  Bayangkan seperti ini: ketika kita mengakses situs web, browser kita mengirimkan permintaan ke server. Server kemudian menjalankan kode PHP dan mengirimkan hasilnya kembali ke browser, yang kemudian menampilkannya kepada kita.
 
 ### Client Side
-![](Assets\clientSide.jpg)
+![](./Assets/clientSide.jpg)
 ### Server Side
-![](Assets\serverSide.jpg)
+![](./Assets/serverSide.jpg)
 
 PHP berperan penting dalam membangun situs web dinamis dan interaktif. Situs-situs populer seperti WordPress, Joomla, Facebook, Twitter, dan Wikipedia dibangun menggunakan PHP. 
 
