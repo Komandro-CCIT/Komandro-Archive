@@ -1,5 +1,5 @@
 ﻿# Basic Figma
-### Author : Muhammad Fauzan Arrafi (Ifarra OwO)
+### Author : Muhammad Fauzan Arrafi
 ---
 
 <p align="center">
