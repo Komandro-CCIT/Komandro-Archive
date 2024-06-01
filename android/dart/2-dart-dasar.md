@@ -192,3 +192,5 @@ Function adalah blok kode yang dapat digunakan untuk melakukan tugas tertentu. D
     Dengan menggunakan function, Anda dapat memecah kode menjadi bagian-bagian yang lebih kecil dan mudah dikelola, serta dapat digunakan kembali di berbagai bagian program. Selamat belajar!
 
     
+# Author
+author : [mawlibrahim](https://github.com/mawlibrahim)

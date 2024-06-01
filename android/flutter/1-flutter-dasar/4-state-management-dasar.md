@@ -167,3 +167,6 @@ Dalam contoh di atas, `CounterProvider` adalah `InheritedWidget` yang menyediaka
 Dengan memahami `setState` dan `InheritedWidget`, Anda memiliki dasar yang kuat untuk mengelola state dalam aplikasi Flutter.
 
 Jika kalian ingin tahu lebih lanjut tentang materi diatas kalian bisa check langsung dokumentasi [State Management](https://docs.flutter.dev/data-and-backend/state-mgmt/options).
+
+# Author
+author : [SulaimanLmn](https://github.com/SulaimanLmn)

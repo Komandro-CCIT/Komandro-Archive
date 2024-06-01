@@ -218,3 +218,6 @@ class _JsonParsingExampleState extends State<JsonParsingExample> {
 Dengan mempelajari cara melakukan permintaan HTTP dan parsing JSON di Flutter, kita sudah memahami dasar-dasar komunikasi dengan API eksternal dan pengolahan data yang diterima. Ini adalah keterampilan penting untuk mengembangkan aplikasi yang dinamis dan interaktif. Untuk informasi lebih lanjut, Anda bisa memeriksa dokumentasi resmi paket http.
 
 Jika kalian ingin tahu lebih lanjut tentang materi diatas kalian bisa check langsung dokumentasi [http](https://pub.dev/packages/http).
+
+# Author
+author : [SulaimanLmn](https://github.com/SulaimanLmn)

@@ -205,3 +205,7 @@ flutter test integration_test/app_test.dart
 Pengujian di Flutter dapat dilakukan dengan menggunakan `flutter_test` untuk pengujian widget dan `integration_test` untuk pengujian integrasi. Pengujian widget membantu memastikan bahwa widget individual berfungsi dengan benar, sedangkan pengujian integrasi memastikan bahwa seluruh alur kerja aplikasi berjalan sesuai yang diharapkan. Dengan memahami dan menerapkan teknik pengujian ini, Anda dapat meningkatkan kualitas dan stabilitas aplikasi Flutter Anda.
 
 Jika kalian ingin tahu lebih lanjut tentang materi diatas kalian bisa check langsung dokumentasi [testing](https://docs.flutter.dev/testing/overview).
+
+
+# Author
+author : [SulaimanLmn](https://github.com/SulaimanLmn)

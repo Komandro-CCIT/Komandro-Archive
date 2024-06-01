@@ -183,3 +183,7 @@ class CounterScreen extends StatelessWidget {
 Dengan mempelajari cara menggunakan Provider, kita sudah memahami bagaimana memisahkan logika bisnis dari UI, membuat state lebih terstruktur, dan memudahkan pengelolaan state di seluruh aplikasi. Namun, perlu diingat bahwa Provider bukan satu-satunya pilihan untuk state management di Flutter. Ada juga solusi lain seperti Bloc, Riverpod, Redux, dan lain-lain yang bisa dipertimbangkan sesuai dengan kebutuhan aplikasi Anda.
 
 Jika kalian ingin tahu lebih lanjut tentang materi diatas kalian bisa check langsung dokumentasi [Provider](https://pub.dev/packages/provider).
+
+
+# Author
+author : [SulaimanLmn](https://github.com/SulaimanLmn)

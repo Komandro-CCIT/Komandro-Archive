@@ -596,3 +596,6 @@ Scaffold
 - **Column** memiliki dua anak: **Text** dan **Icon**.
 
 Jika kalian ingin tahu lebih lanjut tentang materi diatas kalian bisa check langsung dokumentasi yang sudah disediakan pihak [flutter](https://docs.flutter.dev/ui/widgets).
+
+# Author
+author : [SulaimanLmn](https://github.com/SulaimanLmn)

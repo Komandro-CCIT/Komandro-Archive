@@ -175,3 +175,7 @@ Mungkin kalian bertanya-tanya kenapa hasil output navigasi biasa dan routing ter
 Dengan menggunakan pendekatan routing, Anda dapat memiliki kontrol yang lebih baik terhadap navigasi dalam aplikasi yang lebih besar dan kompleks. Ini juga mempermudah untuk menambahkan fitur seperti pengolahan parameter rute, menangani rute tidak ditemukan, dan banyak lagi. Semoga penambahan backticks dan double asterisks membantu memperjelas materi ini!
 
 Jika kalian ingin tahu lebih lanjut tentang materi diatas kalian bisa check langsung dokumentasi [Navigasi dan Routing](https://docs.flutter.dev/ui/navigation).
+
+
+# Author
+author : [SulaimanLmn](https://github.com/SulaimanLmn)

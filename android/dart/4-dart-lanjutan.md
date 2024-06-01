@@ -285,3 +285,6 @@ Asynchronous programming adalah paradigma pemrograman di mana beberapa tugas dap
     }
     ```
     Dalam contoh di atas, kita membuat sebuah `stream` menggunakan `Stream.periodic()` yang akan menghasilkan data setiap detik. Kemudian, kita mendaftarkan pendengar pada `stream` menggunakan metode `listen()` untuk menangani data yang diterima. Setelah 5 detik, kita membatalkan langganan (subscription) `stream` menggunakan metode` cancel()`. Ini memungkinkan kita untuk menghentikan langganan pada `stream` dan menghentikan penanganan data.
+
+# Author
+author : [mawlibrahim](https://github.com/mawlibrahim)

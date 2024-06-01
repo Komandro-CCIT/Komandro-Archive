@@ -1,5 +1,4 @@
-# Object-Oriented Programming
-
+# Object-Oriented Programming?
 OOP atau Pemrograman Berorientasi Objek adalah paradigma pemrograman yang menggunakan objek sebagai unit dasar untuk membangun program. Setiap objek memiliki atribut (data) dan metode (fungsi) yang berinteraksi satu sama lain. 
 
 Berikut adalah konsep-konsep penting yang ada dalam OOP : 
@@ -355,3 +354,6 @@ Di atas, kita mendefinisikan kelas `Person` dengan dua properti privat (`_name` 
 
 Enkapsulasi memastikan bahwa data dalam suatu objek hanya dapat diubah melalui metode yang ditentukan.
 
+
+# Author
+author : [mawlibrahim](https://github.com/mawlibrahim)
