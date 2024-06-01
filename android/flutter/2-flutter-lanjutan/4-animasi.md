@@ -183,3 +183,5 @@ Animasi di Flutter dapat dibuat dengan mudah menggunakan widget seperti `Animate
 
 Jika kalian ingin tahu lebih lanjut tentang materi diatas kalian bisa check langsung dokumentasi [Animasi](https://docs.flutter.dev/ui/animations).
 
+# Author
+author : [SulaimanLmn](https://github.com/SulaimanLmn)

@@ -203,3 +203,6 @@ Dengan mempelajari materi ini, kita sudah memahami cara membuat form dengan `Tex
 
 Jika kalian ingin tahu lebih lanjut tentang materi diatas kalian bisa check langsung dokumentasi [Interaksi dan Input](https://docs.flutter.dev/ui/widgets/input).
 
+
+# Author
+author : [SulaimanLmn](https://github.com/SulaimanLmn)

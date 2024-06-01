@@ -1,4 +1,5 @@
 # Flutter
+author : [SulaimanLmn](https://github.com/SulaimanLmn)
 
 # Apa itu Flutter?
 Flutter adalah framework open-source yang dikembangkan oleh Google untuk membangun antarmuka pengguna (UI) yang natively compiled dari satu basis kode (codebase) tunggal. Dengan Flutter, Anda dapat membuat aplikasi untuk berbagai platform seperti iOS, Android, web, dan desktop dengan cepat dan efisien. Flutter menggunakan bahasa pemrograman Dart, yang dirancang untuk memberikan kinerja tinggi dan produktivitas pengembang.
