@@ -1,7 +1,7 @@
 # Designing Mobile Buttons
 
 <p align="center">
-  <img src="https://assets.materialup.com/uploads/312427a1-d3c8-485d-bd62-9512fe60a198/preview.png" width="50%">
+  <img src="https://blog.adobe.com/en/publish/2015/10/19/media_18b27f1a7cd03665342236c91cc1f311057803083.png?width=750&format=png&optimize=medium" width="50%">
 </p>
 
 Button atau tombol adalah element UI yang crucial di pembuatan design aplikasi, button adalah komponen interaktif yang membantu user untuk navigasi antara page dan juga sebagai trigger dari suatu aksi.
@@ -13,7 +13,7 @@ Untuk itu berikut adalah tips untuk membuat button mobile yang perfect yang di t
 ## Optimalkan button size dan touch area
 
 <p align="center">
-  <img src="https://th.bing.com/th/id/OIP.5khv7dsDfyC8kq1R4z_khwAAAA?w=426&h=325&rs=1&pid=ImgDetMain" width="50%">
+  <img src="https://makeitclear.com/wp-content/uploads/2022/04/UX-UI-Sizes-and-tap-areas.png" width="50%">
 </p>
 
 Jika kamu pernah mendesin button pastinya kamu tau kalau size adalah karakteristik button yang essential, button size dapat memberikan impact yang besar kepada user experience, jika button tidak pas akan memberikan dampak negatif kepada user sebaliknya jika kita dapat membuat button yang sempurna sizenya.
