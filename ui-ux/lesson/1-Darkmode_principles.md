@@ -127,4 +127,4 @@ Kamu mungkin mulai bertanya-tanya apakah produk Anda bahkan membutuhkan dark mod
 Ingatlah bahwa pengguna senang memiliki pilihan dan berada dalam kendali. Jadi, berikan mereka pilihan untuk mengubah pengaturan default dan mengaktifkan/menonaktifkan mode gelap!
 
 ## Author
-Author : Ifarra
+Author : [Ifarra](https://github.com/Ifarra)
