@@ -1,4 +1,4 @@
-1 - Event Pattern
+# 1 - Event Pattern
 
 ---
 
@@ -6,7 +6,7 @@ Author: Hudya (@perogeremmer)
 
 <br />
 
-# Overview
+## Overview
 
 Ketika mendengar kata IoT, kamu pasti berpikir tentang bagaimana sebuah alat terhubung ke internet.
 Pernyataan tersebut benar, namun tidak sepenuhnya benar. Mengapa? Hal ini dikarenakan untuk mencapai aplikasi yang terhubung penuh ke internet, membutuhkan koneksi internet yang stabil.
@@ -60,7 +60,7 @@ Sebenarnya selain grafana ada juga tools lainnya, namun Grafana menawarkan free-
 
 <br />
 
-# Requirements
+## Requirements
 
 Pada aplikasi IoT yang kita bangun kita akan menggunakan tools sebagai berikut:
 
@@ -73,7 +73,7 @@ Pada aplikasi IoT yang kita bangun kita akan menggunakan tools sebagai berikut:
 
 <br />
 
-# How we learn
+## How we learn
 
 Meskipun IoT sangat dekat dengan raspberry / arduino, namun keterbatasan yang ada membuat kita bergerak tidak akan mudah. Oleh karena itu, kita mengakali keterbatasan ini dengan minimal menggunakan environment yang sama. Sehingga, kita tidak perlu menggunakan raspberry secara fisik, namun mengakalinya dengan virtual box.
 
@@ -94,7 +94,7 @@ Jadi, daripada kita tidak sama sekali belajar untuk membuat aplikasi IoT, lebih 
 
 Untuk instalasi dapat kamu baca melalui [URL berikut](https://roboticsbackend.com/install-raspbian-desktop-on-a-virtual-machine-virtualbox/). Pastikan kamu sudah menginstall raspbian di virtual box ya agar pembelajaranmu dapat maksimal 😃.
 
-# Material Planning
+## Material Planning
 
 Pada materi pembelajaran IoT ini kamu akan mempelajari beberapa materi sebagai berikut:
 
@@ -122,9 +122,9 @@ Selamat Belajar! 🔥
 
 ---
 
-# Instalasi Raspbian
+## Raspberry PI
 
-Sebelum memulai semua ini, ada baiknya kita belajar melakukan instalasi terlebih dahulu. Pada materi IoT yang akan dibagikan ini, kita akan melakukan simulasi dengan menggunakan raspberry.
+Pada materi IoT yang akan dibagikan ini, kita akan melakukan simulasi dengan menggunakan raspberry.
 
 > Kenapa raspberry?
 
@@ -143,6 +143,8 @@ Saking ajaibnya raspberry ini, banyak sekali yang menggunakannya untuk membuat b
 <br/>
 
 Kami dari Komunitas Android CCIT - FTUI akan membagikan langkah-langkah dasar dalam pembelajaran IoT menggunakan raspberry, namun kamu jangan khawatir apabila kamu tidak memiliki raspberry, selalu ada solusi pembelajaran. Pada materi ini, kamu akan mensimulasikan raspberry dengan Ubuntu.
+
+## Instalasi Ubuntu melalui Multipass
 
 Sebelum kita menjelajah Internet of Things menggunakan Raspbian OS, mari kita fokus untuk mempelajari logika dari Internet of Things itu sendiri menggunakan **Ubuntu OS dibantu dengan Multipass dan Visual Studio Code.**
 >Kenapa kita gak langsung menggunakan Raspbian OS saja?
@@ -292,8 +294,15 @@ Jika sudah masukkan password, akan muncul tampilan jadi seperti ini
 
 Setelah itu kita keluar dari servernya dengan cara masukkan perintah "exit". Sekarang kita buka Visual Studio Code untuk remote Ubuntu melalui VS Code
 
-<br/>
-Kalau sudah buka Visual Studio Code, ikuti langkah dibawah ini (lihat gif dibawah yang lebih jelasnya) :
+## Menghubungkan Instance Multipass di VSCode
+
+Sebelumnya kita sudah coba install dan setting Multipass pada perangkat kita. Sekarangm kita akan menghubungkan multipass dengan VSCode agar dapat menggunakan OS Ubuntu melalui VSCode.
+
+> [!WARNING]
+> Sebelum kalian mulaiastikan kalian memiliki ekstensi Remote SSH seperti gambar dibawah ini!
+> ![Alt Text](./assets/1-introduction/ssh.jpeg)
+
+Selanjutnya, ikuti langkah dibawah ini (lihat gif dibawah yang lebih jelasnya) :
 1. Pencet tombol warna biru dipojok kiri bawah pada window Visual Studio Code 
 2. klik opsi "Connect to Host"
 3. Ketik ```ubuntu@[ip]```. Masukkan IP instance kalian seperti yang ada di powershell. Misalnya kalau saya yaitu ```ubuntu@172.21.179.92```
@@ -310,14 +319,14 @@ Yeyy! kita sudah selesai menghubungkan Multipass dengan Visual Studio Code ^^
 
 ![Alt Text](./assets/1-introduction/16.png)
 
-<br/>
+## Membuat Program Python Pertama pada Ubuntu yang telah dibuat
 
 Sekarang kita coba buat program python pertama kita di Ubuntu ini. 
-Pertama kalian buka terminal di VS Code dengan cara pencet titik tiga di tab atas > Terminal > New Terminal
+Pertama kita akan membuat direktori baru untuk menyimpan file python kalian. Coba kalian buka terminal di VS Code dengan cara pencet titik tiga di tab atas > Terminal > New Terminal
 
 ![Alt Text](./assets/1-introduction/17.png)
 
-Selanjutnya kita akan membuat direktori baru dengan nama 'projek1' dengan perintah :
+Selanjutnya kita akan membuat direktori/folder baru dengan nama 'projek1' dengan perintah :
 
 ```bash
 mkdir projek1
@@ -329,10 +338,22 @@ Kalau sudah, kita buka folder 'projek1' tadi. Lalu masukkan passwordnya. Perhati
 
 Dan selamat kamu sudah masuk ke dalam instance multipass yang telah kamu buat. Setelah itu, buatlah file python dan isi kode sederhana didalam file python tersebut. Misalnya :
 
-```bash
+```python
 print("Hello World!")
 ```
-Lalu buka terminal untuk menjalankan file python yang telah kita buat sebelumnya.
+
+Lalu save file tersebut dengan menekan tombol CTRL + S. Lalu buka terminal dan masukkan kode dibawah ini untuk menjalankan file python yang telah kita buat sebelumnya.
+
+```bash
+python [Nama file kamu]
+```
+
+Kalau error, coba kode dibawah ini (sesuai dengan perintah):
+
+```bash
+python3 [Nama file kamu]
+```
+
 Perhatikan gif dibawah ini :
 
 ![Alt Text](./assets/1-introduction/19.gif)
