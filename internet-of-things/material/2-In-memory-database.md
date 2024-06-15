@@ -210,6 +210,7 @@ Dan sekarang nilai pada kunci "Komandro" tadi sudah berubah. Jika kalian ingin m
 Begitulah cara untuk menambahkan key-value di terminal Redis. Sekarang kita akan mengimplementasi Redis pada Python
 
 **Python**
+
 Sintaks yang dipakai disaat ingin menambahkan key-value atau mengubah valuenya sama dengan sebelumnya, memakai SET. Hanya saja, cara penulisannya yang agak berbeda :
 
 ```python
@@ -233,7 +234,6 @@ Seperti yang telah kita pelajari sebelumnya, kita harus memastikan agar Python k
 Setelah program dijalankan, maka kunci "CCIT" dengan nilai "FTUI" akan disimpan ke dalam server redis kita. 
 
 >[!WARNING]
-
 >- Jangan lupa save file py nya terlebih dahulu sebelum dijalankan. 
 >- Jangan lupa keluar dari terminal redis-cli nya terlebih dahulu sebelum program python dijalankan menggunakan perintah "exit"
 >- Jika kalian lupa cara untuk menjalankan Python pada VSCode, bisa kalian cek ulang di chapter 1 di paling bawah
@@ -241,7 +241,9 @@ Setelah program dijalankan, maka kunci "CCIT" dengan nilai "FTUI" akan disimpan 
 Kita telah mempelajari bagaimana caranya menambah key-value kedalama server redis kita. Lantas bagaimana caranya untuk mendapatkan nilai sesuai dengan kuncinya? kita akan pelajari setelah ini.
 
 #### Mendapatkan Nilai dari Sebuah Kunci
+
 **Terminal**
+
 Sebelumnya kita telah membuat 2 kunci, yaitu "Komandro" dan "CCIT". Sekarang kita akan mempelajari cara agar kita mengetahui/mendapatkan nilai dari salahsatu kunci itu. Sebelum itu, kita akan mempelajar bagaimana cara agar kita dapat mengetahui kunci apasaja yang telah tersedia/telah kita buat sebelumnya. Kalian bisa menggunakan perintah ini pada terminal :
 
 ```bash
@@ -268,6 +270,7 @@ get Komandro
 Saat perintah dijalankan, maka akan muncul nilai dari kunci "Komandro" yaitu "CCIT"
 
 **Python**
+
 Untuk mendapatkan nilai pada kunci tertentu di Python, kita menggunakan perintah dibawah ini :
 
 ```python
@@ -287,7 +290,9 @@ Pada kode diatas, kita menggunakan perintah print() untuk mengubahnya menjadi ou
 Setelah program dijalankan, maka akan muncul nilai dari kunci "CCIT" yaitu "FTUI" pada terminal kalian.
 
 #### Menghapus data
+
 **Terminal**
+
 Jika kalian ingin menghapus salahsatu kunci, kalian bisa menggunakan sintaks ini :
 
 ```bash
@@ -315,6 +320,7 @@ flushall
 Saat dijalankan, maka semua data di semua database akan hilang. Jadi, bijaklah dalam menggunakan perintah ini yaa! ^^
 
 **Python**
+
 Untuk menghapus sebuah kunci, kalian bisa menggunakan sintaks python dibawah ini :
 
 ```python
@@ -341,6 +347,7 @@ r.flushall
 Seperti namanya, Expiration itu Kadaluarsa. Maksud kadaluarsa disini yaitu memberi batas waktu pada kunci di Redis. Saat sebuah kunci sudah pada batas waktunya, maka kunci tersebut akan otomatis dihapus oleh Redis. Redis akan menyimpan permanen sampai kita menghapusnya (biasanya kita menghapus sesuai waktu yg kita mau). Kenapa kita harus melakukan expiration? karena memori kita itu terbatas dan agar datanya tidak terlalu lama di Redis yang menyebabkan proses semakin melambat.
 
 **Terminal**
+
 Untuk memberi batas waktu pada sebuah kunci, kita bisa menggunakan perintah dibawah ini pada terminal :
 
 ```bash
@@ -382,6 +389,7 @@ ttl Dua
 Nantinya terminal akan memberi tahu kita berapa lama lagi kunci tersebut ada **dalam satuan detik**
 
 **Python**
+
 Bagaimanaa caranya menggunakan 3 sintaks itu dalam python? Berikut sintaks-sintaksnya :
 
 ```python
