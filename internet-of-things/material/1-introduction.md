@@ -303,6 +303,7 @@ Sebelumnya kita sudah coba install dan setting Multipass pada perangkat kita. Se
 > ![Alt Text](./assets/1-introduction/ssh.jpeg)
 
 Selanjutnya, ikuti langkah dibawah ini (lihat gif dibawah yang lebih jelasnya) :
+
 1. Pencet tombol warna biru dipojok kiri bawah pada window Visual Studio Code 
 2. klik opsi "Connect to Host"
 3. Ketik ```ubuntu@[ip]```. Masukkan IP instance kalian seperti yang ada di powershell. Misalnya kalau saya yaitu ```ubuntu@172.21.179.92```
