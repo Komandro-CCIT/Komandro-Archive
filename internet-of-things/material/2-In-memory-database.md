@@ -33,13 +33,9 @@ Berikut adalah beberapa contoh penggunaan in-memory database:
 
 In-memory database adalah teknologi yang sangat powerful untuk aplikasi yang membutuhkan akses data yang cepat dan real-time. Namun, in-memory database juga memiliki beberapa keterbatasan, seperti kapasitas yang terbatas dan biaya yang lebih tinggi.In-memory database masih merupakan teknologi yang relatif baru. Namun, popularitasnya meningkat karena semakin banyak aplikasi yang membutuhkan kinerja yang tinggi.
 
-**Perbedaan IMDB dan SQL**
+### Perbedaan IMDB dan SQL
 
-In-memory database (IMDB) dan SQL adalah dua teknologi yang berbeda yang dapat digunakan untuk menyimpan dan mengelola data. IMDB menyimpan data di memori utama komputer, sedangkan SQL adalah bahasa pemrograman yang digunakan untuk mengakses dan memanipulasi data dalam basis data.Berikut adalah beberapa perbedaan utama antara IMDB dan SQL:
-
-
-
-Secara umum, IMDB menawarkan kinerja yang lebih cepat dan efisiensi memori yang lebih baik daripada SQL. Namun, IMDB juga lebih kompleks dan memiliki tingkat konsistensi data yang lebih rendah.Berikut adalah beberapa contoh penggunaan IMDB dan SQL:
+In-memory database (IMDB) dan SQL adalah dua teknologi yang berbeda yang dapat digunakan untuk menyimpan dan mengelola data. IMDB menyimpan data di memori utama komputer, sedangkan SQL adalah bahasa pemrograman yang digunakan untuk mengakses dan memanipulasi data dalam basis data. Secara umum, IMDB menawarkan kinerja yang lebih cepat dan efisiensi memori yang lebih baik daripada SQL. Namun, IMDB juga lebih kompleks dan memiliki tingkat konsistensi data yang lebih rendah.Berikut adalah beberapa contoh penggunaan IMDB dan SQL:
 
 - IMDB cocok untuk aplikasi yang membutuhkan kinerja yang tinggi, seperti aplikasi transaksional dan analisis. Misalnya, IMDB dapat digunakan untuk menyimpan data transaksi e-commerce atau data analitik untuk data warehouse.
 - SQL cocok untuk aplikasi yang membutuhkan skalabilitas dan konsistensi data yang tinggi, seperti aplikasi data warehouse dan manajemen dokumen. Misalnya, SQL dapat digunakan untuk menyimpan data dokumen atau data transaksional untuk aplikasi perbankan.
@@ -48,13 +44,11 @@ Pada akhirnya, pilihan antara IMDB dan SQL tergantung pada kebutuhan spesifik ap
 
 ## Redis
 
-**Apa itu Redis?**
+### Apa itu Redis?
 
 Redis adalah database NoSQL yang menggunakan memori utama. Redis adalah singkatan dari "Remote Dictionary Server". Redis sendiri merupakan system data key- value berbasis memory (RAM) yang diriilis pada tahun 2009 sebagai project open source.
 
-Dan itulah mengapa redis tidak dipakai sebagai database utama karena ketika redis mati, data otomatis akan hilang.
-
-
+Dan itulah mengapa redis tidak dipakai sebagai database utama karena ketika redis mati, data otomatis akan hilang. 
 
 Note :
 
@@ -74,13 +68,13 @@ Berikut adalah beberapa fitur utama Redis:
 
 Redis adalah database yang serbaguna dan dapat digunakan untuk berbagai aplikasi. Redis adalah pilihan yang baik untuk aplikasi yang membutuhkan kinerja yang tinggi dan fleksibilitas.
 
-**Hubungan IMDB dan Redis**
+### Hubungan IMDB dan Redis
 
 In-memory database (IMDB) dan Redis adalah dua teknologi yang berbeda yang dapat digunakan untuk menyimpan dan mengelola data. IMDB menyimpan data di memori utama komputer, sedangkan Redis adalah database NoSQL yang menggunakan memori utama.Redis dapat digunakan sebagai IMDB, tetapi ada beberapa perbedaan penting antara keduanya.
 
 IMDB biasanya dirancang untuk aplikasi transaksional dan analitik, sedangkan Redis lebih umum digunakan untuk aplikasi yang membutuhkan kinerja yang tinggi untuk operasi tertentu, seperti penyimpanan cache atau kunci-nilai.
 
-**Kapan dan Mengapa Butuh Redis?**
+### Kapan dan Mengapa Butuh Redis?
 
 Redis seringkali menjadi pilihan utama dalam pengembangan aplikasi Internet of Things (IoT) karena sejumlah alasan yang membuatnya sangat sesuai dengan kebutuhan dan karakteristik unik dari lingkungan IoT. Berikut adalah beberapa alasan utama:
 
@@ -100,16 +94,54 @@ Redis seringkali menjadi pilihan utama dalam pengembangan aplikasi Internet of T
 
 Dukungan Komunitas yang Kuat:Redis memiliki komunitas pengguna yang besar dan aktif. Ini berarti ada banyak sumber daya, dokumentasi, dan dukungan komunitas yang dapat diandalkan untuk membantu pengembang IoT saat menghadapi masalah atau mencari solusi. Ketika membangun aplikasi IoT, pengembang sering mencari solusi yang dapat menangani volume data tinggi dengan latensi rendah, dan Redis memenuhi kriteria tersebut dengan baik.
 
-**Install Redis**
+### Install Redis
 
 Redis merupakan aplikasi yang dibuat menggunakan Bahasa pemrograman C, untuk menggunakan Redis kita harus kompilasi kode program redisnya. Oleh karena itu disarankan menggunakan OS Linux atau Mac karena sudah ada compiler C. Jika menggunakan Windows kalian bisa pakai Docker yang sudah menyediakan distribusi bawaan untuk Bahasa pemrograman C.
 
-Sebelumnya kami sangat membebaskan pilihan kalian dalam penginstallannya akan tetapi akan lebih baik jika menggunakan Rasberry PI dalam pembuatannya, namun tidak perlu khawatir karena tidak ada kita bisa menggunakan Virtual Machine yang di dalamnya kita Install OS Raspberry.
+Sebelumnya kita telah menginstall OS Ubuntu melalui Multipass Virtual Machine dan menghubungkannya ke Visual Studio Code. Jadi, pada kesempatan kali ini kita akan menginstall Redis didalam OS Ubuntu yang telah kita buat pada instance Multipass dengan mudah dan simpel melalui Visual Studio Code.
 
-https://www.youtube.com/watch?v=y3QF7DrUIg0&ab\_channel=DestryHutagaol
+Pertama, hubungkan VSCode kalian dengan instance multipass yang telah kita buat sebelumnya. (Cek bab sebelumnya jika kalian lupa cara untuk menghubungkan instance multipass ke VSCode)
 
-**Syntax sederhana**
+Jika sudah terhubung, buka terminal pada VSCode dengan cara pencet titik tiga di tab atas > Terminal > New Terminal
 
+Setelah itu, masukkan kode dibawah ini satu persatu :
+
+```bash
+curl -fsSL https://packages.redis.io/gpg | sudo gpg --dearmor -o /usr/share/keyrings/redis-archive-keyring.gpg
+```
+```bash
+echo "deb [signed-by=/usr/share/keyrings/redis-archive-keyring.gpg] https://packages.redis.io/deb $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/redis.list
+```
+```bash
+sudo apt-get update
+```
+```bash
+sudo apt-get install redis
+```
+> [!NOTE]
+> Jika nantinya diminta persetujuan [Y/n], ketik 'y' lalu enter.
+
+Sekarang kalian sudah selesai menginstall Redis pada Ubuntu kalian. Sangat mudah dan cepat bukan? Setelah itu mari kita coba apakah Redis sudah terhubung atau belum.
+
+Pertama, kalian ketik kode dibawah ini pada terminal **setiap kalian ingin membuka redis di terminal Ubuntu kalian** :
+
+```bash
+redis-cli
+```
+
+Setelah itu akan muncul IP Address kalian serta tempat untuk kalian input perintah Redisnya. Coba kalian beri perintah 'PING'. Jika Redis memberi output 'PONG' tandanya Ubuntu kita sudah terhubung dengan Redis.
+
+Kali ini, kita akan install redis-py agar kita dapat menggunakan redis dengan melalui Python. Jika kalian masih dalam redis-cli, pencet CTRL+C untuk keluar dari redis di terminal dan kembali ke shellnya. Jika kalian sudah di terminal utamanya (shell), masukkan perintah dibawah ini :
+
+```bash
+sudo apt -y install python3-redis
+```
+
+Selamatt, kalian sudah install redis di Ubuntu kalian ^^
+Sekarang, mari kita mempelajari tentang Redis lebih lanjut lagi ~~
+
+### Dasar Syntax Redis
+#### Key-Value
 Kalau temen temen masih ingat tadi redis adalah system basis data key- value berbasis memory.
 
 Dalam Redis, "key-value" merujuk pada struktur data dasar yang digunakan untuk menyimpan dan mengambil data. Redis adalah basis data yang memanfaatkan model key-value ini, di mana setiap nilai (value) disimpan dengan menggunakan kunci (key) yang unik.
@@ -118,209 +150,271 @@ Dalam Redis, kunci **(key)** adalah string yang digunakan untuk mengidentifikasi
 
 Nilai **(value)** dalam Redis dapat berbagai jenis data, termasuk string, angka, daftar (list), himpunan (set), hash, dan struktur data lainnya. Redis mendukung berbagai jenis operasi pada nilai-nilai ini, seperti menetapkan nilai baru untuk kunci, mengambil nilai yang terkait dengan kunci, dan melakukan manipulasi data terperinci berdasarkan jenis nilai yang digunakan.
 
-**Contoh penggunaan key-value dalam Redis:**
+#### Databases
 
-**Disc** : semua contoh disini kami menggunakan Bahasa phyton dalam contoh pembuatannya
+Kita dapat membuat/memakai lebih dari 1 database didalam Redis. Pada Redis, kita menggunakan angka untuk memberi identitas/nama pada database-databasenya.  Secara default, Redis menyediakan 16 database kosong (database ke 0-15 karena memakai nomor indeks) dan akan otomatis memakai database ke 0. Lantas bagaimana caranya agar kita dapat memakai database yang kita ingin? Coba kalian buka redis-cli pada terminal kalian (Caranya telah dijelaskan di subbab sebelumnya) lalu masukkan perintah dibawah ini :
 
-**Menetapkan nilai untuk kunci:**
+```bash
+select [nomor database]
+```
+Misalnya kalian ingin memakai database indeks ke-2 :
 
-SET mykey "Hello Redis"
+```bash
+select 2
+```
 
-**Mendapatkan nilai yang terkait dengan kunci:**
+Nah begitulah cara untuk memilih database yang kita mau. Ingat, kita hanya bisa memilih hanya sampai database ke 15 dikarenakan memakai sistem nomor indeks (0-(database tertinggi-1)).
 
-GET mykey
+#### Menghubungkan Python dengan server Redis
 
-**Menambahkan daftar nilai ke kunci:**
+Jika kita ingin menggunakan Redis pada file Python kita, kita harus memanggil Redisnya terlebih dahulu dengan perintah :
 
-LPUSH mylist "element1"
-
-LPUSH mylist "element2"
-
-**Mendapatkan semua nilai dalam daftar berdasarkan kunci:**
-
-LRANGE mylist 0 -1
-
-**Menambahkan anggota ke dalam himpunan berdasarkan kunci:**
-
-SADD myset "member1"
-
-SADD myset "member2"
-
-**Mendapatkan semua anggota dalam himpunan berdasarkan kunci:**
-
-SMEMBERS myset
-
-Dengan menggunakan struktur data key-value ini, Redis memungkinkan pengguna untuk menyimpan dan mengambil data dengan cepat dan efisien. Redis juga menyediakan berbagai operasi dan fitur yang kuat untuk memanipulasi dan mengelola nilai-nilai ini, menjadikannya solusi yang populer untuk caching, antrian pesan, dan berbagai skenario penggunaan lainnya.
-
-### Membuat koneksi Redis:
-
-**Membuat koneksi Redis**
-
+```python
 import redis
+```
+Setelah itu, kita panggil Server redisnya dengan memasukkan perintah :
 
-r = redis.Redis(host='localhost', port=6379, db=0)
+```python
+r = redis.Redis(host='127.0.0.1', port=6379, db=0)
+```
 
-Pada syntax di atas, kita menggunakan modul redis untuk membuat koneksi dengan Redis. Kita menginisialisasi objek Redis dengan parameter host (alamat server Redis), port (nomor port Redis), dan db (nomor basis data Redis yang akan digunakan).
+Dalam perintah tersebut, kita akan membuat variabel 'r' untuk memanggil server redis untuk memberinya perintah dari Python. Didalam parameternya, terdapat host, port dan db. Untuk host dan portnya kita biarkan begitu saja karna host dan port yang itu merupakan host dan port default dari Redis. Lalu di bagian db, kalian bisa mengubah angka '0' dengan nomor database yang ingin kalian panggil. Kita akan menggunakan 2 perintah ini untuk perjalanan kita selanjutnya.
 
-#### Menyimpan dan Mengambil Nilai:
+#### Menambah Key+value dan mengubah value yang ada
+Sintaks yang akan kita pelajari itu bakal terbagi menjadi 2 tempat, yaitu melalui terminal dan melalui Python. 
 
-**Menyimpan nilai menggunakan metode set**
+**Terminal**
 
-r.set('key', 'value')
+Untuk menambahkan 1 key+value kalian bisa menggunakan perintah dibawah ini :
 
-**Mengambil nilai menggunakan metode get**
+```bash
+set [key] [value]
+```
 
-value = r.get('key')
+Contoh, kita akan membuat kunci 'Komandro' dengan nilai 'CCIT' :
 
-Dalam contoh di atas, kita menggunakan metode set untuk menyimpan nilai dengan menggunakan kunci 'key' dan nilai 'value'. Kemudian, kita menggunakan metode get untuk mengambil nilai yang terkait dengan kunci 'key'.
+```bash
+set Komandro CCIT
+```
+> [!NOTE]
+> Key dan Value di Redis bersifat Case-Sensitive atau memperlakukan kepekaan huruf, yakni apakah dalam bentuk huruf besar (kapital besar) atau huruf kecil. Jadi hati hati saat kalian memberi Kunci atau nilai karena itu sangat berpengaruh untuk kedepannya. 
 
-#### Menghapus Nilai:
+Jika Redis memberi output "OK" berarti key-value kalian sudah ditambahkan. Kalian juga bisa mengubah nilai pada key yang sudah ada dengan sintaks SET ini. Misalnya kalian ingin mengubah nilai 'CCIT' menjadi 'CCIT FTUI' pada kunci 'Komandro' yang telah kita buat tadi :
 
-**Menghapus nilai menggunakan metode delete**
+```bash
+set Komandro "CCIT FTUI"
+```
 
-r.delete('key')
+Dan sekarang nilai pada kunci "Komandro" tadi sudah berubah. Jika kalian ingin menambahkan spasi pada kunci atau nilai, jangan lupa sertakan tanda petik agar tidak terjadi sintaks error.
 
-Dalam contoh di atas, kita menggunakan metode delete untuk menghapus nilai yang terkait dengan kunci 'key'.
+Begitulah cara untuk menambahkan key-value di terminal Redis. Sekarang kita akan mengimplementasi Redis pada Python
 
-#### Mengatur Waktu Kadaluwarsa: 
+**Python**
 
-**Menyimpan nilai dengan waktu kadaluwarsa (dalam detik)**
+Sintaks yang dipakai disaat ingin menambahkan key-value atau mengubah valuenya sama dengan sebelumnya, memakai SET. Hanya saja, cara penulisannya yang agak berbeda :
 
-r.setex('key', 60, 'value')
+```python
+set([key],[value])
+```
 
-Dalam contoh di atas, kita menggunakan metode setex untuk menyimpan nilai dengan waktu kadaluwarsa. Nilai tersebut akan otomatis dihapus setelah waktu yang ditentukan (dalam detik) telah berlalu.
+Misalnya kita ingin menambahkan kunci "CCIT" dan "FTUI" :
 
-#### Menambahkan Nilai ke Dalam Set:
+```python
+import redis
+r = redis.Redis(host='127.0.0.1', port=6379, db=0)
 
-**Menambahkan nilai ke dalam set menggunakan metode sadd**
+r.set('CCIT','FTUI')
+```
 
-r.sadd('set_key', 'value1', 'value2', 'value3')
+Seperti yang telah kita pelajari sebelumnya, kita harus memastikan agar Python kita terhubung dengan Server Redis dengan cara Import library redis dan membuat variabel untuk memanggil server redis. Setelah itu, semua sintaks redis diletakan sebagai objek (setelah titik) yang artinya kita memanggil server redis terlebih dahulu, habis itu kita beri perintah kepada server redis kita. Dalam kasus ini, kita memakai sintaks SET. 
 
-Dalam contoh di atas, kita menggunakan metode sadd untuk menambahkan nilai ke dalam set dengan menggunakan kunci 'set_key'.
+>[!WARNING]
+>Jangan lupa untuk memberi tanda petik saat kita menginput kunci dan nilai pada Python agar tidak terjadi Sintaks Error
 
-#### Mendapatkan Nilai dari Set:
+Setelah program dijalankan, maka kunci "CCIT" dengan nilai "FTUI" akan disimpan ke dalam server redis kita. 
 
-**Mendapatkan semua nilai dalam set menggunakan metode smembers**
+>[!WARNING]
+>- Jangan lupa save file py nya terlebih dahulu sebelum dijalankan. 
+>- Jangan lupa keluar dari terminal redis-cli nya terlebih dahulu sebelum program python dijalankan menggunakan perintah "exit"
+>- Jika kalian lupa cara untuk menjalankan Python pada VSCode, bisa kalian cek ulang di chapter 1 di paling bawah
 
-values = r.smembers('set_key')
+Kita telah mempelajari bagaimana caranya menambah key-value kedalama server redis kita. Lantas bagaimana caranya untuk mendapatkan nilai sesuai dengan kuncinya? kita akan pelajari setelah ini.
 
-Dalam contoh di atas, kita menggunakan metode smembers untuk mendapatkan semua nilai dalam set yang terkait dengan kunci 'set_key'.
+#### Mendapatkan Nilai dari Sebuah Kunci
 
-Itu adalah beberapa contoh syntax awal yang umum digunakan dalam Redis. Redis menyediakan banyak perintah dan fitur lainnya yang dapat temen-temen eksplorasi lebih lanjut berdasarkan kebutuhan aplikasi kalian.
+**Terminal**
 
-#### Contoh lain:
+Sebelumnya kita telah membuat 2 kunci, yaitu "Komandro" dan "CCIT". Sekarang kita akan mempelajari cara agar kita mengetahui/mendapatkan nilai dari salahsatu kunci itu. Sebelum itu, kita akan mempelajar bagaimana cara agar kita dapat mengetahui kunci apasaja yang telah tersedia/telah kita buat sebelumnya. Kalian bisa menggunakan perintah ini pada terminal :
 
-**Membuat koneksi Redis**
+```bash
+keys *
+```
 
-r = redis.Redis(host='localhost', port=6379, db=0)
+Nantinya, terminal akan memberi tahu kita kunci apa saja yang tersedia dalam bentuk list.
 
-**Menyimpan data dalam memori menggunakan Redis**
+>[!WARNING]
+>Saya tidak merekomendasikan menggunakan cara ini jika kita mempunyai keys yang sangat banyak/besar
 
-r.set('user:1:name', 'John Doe')
+Sekarang, kita akan mempelajari cara untuk mendapatkan/mengetahui sebuah nilai dari sebuah kunci yang telah tersedia. Berikut sintaksnya :
 
-r.set('user:1:email', 'johndoe@example.com')
+```bash
+get [key]
+```
 
-**Mendapatkan data dari Redis**
+Misalnya kita ingin mendapatkan nilai dari kunci "Komandro" :
 
-name = r.get('user:1:name')
+```bash
+get Komandro
+```
 
-email = r.get('user:1:email')
+Saat perintah dijalankan, maka akan muncul nilai dari kunci "Komandro" yaitu "CCIT"
 
-print(name.decode()) # Mengubah byte menjadi string
+**Python**
 
-print(email.decode())
+Untuk mendapatkan nilai pada kunci tertentu di Python, kita menggunakan perintah dibawah ini :
 
-#### Menghapus data dari Redis
+```python
+get([key])
+```
 
-r.delete('user:1:name')
+Misalnya kita ingin mendapatkan nilai dari kunci "CCIT" :
 
-r.delete('user:1:email')
+```python
+import redis
+r = redis.Redis(host='127.0.0.1', port=6379, db=0)
 
-Pada contoh di atas, kami menggunakan Redis untuk menyimpan data pengguna (nama dan email) dengan menggunakan kunci-kunci yang terstruktur (user:1:name dan user:1:email). Kami menggunakan metode set untuk menyimpan nilai, dan metode get untuk mengambil nilai dari Redis. Metode delete digunakan untuk menghapus data dari Redis.
+print(r.get('CCIT'))
+```
 
-Tentu saja, ini hanya contoh sederhana dan Redis memiliki berbagai fitur dan perintah lainnya yang dapat digunakan untuk membangun aplikasi yang lebih kompleks dan efisien. Anda dapat merujuk ke dokumentasi Redis untuk mempelajari lebih lanjut tentang sintaksis dan fitur yang disediakan oleh Redis
+Pada kode diatas, kita menggunakan perintah print() untuk mengubahnya menjadi output Python.
+Setelah program dijalankan, maka akan muncul nilai dari kunci "CCIT" yaitu "FTUI" pada terminal kalian.
 
-#### Another ex;
+#### Menghapus data
 
-**Contoh lain penggunaan Redis untuk menyimpan dan mengambil data dalam memori:**
+**Terminal**
 
-#### Membuat koneksi Redis
+Jika kalian ingin menghapus salahsatu kunci, kalian bisa menggunakan sintaks ini :
 
-r = redis.Redis(host='localhost', port=6379, db=0)
+```bash
+del [key]
+```
 
-**Menambahkan data ke dalam set**
+Misalnya kalian ingin menghapus kunci "CCIT" :
 
-r.sadd('fruits', 'apple')
+```bash
+del CCIT
+```
 
-r.sadd('fruits', 'banana')
+Saat dijalankan, maka kunci "CCIT" serta nilainya tidak ada di database redis kita lagi. Bisa kalian cek menggunakan sintaks GET ataupun perintah KEYS *. Bagaimana jika kita ingin menghapus semua data dari sebuah database? Kalian bisa menggunakan sintaks dibawah ini :
 
-r.sadd('fruits', 'orange')
+```bash
+flushdb
+```
 
-**Mendapatkan semua anggota set**
+Saat dijalankan, maka semua data yang terdapat di database yang kita pakai saat ini akan terhapus rata. Tetapi, data di database lain masih tetap ada. Nah sekarang bagaimana caranya biar semua data di semua database itu dihapus? Kalian bisa menggunakan printah dibawah ini :
 
-fruits = r.smembers('fruits')
+```bash
+flushall
+```
 
-print(fruits)
+Saat dijalankan, maka semua data di semua database akan hilang. Jadi, bijaklah dalam menggunakan perintah ini yaa! ^^
 
-**Menambahkan data ke dalam hash**
+**Python**
 
-r.hset('person:1', 'name', 'John Doe')
+Untuk menghapus sebuah kunci, kalian bisa menggunakan sintaks python dibawah ini :
 
-r.hset('person:1', 'age', 30)
+```python
+del([key])
+```
 
-r.hset('person:1', 'city', 'New York')
+Misalnya kalian ingin menghapus data kunci "Komandro" :
 
-**Mendapatkan nilai dari hash**
+```python
+import redis
+r = redis.Redis(host='127.0.0.1', port=6379, db=0)
 
-name = r.hget('person:1', 'name')
+r.del('Komandro')
+```
 
-age = r.hget('person:1', 'age')
+Saat dijalankan, maka data kunci "Komandro" akan dihapus (Jika kunci tersebut ada). Lalu bagaimana kalau kita mau mengimplementasi FLUSHDB dan FLUSHALL di Python? Kalian cukup memanggil redis kalian setelah itu beri salahsatu dari kedua sintaks tersebut. Misalnya :
 
-city = r.hget('person:1', 'city')
+```python
+r.flushdb
+r.flushall
+```
 
-print(name.decode())
+#### Expiration
+Seperti namanya, Expiration itu Kadaluarsa. Maksud kadaluarsa disini yaitu memberi batas waktu pada kunci di Redis. Saat sebuah kunci sudah pada batas waktunya, maka kunci tersebut akan otomatis dihapus oleh Redis. Redis akan menyimpan permanen sampai kita menghapusnya (biasanya kita menghapus sesuai waktu yg kita mau). Kenapa kita harus melakukan expiration? karena memori kita itu terbatas dan agar datanya tidak terlalu lama di Redis yang menyebabkan proses semakin melambat.
 
-print(int(age.decode()))
+**Terminal**
 
-print(city.decode())
+Untuk memberi batas waktu pada sebuah kunci, kita bisa menggunakan perintah dibawah ini pada terminal :
 
-Pada contoh di atas, kita menggunakan Redis untuk menyimpan data dalam bentuk himpunan (set) dan hash. Data buah-buahan disimpan dalam himpunan "fruits" menggunakan metode sadd, dan kemudian kita mendapatkan semua anggota himpunan menggunakan metode smembers.
+```bash
+expire [key] [seconds]
+```
 
-Selanjutnya, kita menggunakan hash untuk menyimpan data seputar seorang "person:1". Kita menggunakan metode hset untuk menambahkan nilai ke dalam hash, dan metode hget untuk mendapatkan nilai dari hash berdasarkan kunci.
+Misalnya, kita mempunyai kunci "Satu" dan ingin memberi batas waktu selama 10 detik :
 
-Anda dapat mengeksplorasi lebih banyak fitur dan perintah Redis, seperti sorted set, list, dan operasi lainnya sesuai dengan kebutuhan aplikasi Anda.
+```bash
+expire Satu 10
+```
 
-# Exercise
+Jika redis memberi pesan "(integer)1" maka perintah tersebut sudah sukses dijalankan dan kunci "Satu" akan otomatis terhapus setelah 10 detik perintah itu dijalankan. Coba kalian pakai perintah GET atau KEYS * untuk mengeceknya sebelum 10 detik dan sesudah 10 detik.
+Lalu Kalian bisa banget untuk membuat key-value + batas waktunya menggunakan sintaks ini :
 
-1\.Buatlah koneksi Redis:
+```bash
+setex [key] [seconds] [value]
+```
 
-- Import modul Redis.
+Misalnya, kalian ingin membuat kunci "mahasiswa" dengan nilai "ccit" dan memberi batas waktu sampai 10 detik :
 
-- Buat objek Redis dengan koneksi ke server Redis.
+```bash
+setex mahasiswa 10 ccit
+```
 
-2\.Tambahkan data film ke dalam Redis:
+Setelah perintah dijalankan, maka kunci "mahasiswa" akan otomatis dibuat dengan nilainya yaitu "ccit" dan akan bertahan hanya selama 10 detik setelah itu kunci tersebut akan menghilang.
+Bagaimana jika kita memberi waktu yang sangat lama pada sebuah kunci, dan kita ingin tahu berapa lama lagi kunci tersebut menghilang? Tenang, kalian bisa menggunakan sintaks dibawah ini untuk mengetahuinya :
 
-- Simpan data film "The Shawshank Redemption" dengan informasi judul, tahun rilis, dan genre menggunakan struktur data hash.
+```bash
+ttl [key]
+```
 
-- Simpan data film "The Godfather" dengan informasi yang sama.
+TTL itu singkatan dari Time to Live. Misalnya kalian ingin mengetahui sisa waktu dari kunci "Dua" :
 
-3\.Ambil data film dari Redis:
+```bash
+ttl Dua
+```
 
-- Dapatkan informasi film "The Shawshank Redemption" dari Redis menggunakan kunci yang sesuai.
+Nantinya terminal akan memberi tahu kita berapa lama lagi kunci tersebut ada **dalam satuan detik**
 
-- Dapatkan informasi film "The Godfather" dari Redis menggunakan kunci yang sesuai.
+**Python**
 
-4\.Perbarui data film di Redis:
+Bagaimanaa caranya menggunakan 3 sintaks itu dalam python? Berikut sintaks-sintaksnya :
 
-- Perbarui tahun rilis film "The Shawshank Redemption" menjadi tahun baru.
+```python
+expire([key], [seconds]) #EXPIRE
+setex([key], [seconds], [value]) #SETEX
+ttl([key]) #TTL
+```
 
-- Perbarui genre film "The Godfather" menjadi "Crime, Drama".
+Misalnya jika ada kasus seperti ini :
+- Berilah bataswaktu/expire untuk kunci "CCIT" selama 1 menit
+- Buatlah kunci "Komunitas" dengan nilai "Android" dan berilah batas waktu/expire selama 2 menit
+- Berapa lama lagi kunci "Komunitas" akan otomatis dihapus?
 
-5\.Hapus data film dari Redis:
+Maka pengimplementasian pada python jadi seperti ini :
 
-- Hapus data film "The Shawshank Redemption" dari Redis.
+```python
+import redis
+r = redis.Redis(host='127.0.0.1', port=6379, db=0)
 
-- Hapus data film "The Godfather" dari Redis.
+r.expire("CCIT", 60) #EXPIRE
+r.setex("Komunitas", 120, "Android") #SETEX
+print(r.ttl("Komunitas") + " Detik lagi") #TTL
+```
 
-### Keep your head high!!:p
+Maka semua kasus tersebut akan diimplementasikan oleh Python serta akan mengeluarkan output sisa waktunya. Jangan lupa menggunakan sintaks print() untuk mengubahnya menjadi output python.
 
+
+# Keep your head high!!:p
