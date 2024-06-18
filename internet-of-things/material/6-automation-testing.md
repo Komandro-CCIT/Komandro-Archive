@@ -13,7 +13,7 @@ Namun bayangkan, apabila test dilakukan secara manual, berapa banyak waktu yang 
 
 # Code Time
 
-Pada pengerjaannya, silahkan gunakan repository yang sudah dibuat pada [sample nomor 5](./sample/5-logging/) atau silahkan download kembali apabila belum memilikinya.
+Pada pengerjaannya, silahkan gunakan repository yang sudah dibuat pada [sample nomor 5](../project/5-logging/) atau silahkan download kembali apabila belum memilikinya.
 
 Sekarang aktifkan virtualenv lalu install library testing yang akan kita gunakan, yaitu PyTest.
 

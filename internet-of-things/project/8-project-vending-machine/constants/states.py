@@ -1,0 +1,8 @@
+from enum import Enum
+
+class AppStates(Enum):
+    MENU_CLICKED = "MENU_CLICKED"
+    ORDER_CREATED = "ORDER_CREATED"
+    PAYMENT_SUCCESS = "PAYMENT_SUCCESS"
+    PAYMENT_FAILED = "PAYMENT_FAILED"
+    IDLE = "IDLE"
