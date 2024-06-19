@@ -30,8 +30,6 @@ Berikut struktur yang akan kita bangun pada proyek ini.
 ├── services/
 ├── templates/
 ├── tests/
-├── venv/
-├── .env
 ├── .env.example
 ├── docker-compose.yml
 ├── generate_data_drink.py
@@ -41,11 +39,24 @@ Berikut struktur yang akan kita bangun pada proyek ini.
 └── websocket_server.py
 ```
 
+Struktur ini didapatkan dari proyek yang keenam yaitu automation testing, selanjutnya jangan lupa untuk membuat virtual env dengan cara:
+
+```bash
+python3 -m venv venv
+```
+
+Lalu dilanjutkan dengan menginstall library yang dibutuhkan dengan cara:
+
+```bash
+source venv/bin/activate
+pip install -r requirements.txt
+```
+
 <br/>
 
 ## Menyiapkan Data Awal
 
-Secara teori aplikasi yang dibangun adalah aplikasi IoT, dimana aplikasi vending machine dapat terhubung dengan Internet. Aplikasi yang terhubung dengan internet akan mengambil data pada server menggunakan API, namun karena kita hanya mensimulasikan saja maka dari itu kita akan membuat sebuah file sederhana. Pada folder root, sejajar dengan file `main.py`, buat file baru bernama `generate_data_drink.py` lalu masukkan kode berikut:
+Secara teori aplikasi yang dibangun adalah aplikasi IoT, dimana aplikasi vending machine dapat terhubung dengan Internet. Aplikasi yang terhubung dengan internet akan mengambil data pada server menggunakan API, namun karena kita hanya mensimulasikan saja maka dari itu kita akan membuat sebuah file sederhana. Pada folder root sejajar dengan file `main.py`, buat file baru bernama `generate_data_drink.py` lalu masukkan kode berikut:
 
 ```python
 import json
@@ -171,7 +182,7 @@ class AppStates(Enum):
 
 ## Membuat Websocket Event
 
-Karena aplikasi Python yang dibangun akan menjadi Websocket Server, maka kita memerlukan untuk membuat websocket event class. Buat file baru bernama `websocket_event.py` di dalam folder cores lalu masukkan kode berikut.
+Karena aplikasi Python yang dibangun akan menjadi Websocket Server, maka kita memerlukan untuk membuat websocket event class. Buat file baru bernama `websocket_event.py` di dalam folder `cores` lalu masukkan kode berikut.
 
 ```python
 from cores.broker import Broker
@@ -285,7 +296,7 @@ class Server(WebSocket):
             print(e)
 
     def handleConnected(self):
-        self.clients.append(self)
+        self.clients.append(selSf)
         for client in self.clients:
             client.sendMessage(self.address[0] + " - connected")
         print(self.address, "connected")
@@ -423,4 +434,39 @@ Sekarang buat file `index.html` di dalam folder `templates` lalu masukkan kode b
 </html>
 ```
 
-Sekarang coba akses file `index.html` kamu pada browser, lalu klik kanan > inspect element dan lihat pada bagian console. Kamu akan menemukan pesan `127.0.0.1 - connected`
+## Menjalankan File
+
+Sekarang coba jalankan file `websocket_server.py` dengan cara:
+
+```bash
+python websocket_server.py
+```
+
+Hasil yang akan kamu lihat adalah:
+
+```bash
+Websocket running on 0.0.0.0:3333
+```
+
+Sekarang coba akses file `index.html` kamu pada browser.
+
+Kembali ke terminal dan kamu akan menemukan pesan seperti ini:
+
+```bash
+Websocket running on 0.0.0.0:3333
+('127.0.0.1', 60074) connected
+```
+
+Artinya pada `localhost` port `60074` terkoneksi seorang user yang mana ini datang dari `index.html` yang dibuka.
+
+Apabila kamu refresh halamannya, maka akan muncul tampilan seperti ini:
+
+```bash
+('127.0.0.1', 60074) connected
+('127.0.0.1', 60074) closed
+('127.0.0.1', 36644) connected
+```
+
+Port yang tadinya terhubung menjadi tertutup namun dibuka kembali pada port yang berbeda, hal ini dikarenakan websocket akan mengatur port secara random dan tidak bisa kita atur. Satu koneksi yang terhubung akan menggunakan satu port.
+
+Pada bagian ini kamu sudah berhasil membuat sebuah websocket server dan membuatnya terhubung dengan tampilan dasar. :)
