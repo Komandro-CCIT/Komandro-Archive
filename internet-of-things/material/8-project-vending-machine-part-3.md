@@ -7,174 +7,33 @@ Author: Hudya (@perogeremmer)
 
 # Overview
 
-Pada bagian [pertama](8-project-vending-machine-part-1.md), kita sudah membangun struktur dasar untuk membuat websocket server dan client. Sekarang kita akan melanjutkan untuk membuat screen untuk menampilkan QR code transaksi yang ditujukan untuk membayar.
+Pada bagian [kedua](8-project-vending-machine-part-2.md), kita sudah membuat dimana apabila website ditekan (touch) maka kode QR akan tampilan. Selanjutnya kita akan membuat dimana sistem akan memeriksa data pembayaran.
 
 # Code Time
 
-## Menambahkan Library
+## Buat service baru
 
-Untuk membuat QR Pembayaran, kita akan menggunakan library Midtrans. Nah silahkan install librarynya dengan cara memasukkan kode di bawah ini.
-
-```bash
-pip install midtransclient
-```
-
-> [!NOTE]
-> Pastikan sudah mengaktifkan virtualenv dengan perintah `source venv/bin/activate`
-
-## Membuat Akun
-
-Sekarang kamu perlu membuat akun Midtrans. Kunjungi website resmi [Midtrans](https://midtrans.com/) lalu buatlah akun. Setelah masuk, pindahlah ke environment `sandbox`. Environment ini adalah environment untuk ujicoba program sebagai seorang developer, sehingga kamu tidak perlu membayar transaksinya secara real.
-
-Tampilannya akan menjadi seperti ini.
-
-![Alt text](./assets/8-project-vending-machine/1.png)
-
-Sekarang pergi ke `Settings > Access Keys`, disana kamu akan menemukan `Client Key` dan `Server Key`. Simpan kedua key ini pada komputer atau perangkatmu.
-
-## Membuat file .env
-
-File `.env` digunakan untuk menyimpan kredensial yang bersifat rahasia, biasanya file ini tidak akan kita bawa ke repository dan akan didaftarkan ke .gitignore.
-
-Buat file `.env` sejajar dengan `main.py` lalu masukkan kode dibawah ini:
-
-```plain
-MIDTRANS_CLIENT_KEY=
-MIDTRANS_SERVER_KEY=
-```
-
-Masukkan nilai client key dan server key kamu sehingga menjadi seperti ini:
-
-```plain
-MIDTRANS_CLIENT_KEY=xxxxxxxxxxxxxxx
-MIDTRANS_SERVER_KEY=xxxxxxxxxxxxxxx
-```
-
-> [!NOTE]
-> Ganti xxxxx dengan key kamu
-
-## Membuat file Library
-
-Setelah menginstall library midtrans, kita perlu untuk membuat file yang menampung library midtrans untuk membuat kode QR pembayaran. Buat file baru bernama `midtrans_payment.py` pada folder `cores/utilities`. Folder utilities akan berada pada folder `cores`, sehingga apabila kamu belum memilikinya, buat saja foldernya. Setelah file dibuat, masukkan kode berikut:
-
-```python
-import midtransclient
-
-class MidtransPayment:
-    def __init__(
-        self, is_production: bool = False, client_key: str = "", server_key: str = ""
-    ):
-        self.core_api = midtransclient.CoreApi(
-            is_production=is_production,
-            server_key=server_key,
-            client_key=client_key,
-        )
-
-    def create_qr(
-        self,
-        transaction_details: dict = {},
-        item_details: list = [],
-        customer_details: dict = {},
-    ):
-        payload = {
-            "payment_type": "gopay",
-            "item_details": item_details,
-            "transaction_details": transaction_details,
-            "customer_details": customer_details
-        }
-
-        return self.core_api.charge(payload)
-
-    def check_transaction(self, order_id: str):
-        """Sample Response
-        {
-            "status_code" : "200",
-            "status_message" : "Success, Credit Card transaction is successful",
-            "transaction_id" : "249fc620-6017-4540-af7c-5a1c25788f46",
-            "masked_card" : "48111111-1114",
-            "order_id" : "example-1424936368",
-            "payment_type" : "credit_card",
-            "transaction_time" : "2015-02-26 14:39:33",
-            "transaction_status" : "capture",
-            "fraud_status" : "accept",
-            "approval_code" : "1424936374393",
-            "signature_key" : "2802a264cb978fbc59f631c68d120cbda8dc853f5dfdc52301c615cf4f14e7a0b09aa...",
-            "bank" : "bni",
-            "gross_amount" : "30000.00",
-            "channel_response_code": "00",
-            "channel_response_message": "Approved",
-            "card_type": "credit",
-            "payment_option_type": "GOPAY_WALLET",
-            "shopeepay_reference_number": "103995032913255264",
-            "reference_id": "DL-dduIy7XtGtvxJtNNpOfbAt"
-        }
-        """
-        return self.core_api.transactions.status(order_id)
-```
-
-## Membuat file Config
-
-Untuk mengakses isi file .env kita memerlukan sebuah file baru yang menjadi class object dari konfigurasi app yang kita bangun. Buat file baru dengan nama `config.py` di dalam folder `cores` lalu masukkan kode berikut:
-
-```python
-from dotenv import load_dotenv
-import os
-
-
-class Config:
-    load_dotenv()
-    MIDTRANS_CLIENT_KEY = os.getenv('MIDTRANS_CLIENT_KEY') or ""
-    MIDTRANS_SERVER_KEY = os.getenv('MIDTRANS_SERVER_KEY') or ""
-```
-
-Nantinya library dotenv akan membaca file `.env` pada struktur dasar proyek.
-
-## Perubahan kode services
-
-Sekarang kita akan mengubah business logic dari aplikasi yang dibangun. Pertama, kita ubah `base_service.py` yang berada pada folder `services` dengan kode berikut:
-
-```python
-from abc import ABC, abstractmethod
-from uuid import uuid4
-from cores.config import Config
-
-
-class BaseService(ABC):
-    config: Config
-    
-    def __init__(self):
-        self.config = Config()
-
-    @abstractmethod
-    def execute(self):
-        pass
-
-    def generate_uuid(self):
-        return str(uuid4())
-```
-
-Nantinya class `BaseService` akan menurunkan objek `config` yang dapat kita akses pada class yang menurunkan sifatnya.
-
-Kemudian buat file baru bernama `order_service.py` dan isi dengan kode berikut:
+Sekarang kita perlu membuat service baru untuk memeriksa apakah pembayaran sudah dilakukan. Buat file baru bernama `order_created_service.py` di dalam folder `services` lalu masukkan kode berikut:
 
 ```python
 from services.base_service import BaseService
-from cores.app_log import AppLogger
-from cores.utilities.midtrans_payment import MidtransPayment
 from cores.broker import Broker
 from constants.states import AppStates
 from constants.redis_prefix import RedisPrefix
-from datetime import timedelta
 from time import sleep
+from cores.app_log import AppLogger
+from cores.utilities.midtrans_payment import MidtransPayment
 import json
 import websocket
+from datetime import timedelta
 
 
-class OrderService(BaseService):
-    allowed_states = [AppStates.MENU_CLICKED.value]
+class OrderCreatedService(BaseService):
+    allowed_states = [AppStates.ORDER_CREATED.value]
 
     def __init__(self, broker: Broker):
         super().__init__()
+        
         self.broker = broker
         self.logger = AppLogger()
         self.mp = MidtransPayment(
@@ -191,86 +50,54 @@ class OrderService(BaseService):
         if state not in self.allowed_states:
             return False
 
-        self.logger.info(f"Order service started. State: {self}")
+        self.logger.info(f"Order created service started. State: {self}")
 
-        data = self.broker.read_single_data(RedisPrefix.SELECTED_MENU_DATA.value)
+        data = self.broker.read_single_data(RedisPrefix.PAYMENT_DETAIL.value)
         if not data:
             raise Exception("yyy")
 
         data = json.loads(data)
 
-        menu = self.broker.read_single_data(RedisPrefix.DRINK_ITEMS.value)
-        if not menu:
-            raise Exception("yyy")
+        order_id = data["payment_details"]["order_id"]
 
-        menu = json.loads(menu)
+        attempt = 0
+        response = None
+        new_state = AppStates.PAYMENT_SUCCESS.value
+        while attempt < 40:
+            response = self.mp.check_transaction(order_id=order_id)
+            self.logger.info(f"Check status from Midtrans: {response}")
 
-        selected_menu = {}
-        for item in menu:
-            if item["id"] == data["id"]:
-                selected_menu = item
+            status_code = int(response["status_code"])
+            if status_code == 200:
+                break
+            elif status_code == 201:
+                attempt += 1
+                sleep(1)
+            else:
+                new_state = AppStates.PAYMENT_FAILED.value
                 break
 
-        item_details = []
-        payload = {
-            "id": selected_menu["id"],
-            "price": selected_menu["price"],
-            "name": selected_menu["name"],
-            "quantity": 1,
-        }
+        status_code = int(response["status_code"])
+        if status_code != 200:
+            new_state = AppStates.PAYMENT_FAILED.value
+            self.logger.error(f"Error payment midtrans! Response: {response}")
+            self.broker.set_state(new_state)
+            return
 
-        item_details.append(payload)
-
-        gross_amount = 0
-        gross_amount += selected_menu["price"]
-
-        transaction_details = {
-            "order_id": self.generate_uuid(),
-            "gross_amount": float(gross_amount),
-        }
-
-        customer_details = {
-            "first_name": "Buy Drink",
-            "last_name": "Customer",
-            "email": "customer@buydrink.com",
-            "phone": "088888888",
-        }
-
-        response = self.mp.create_qr(
-            transaction_details=transaction_details,
-            item_details=item_details,
-            customer_details=customer_details,
-        )
-        self.logger.info(f"QR created: {response}")
-
-        new_state = AppStates.ORDER_CREATED.value
+        self.logger.info(f"Payment finished: {response}")
         self.broker.set_state(new_state)
 
-        payload = {
-            "transaction_details": transaction_details,
-            "item_details": item_details,
-            "customer_details": customer_details,
-            "payment_details": response,
-        }
-
-        self.broker.create_single_data(
-            RedisPrefix.PAYMENT_DETAIL.value,
-            values=json.dumps(payload),
-            expired=timedelta(hours=1),
-        )
-
-        ws_payload = json.dumps({"event": new_state, "values": payload})
+        ws_payload = json.dumps({"event": new_state, "values": response})
         self.ws.send(ws_payload)
         self.logger.info(f"Change state into: {new_state}")
 ```
 
-
 ## Ubah file index.html
 
-Sekarang kita ubah file index.html dengan kode berikut:
+Sekarang rubah semua file index.html agar menjadi seperti ini:
 
 ```html
-!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -342,6 +169,24 @@ Sekarang kita ubah file index.html dengan kode berikut:
     var ws = connect()
     cur_event = null;
 
+    function handleBodyClick() {
+        if (cur_event != null) {
+            return
+        }
+        
+        // Create JSON data    
+        var message = {
+            event: "SHOW_MENU",
+            values: {}
+        };
+
+        // Convert to string
+        var json = JSON.stringify(message);
+
+        // Send json data
+        ws.send(json);
+    }
+
     ws.onclose = function (event) {
         console.log(event)
         console.log("Closed! Connecting in 3 seconds.")
@@ -382,11 +227,24 @@ Sekarang kita ubah file index.html dengan kode berikut:
                 showMenu(data.values)
             } else if (data.event === "ORDER_CREATED") {
                 showPayment(data.values)
-            } 
+            } else if (data.event === "PAYMENT_SUCCESS") {
+                paymentSuccess()
+                showHomeAfter()
+            } else if (data.event === "PAYMENT_FAILED") {
+                paymentFailed()
+                showHomeAfter()
+            }
         } catch (e) {
             console.log(e)
         }
     };
+
+    function showHomeAfter() {
+        setTimeout(() => {
+            ws = connect()
+            showHome()
+        }, 3000)
+    }
 
     function showHome() {
         document.body.innerHTML = `
@@ -395,22 +253,18 @@ Sekarang kita ubah file index.html dengan kode berikut:
         `
     }
 
-    function handleBodyClick() {
-        if (cur_event != null) {
-            return
-        }
-        
-        // Create JSON data    
-        var message = {
-            event: "SHOW_MENU",
-            values: {}
-        };
+    function paymentSuccess() {
+        document.body.innerHTML = `
+        <p class="title">Payment Success!</p>
+        <p class="subtitle">Please wait while we serve your drink</p>
+        `
+    }
 
-        // Convert to string
-        var json = JSON.stringify(message);
-
-        // Send json data
-        ws.send(json);
+    function paymentFailed() {
+        document.body.innerHTML = `
+        <p class="title">Payment Failed!</p>
+        <p class="subtitle">Please try again</p>
+        `
     }
 
     function showPayment(payload) {
@@ -511,12 +365,13 @@ Sekarang kita ubah file index.html dengan kode berikut:
 
     document.body.onclick = handleBodyClick;
 </script>
+
 </html>
 ```
 
-## Ubah Main file
+## Ubah main file
 
-Sekarang ubah main.py agar menjadi seperti ini:
+Sekarang ubah main file main.py dengan kode berikut:
 
 ```python
 import argparse
@@ -524,6 +379,7 @@ import argparse
 from cores.broker import Broker
 from constants.services import Services, all_services
 from services.order_service import OrderService
+from services.order_created_service import OrderCreatedService
 from time import sleep
 from cores.app_log import AppLogger
 
@@ -550,6 +406,8 @@ class Main:
             app = None
             if service == Services.ORDER_SERVICE.value:
                 app = OrderService(broker=self.redis)
+            elif service == Services.ORDER_CREATED_SERVICE.value:
+                app = OrderCreatedService(broker=self.redis)
 
             if not app:
                 raise Exception("App is not found!")
@@ -576,11 +434,15 @@ if __name__ == "__main__":
     m.execute(args.service)
 ```
 
-
-Sekarang coba jalankan dengan cara:
+Untuk menjalankannya, jalankan dengan kode berikut:
 
 ```bash
 python main.py --service ORDER
 ```
 
-Lihat hasilnya.
+Buka terminal baru lalu jalankan juga service order created dengan kode berikut: 
+
+```bash
+python main.py --service ORDER_CREATED
+```
+
