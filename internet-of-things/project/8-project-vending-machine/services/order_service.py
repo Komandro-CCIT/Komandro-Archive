@@ -50,7 +50,7 @@ class OrderService(BaseService):
             if item["id"] == data["id"]:
                 selected_menu = item
                 break
-            
+
         item_details = []
         payload = {
             "id": selected_menu["id"],
@@ -94,7 +94,9 @@ class OrderService(BaseService):
         }
 
         self.broker.create_single_data(
-            RedisPrefix.PAYMENT_DETAIL.value, values=json.dumps(payload), expired=timedelta(hours=1)
+            RedisPrefix.PAYMENT_DETAIL.value,
+            values=json.dumps(payload),
+            expired=timedelta(hours=1),
         )
 
         ws_payload = json.dumps({"event": new_state, "values": payload})

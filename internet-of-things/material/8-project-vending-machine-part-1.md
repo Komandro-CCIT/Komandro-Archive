@@ -85,7 +85,19 @@ data = json.dumps(data)
 r.create_single_data(key, data)
 ```
 
-Kode di atas akan membuat sistem dapat menggunakan redis untuk menyimpan dua data, yaitu minuman lemon dan cola. Pada kasus dunia nyata, IoT dapat menggunakan Redis sebagai media penyimpanan karena redis memiliki performa yang baik, ringan, cepat, dan dapat membangun data dengan TTL (Time to Live). Sekarang jalankan filenya dan lihatlah dengan cara menuliskan `GET drink:items` di dalam redis-cli dan kamu akan melihat sebuah data. Jangan lupa untuk mengunduh aset yang dibutuhkan [disini](./assets/8-project-vending-machine/).
+
+Kode di atas akan membuat sistem dapat menggunakan redis untuk menyimpan dua data, yaitu minuman lemon dan cola. Pada kasus dunia nyata, IoT dapat menggunakan Redis sebagai media penyimpanan karena redis memiliki performa yang baik, ringan, cepat, dan dapat membangun data dengan TTL (Time to Live). 
+
+Sekarang jalankan filenya dengan cara:
+
+```python
+python generate_data_drink.py
+```
+
+Lalu lihat dengan cara menuliskan `GET drink:items` di dalam `redis-cli` dan kamu akan melihat sebuah data. Jangan lupa untuk mengunduh aset yang dibutuhkan:
+
+- [Cola (Download disini)](../project/8-project-vending-machine/templates/assets/images/cola.png)
+- [Lemon (Download disini)](../project/8-project-vending-machine/templates/assets/images/lemon.png)
 
 Masukkan gambar yang telah diunduh pada folder `templates/assets/images`. Jadi, buat folder `assets` di dalam folder `templates`, dan buat folder `images` di dalam folder `assets`.
 
@@ -384,10 +396,6 @@ Sekarang buat file `index.html` di dalam folder `templates` lalu masukkan kode b
 </body>
 
 <script>
-    document.body.addEventListener('click', function (evt) {
-        if (evt.target.className === 'card-drink') {}
-    }, false);
-
     showHome()
 
     function connect() {
