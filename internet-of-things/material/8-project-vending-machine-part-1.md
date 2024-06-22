@@ -94,6 +94,9 @@ Sekarang jalankan filenya dengan cara:
 python generate_data_drink.py
 ```
 
+> [!NOTE]
+>  Pastikan redis sudah berjalan dan bisa diakses dengan cara `redis-cli`.
+
 Lalu lihat dengan cara menuliskan `GET drink:items` di dalam `redis-cli` dan kamu akan melihat sebuah data. Jangan lupa untuk mengunduh aset yang dibutuhkan:
 
 - [Cola (Download disini)](../project/8-project-vending-machine/templates/assets/images/cola.png)
@@ -308,7 +311,7 @@ class Server(WebSocket):
             print(e)
 
     def handleConnected(self):
-        self.clients.append(selSf)
+        self.clients.append(self)
         for client in self.clients:
             client.sendMessage(self.address[0] + " - connected")
         print(self.address, "connected")

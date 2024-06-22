@@ -35,22 +35,24 @@ class OrderService(BaseService):
 
         data = self.broker.read_single_data(RedisPrefix.SELECTED_MENU_DATA.value)
         if not data:
-            raise Exception("yyy")
+            raise Exception("Menu tidak dipilih!")
 
         data = json.loads(data)
 
         menu = self.broker.read_single_data(RedisPrefix.DRINK_ITEMS.value)
         if not menu:
-            raise Exception("yyy")
+            raise Exception("Daftar menu tidak ditemukan!")
 
         menu = json.loads(menu)
 
+        # Menemukan menu yang dipilih
         selected_menu = {}
         for item in menu:
             if item["id"] == data["id"]:
                 selected_menu = item
                 break
 
+        # Membuat data untuk melakukan pembayaran
         item_details = []
         payload = {
             "id": selected_menu["id"],
@@ -76,6 +78,7 @@ class OrderService(BaseService):
             "phone": "088888888",
         }
 
+        # Membuat QR pembayaran
         response = self.mp.create_qr(
             transaction_details=transaction_details,
             item_details=item_details,
@@ -83,6 +86,7 @@ class OrderService(BaseService):
         )
         self.logger.info(f"QR created: {response}")
 
+        # Mengubah state menjadi order_created
         new_state = AppStates.ORDER_CREATED.value
         self.broker.set_state(new_state)
 
@@ -93,12 +97,15 @@ class OrderService(BaseService):
             "payment_details": response,
         }
 
+        # Mencatata info pembayaran pada redis dengan expired 1 jam
         self.broker.create_single_data(
             RedisPrefix.PAYMENT_DETAIL.value,
             values=json.dumps(payload),
             expired=timedelta(hours=1),
         )
 
+        # Mempublikasikan data melalui websocket agar frontend menerima pesan ini
         ws_payload = json.dumps({"event": new_state, "values": payload})
         self.ws.send(ws_payload)
+        
         self.logger.info(f"Change state into: {new_state}")
