@@ -97,7 +97,7 @@ class OrderService(BaseService):
             "payment_details": response,
         }
 
-        # Mencatata info pembayaran pada redis dengan expired 1 jam
+        # Mencatat info pembayaran pada redis dengan expired 1 jam
         self.broker.create_single_data(
             RedisPrefix.PAYMENT_DETAIL.value,
             values=json.dumps(payload),

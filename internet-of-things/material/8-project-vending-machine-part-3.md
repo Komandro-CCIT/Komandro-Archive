@@ -52,9 +52,10 @@ class OrderCreatedService(BaseService):
 
         self.logger.info(f"Order created service started. State: {self}")
 
+        # Pengecekan data pembayaran
         data = self.broker.read_single_data(RedisPrefix.PAYMENT_DETAIL.value)
         if not data:
-            raise Exception("yyy")
+            raise Exception("Data pembayaran tidak ditemukan!")
 
         data = json.loads(data)
 
@@ -63,11 +64,20 @@ class OrderCreatedService(BaseService):
         attempt = 0
         response = None
         new_state = AppStates.PAYMENT_SUCCESS.value
+        """
+            Disini dilakukan perulangan sebanyak 40x.
+            
+            Setiap perulangan diberi jeda 1 detik, artinya setiap detik sistem 
+            memeriksa ke server midtrans untuk memastikan apakah transaksi yang 
+            baru saja dibuat sudah dibayar atau belum?
+        """
         while attempt < 40:
             response = self.mp.check_transaction(order_id=order_id)
             self.logger.info(f"Check status from Midtrans: {response}")
 
             status_code = int(response["status_code"])
+            
+            # Kondisi pada kode status transaksi yang didapatkan dari dokumentasi midtrans
             if status_code == 200:
                 break
             elif status_code == 201:
@@ -78,6 +88,8 @@ class OrderCreatedService(BaseService):
                 break
 
         status_code = int(response["status_code"])
+        
+        # Kondisi dimana apabila kode status tidak 200 (tidak berhasil) maka pembayaran dinyatakan gagal
         if status_code != 200:
             new_state = AppStates.PAYMENT_FAILED.value
             self.logger.error(f"Error payment midtrans! Response: {response}")
@@ -87,14 +99,39 @@ class OrderCreatedService(BaseService):
         self.logger.info(f"Payment finished: {response}")
         self.broker.set_state(new_state)
 
+        # Kirimkan hasil pengecekan ke websocket agar web dapat menerima responnya
         ws_payload = json.dumps({"event": new_state, "values": response})
         self.ws.send(ws_payload)
         self.logger.info(f"Change state into: {new_state}")
 ```
 
+Class `OrderCreatedService` akan berfungsi sebagai pengecekan terhadap status pembayaran yang baru saja dibuat, pada algoritma kode di atas terdapat perulangan sebanyak 40x yang diberi jeda setiap detik untuk bertanya ke server midtrans.
+
+Kurang lebih alur dari pembuatan kode QR sampai pengecekan akan menjadi seperti ini:
+
+```mermaid
+sequenceDiagram
+    participant User
+    participant Web
+    participant App
+    participant Midtrans
+
+    User ->> Web: Memilih minuman
+    Web ->> App: Meminta pembuatan kode QR
+    App ->> Midtrans: Membuat kode QR (order_id)
+    Midtrans -->> App: Response (kode QR)
+    User ->> Midtrans: Scan QR dan membayar
+    App ->> Midtrans: Mengecek status pembayaran
+    Midtrans -->> App: Mengirimkan respon
+    
+    App -->> Web: Memberitahu bahwa pembayaran berhasil
+    Web -->> User: Menampilkan pesan berhasil
+
+```
+
 ## Ubah file index.html
 
-Sekarang rubah semua file index.html agar menjadi seperti ini:
+Sekarang ubah semua kode pada file `index.html` agar menjadi seperti ini:
 
 ```html
 <!DOCTYPE html>
@@ -169,24 +206,6 @@ Sekarang rubah semua file index.html agar menjadi seperti ini:
     var ws = connect()
     cur_event = null;
 
-    function handleBodyClick() {
-        if (cur_event != null) {
-            return
-        }
-        
-        // Create JSON data    
-        var message = {
-            event: "SHOW_MENU",
-            values: {}
-        };
-
-        // Convert to string
-        var json = JSON.stringify(message);
-
-        // Send json data
-        ws.send(json);
-    }
-
     ws.onclose = function (event) {
         console.log(event)
         console.log("Closed! Connecting in 3 seconds.")
@@ -223,28 +242,27 @@ Sekarang rubah semua file index.html agar menjadi seperti ini:
             data = JSON.parse(event.data);
             cur_event = data.event.toString()
 
+            // Apabila statenya merupakan show_menu maka fungsi showmenu dipanggil
             if (data.event === "SHOW_MENU") {
                 showMenu(data.values)
             } else if (data.event === "ORDER_CREATED") {
+                // Apabila statenya merupakan order created maka fungsi showPayment dipanggil
                 showPayment(data.values)
-            } else if (data.event === "PAYMENT_SUCCESS") {
+            }  else if (data.event === "PAYMENT_SUCCESS") {
+                // Apabila statenya merupakan payment success maka fungsi paymentSuccess dipanggil
                 paymentSuccess()
+                // Memanggil fungsi showHomeAfter dimana fungsi untuk kembali menampilkan halaman home dalam 3 detik
                 showHomeAfter()
             } else if (data.event === "PAYMENT_FAILED") {
+                // Apabila statenya merupakan payment failed maka fungsi paymentFailed dipanggil
                 paymentFailed()
+                // Memanggil fungsi showHomeAfter dimana fungsi untuk kembali menampilkan halaman home dalam 3 detik
                 showHomeAfter()
             }
         } catch (e) {
             console.log(e)
         }
     };
-
-    function showHomeAfter() {
-        setTimeout(() => {
-            ws = connect()
-            showHome()
-        }, 3000)
-    }
 
     function showHome() {
         document.body.innerHTML = `
@@ -253,24 +271,31 @@ Sekarang rubah semua file index.html agar menjadi seperti ini:
         `
     }
 
-    function paymentSuccess() {
-        document.body.innerHTML = `
-        <p class="title">Payment Success!</p>
-        <p class="subtitle">Please wait while we serve your drink</p>
-        `
+    // Fungsi yang mengurus ketika layar ditekan
+    function handleBodyClick() {
+        if (cur_event != null) {
+            return
+        }
+        
+        // Create JSON data    
+        var message = {
+            event: "SHOW_MENU",
+            values: {}
+        };
+
+        // Convert to string
+        var json = JSON.stringify(message);
+
+        // Send json data
+        ws.send(json);
     }
 
-    function paymentFailed() {
-        document.body.innerHTML = `
-        <p class="title">Payment Failed!</p>
-        <p class="subtitle">Please try again</p>
-        `
-    }
-
+    // Menampilkan detail pembayaran
     function showPayment(payload) {
         const payment_details = payload.payment_details
 
         var qr_url = ""
+        // Karena actions pada response midtrans merupakan array dan terdapat empat data, maka lakukan looping.
         for (let item of payment_details.actions) {
             if (item.name === "generate-qr-code") {
                 qr_url = item.url
@@ -288,38 +313,57 @@ Sekarang rubah semua file index.html agar menjadi seperti ini:
         `
     }
 
+    // Fungsi menampilkan menu
     function showMenu(values) {
 
         var drink = values
-
+        
+        // Membuat elemen div
         const cardsContainer = document.createElement('div');
+
+        // menambahkan class cards ke dalam elemen div
         cardsContainer.classList.add('cards');
 
+        // Lakukan looping dari data yang diterima melalui websocket, data tersebut adalah daftar menu.
         values.forEach(drink => {
+
+            // Buat elemen div beserta class dan data atribut berupa id
             const card = document.createElement('div');
+
+            // Menambahkan class card-drink pada elemen
             card.classList.add('card-drink');
+
+            // Set data atribute dengan data-item=id_minuman
             card.setAttribute('data-item', drink.id.toString());
 
+            // Tampilkan gambar dari data yang diterima
             const image = document.createElement('img');
             image.classList.add('image-bottle');
             image.src = drink.icon;
             image.width = 100;
 
+            // Menampilkan nama minuman
             const name = document.createElement('p');
             name.textContent = drink.name;
 
+            // Memasukan elemen-elemen DOM ke dalaman elemen div dari variabel card karena data gambar dan nama berada di dalam element card
             card.appendChild(image);
             card.appendChild(name);
+
+            // Memasukan elemen-elemen DOM ke dalaman elemen div dari variabel cardsContainer
             cardsContainer.appendChild(card);
         });
 
+        // Membuat teks menu 
         const heading = document.createElement('h2');
         heading.textContent = 'Please choose a drink';
 
+        // Memasukan elemen-elemen DOM ke body
         document.body.innerHTML = '';
         document.body.appendChild(heading);
         document.body.appendChild(cardsContainer);
 
+        // Mengaktifkan event apabila class card-drink tertekan.
         var cards = document.getElementsByClassName("card-drink");
         for (var i = 0; i < cards.length; i++) {
             cards[i].addEventListener("click", function () {
@@ -329,6 +373,7 @@ Sekarang rubah semua file index.html agar menjadi seperti ini:
 
     }
 
+    // Tampilan loading
     function showLoading() {
         document.body.innerHTML = `
             <h2 class="title">Please wait</h2>
@@ -336,11 +381,13 @@ Sekarang rubah semua file index.html agar menjadi seperti ini:
         `
     }
 
+    // Event ketika minuman ditekan
     function cardClicked(element) {
         try {
+            // Mengambil ID minuman yang dipilih
             var item = element.getAttribute("data-item");
-
-            // Create JSON data    
+            
+            // Membuat struktur payload untuk dikirimkan melalui websocket yang akan diterima websocket_event.py
             var message = {
                 event: "ORDER",
                 values: {
@@ -363,15 +410,37 @@ Sekarang rubah semua file index.html agar menjadi seperti ini:
         }
     }
 
+    function showHomeAfter() {
+        setTimeout(() => {
+            ws = connect()
+            showHome()
+        }, 3000)
+    }
+
+    function paymentSuccess() {
+        document.body.innerHTML = `
+        <p class="title">Payment Success!</p>
+        <p class="subtitle">Please wait while we serve your drink</p>
+        `
+    }
+
+    function paymentFailed() {
+        document.body.innerHTML = `
+        <p class="title">Payment Failed!</p>
+        <p class="subtitle">Please try again</p>
+        `
+    }
+
     document.body.onclick = handleBodyClick;
 </script>
-
 </html>
 ```
 
+Kode HTML di atas menambahkan beberapa fungsi baru seperti `paymentSuccess`, `paymentFailed`, dan `showHomeAfter` yang akan berfungsi sesuai dengan nama fungsinya masing-masing.
+
 ## Ubah main file
 
-Sekarang ubah main file main.py dengan kode berikut:
+Sekarang ubah file `main.py` dengan kode berikut:
 
 ```python
 import argparse
@@ -434,15 +503,32 @@ if __name__ == "__main__":
     m.execute(args.service)
 ```
 
-Untuk menjalankannya, jalankan dengan kode berikut:
+Pada file di atas ktia menambahkan kondisi baru yaitu service `ORDER_CREATED` agar aplikasi `main.py` dapat menjalankan service baru yang baru saja kita bangun.
+
+## Menjalankan file
+
+Untuk menjalankannya, ingat kembali konsep websocket.
+
+Karena web dan websocket client yang pada kasus ini adalah class `OrderCreatedService` bergantung kepada websocket server yaitu file `websocket_server.py`, maka kita perlu memastikan bahwa `websocket_server.py` berjalan lebih dahulu. Jalankan file `websocket_server.py` dengan cara:
+
+```bash
+python websocket_server.py
+```
+
+Kemudian kamu baru dapat menjalankan class OrderService dengan cara:
 
 ```bash
 python main.py --service ORDER
 ```
 
-Buka terminal baru lalu jalankan juga service order created dengan kode berikut: 
+Buka tab terminal baru lalu jalankan juga service order created dengan kode berikut:
 
 ```bash
 python main.py --service ORDER_CREATED
 ```
+
+Terakhir, kamu dapat membuka `index.html` kembali. Lakukan simulasi pembayaran seperti yang kamu lakukan pada tutorial kedua, apabila pembayaran berhasil maka tampilannya akan menjadi seperti ini.
+
+![Alt text](./assets/8-project-vending-machine/3.gif)
+
 

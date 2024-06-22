@@ -133,7 +133,7 @@ Nantinya library dotenv akan membaca file `.env` pada struktur dasar proyek.
 
 ## Perubahan kode broker
 
-Kita perlu memperbaiki kode broker, perbaiki fungsi create_single_data dengan kode berikut:
+Kita perlu memperbaiki kode dari file `broker`, perbaiki fungsi `create_single_data` dengan kode berikut:
 
 ```python
 def create_single_data(self, key: str, values: object, expired: timedelta = None):
@@ -335,7 +335,7 @@ class OrderService(BaseService):
             "payment_details": response,
         }
 
-        # Mencatata info pembayaran pada redis dengan expired 1 jam
+        # Mencatat info pembayaran pada redis dengan expired 1 jam
         self.broker.create_single_data(
             RedisPrefix.PAYMENT_DETAIL.value,
             values=json.dumps(payload),
@@ -467,7 +467,6 @@ Sekarang kita ubah file index.html dengan kode berikut:
                 showMenu(data.values)
             } else if (data.event === "ORDER_CREATED") {
                 // Apabila statenya merupakan order created maka fungsi showPayment dipanggil
-
                 showPayment(data.values)
             } 
         } catch (e) {
