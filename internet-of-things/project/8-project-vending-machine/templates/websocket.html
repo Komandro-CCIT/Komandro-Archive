@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script>
+
+        var ws = new WebSocket("ws://example.com/payment");
+
+        ws.onmessage = function (event) {
+
+            var data = JSON.parse(event.data);
+
+            if (data.event === "paid") {
+                showPaymentSuccess();
+            }
+
+        };
+
+        function showPaymentSuccess() {
+            document.body.innerHTML = `
+    <img src="check.png">
+    <h2>Payment Success</h2> 
+    <p>Thank you for your payment,<br>your drink will be served shortly.</p>
+  `;
+        }
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
