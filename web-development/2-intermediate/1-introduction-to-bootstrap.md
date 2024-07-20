@@ -4,6 +4,14 @@
 
 ---
 
+- [Introduction to Bootstrap](#introduction-to-bootstrap)
+  - [Instalasi Bootstrap](#instalasi-bootstrap)
+  - [Penggunaan Bootstrap](#penggunaan-bootstrap)
+  - [Contoh Penggunaan Slider Carousel](#contoh-penggunaan-slider-carousel)
+  - [Contoh Penggunaan Cards](#contoh-penggunaan-cards)
+  - [Kustomisasi Bootstrap](#kustomisasi-bootstrap)
+    - [Mengubah Warna Background](#mengubah-warna-background)
+
 # Introduction to Bootstrap
 
 Bootstrap adalah salah satu framework CSS yang dapat digunakan untuk membuat tampilan dengan komponen yang sudah disediakan. Bootstrap berisi berbagai macam kode yang siap digunakan dimana kode yang disediakan oleh Bootstrap juga sudah bersifat responsif sehingga kita tidak perlu mengaturnya kembali.
@@ -385,7 +393,6 @@ Ganti salah satu warna pada kode card di atas, misalnya perhatikan kode keseluru
 ```
 
 Terdapat tiga warna yang ditambahkan setelah class `card`, yaitu, `bg-primary`, `bg-success`, dan `bg-danger`.
-
 
 Untuk mengubah warna teks, caranya sama. Secara umum, cara mengubah style dari elemen Bootstrap adalah:
 

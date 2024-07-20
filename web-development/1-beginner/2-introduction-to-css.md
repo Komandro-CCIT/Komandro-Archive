@@ -4,6 +4,25 @@
 
 ---
 
+- [Styling](#styling)
+  - [Menghubungkan HTML dengan CSS](#menghubungkan-html-dengan-css)
+    - [**Eksternal CSS**](#eksternal-css)
+    - [**Internal CSS**](#internal-css)
+    - [**Inline CSS**](#inline-css)
+  - [**Font Family**](#font-family)
+  - [**Font Size**](#font-size)
+  - [**Font Weight**](#font-weight)
+  - [Text-align](#text-align)
+  - [**Color**](#color)
+  - [**Background-color**](#background-color)
+  - [**Background-image**](#background-image)
+  - [**Border**](#border)
+  - [**Margin dan Padding**](#margin-dan-padding)
+  - [**Width dan Height**](#width-dan-height)
+  - [Class dan ID](#class-dan-id)
+  - [**Hover**](#hover)
+  - [**Menentukan Posisi Item**](#menentukan-posisi-item)
+
 # Styling
 
 Pada chapter ini kamu akan belajar mengenai CSS untuk mempercantik tampilan HTML. Terdapat banyak kode yang menghasilkan beragam efek yang dapat kamu gunakan. Mari kita mulai!

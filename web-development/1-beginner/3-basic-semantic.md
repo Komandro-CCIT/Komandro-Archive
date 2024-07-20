@@ -3,6 +3,17 @@
 | HasthoRahtomo    | Ifarra     |
 ---
 
+- [Tag Semantic](#tag-semantic)
+  - [Tag  `<header>`](#tag--header)
+  - [Tag `<nav>`](#tag-nav)
+  - [Tag `<article>`](#tag-article)
+  - [Tag ](#tag-)
+  - [Tag `<aside>`](#tag-aside)
+  - [Tag `<footer>`](#tag-footer)
+  - [Tag `<main>`](#tag-main)
+  - [Tag `<figure>` dan `<figcaption>`](#tag-figure-dan-figcaption)
+  - [Tag `<time>`](#tag-time)
+
 # Tag Semantic
 
 Tag semantic adalah tag HTML yang memberikan arti tertentu kepada elemen-elemen dalam dokumen web. Ini membantu menggambarkan struktur dan konten dokumen dengan cara yang lebih bermakna, bukan hanya sebagai
