@@ -1,6 +1,6 @@
 # Basic DOM (Document Object Model)
 
-### Ngoding Stylish dengan JavaScript DOM: Bawa Website-mu ke Next Level!
+### Ngoding Stylish dengan JavaScript DOM: Bawa Website-mu ke Next Level
 
 Halo Komanders! Udah pada tau belum nih, kalo JavaScript DOM itu
 kuncinya buat bikin website makin kece dan interaktif? Kalo belum,
@@ -45,7 +45,7 @@ Dari berkas diatas akan menghasilkan web sederhana seperti ini :
 
 ![image1](https://github.com/Komandro-CCIT/Komandro-Archive/assets/125471579/995711a3-a931-4609-8623-294a18b45914)
 
-### Seleksi Elemen: Pilih yang Keren!
+### Seleksi Elemen: Pilih yang Keren
 
 Pertama-tama, kita harus tahu cara seleksi elemen di HTML pake
 JavaScript. Ini kunci utama, coy! Pake metode document.querySelector,
@@ -54,18 +54,18 @@ document.getElementById, atau document.getElementsByClassName.
 Ayo kita mulai menuliskan codingan Javascriptnya. Kalian bisa langsung
 saja isi menggunakan tag script di file html kalian tadi!
 
--   ```document.querySelector``` memilih elemen pertama yang cocok dengan
+- ```document.querySelector``` memilih elemen pertama yang cocok dengan
     selector CSS-nya. Misalnya, kalo mau pilih elemen dengan ID
     'judul', kita bisa pake kodemu kayak gini:
 
     ```const judulKeren = document.querySelector(\'#judul\');```
 
--   ```document.getElementById``` lebih spesifik, langsung pilih elemen
+- ```document.getElementById``` lebih spesifik, langsung pilih elemen
     berdasarkan ID-nya. Contohnya:
-    
+
     ```const judulKeren = document.getElementById(\'judul\');```
 
--   ```document.getElementsByClassName``` memilih semua elemen dengan nama
+- ```document.getElementsByClassName``` memilih semua elemen dengan nama
     kelas tertentu. Misalnya, kalo mau pilih semua elemen dengan kelas
     'teks', kita bisa pake kodemu kayak gini:
 
@@ -80,18 +80,19 @@ pada tag script menjadi seperti ini
         const teksKeren = document.getElementsByClassName('teks');
 </script>
 ```
-### Manipulasi Elemen: Bikin Keren!
+
+### Manipulasi Elemen: Bikin Keren
 
 Setelah kita seleksi elemennya, kita bisa mengubah isi atau gayanya
 sesuai keinginan. Kita bisa memanipulasi elemen tersebut mulai dari
 properti, atribut, dan masih banyak lagi. Ayo sekarang kita coba
 mengotak-atik elemen judul dan teks kita!
 
--   Misalnya, kita mau bikin warna judul website kita jadi biru:
+- Misalnya, kita mau bikin warna judul website kita jadi biru:
 
-    ```judulKeren.style.color = 'blue';``` 
+    ```judulKeren.style.color = 'blue';```
 
--   Kita juga bisa membuat elemen baru menggunakan DOM. Contohnya kali
+- Kita juga bisa membuat elemen baru menggunakan DOM. Contohnya kali
     ini kita akan membuat elemen tombol atau button
 
     ```js
@@ -148,7 +149,6 @@ dan coba klik tombol kalian sekarang!
 
 ![image3](https://github.com/Komandro-CCIT/Komandro-Archive/assets/125471579/602ee43a-007d-4690-97e8-9d1a926640a2)
 
-
 Mantap, sekarang ketika kalian meng-klik tombol maka pesan alert akan
 muncul. Keren banget kan? Dengan teknik EventListener ini kalian bisa
 membuat web kalian lebih interaktif kepada usernya.
@@ -184,5 +184,6 @@ kalian lakuin dengan JavaScript DOM. Mulai sekarang, bikin website lu
 makin kece pake DOM, yuk!
 
 ##
+
 author : Ihza  
 markdown : Ifarra
