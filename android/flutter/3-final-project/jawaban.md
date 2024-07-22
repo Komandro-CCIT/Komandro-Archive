@@ -1,623 +1,606 @@
-# Jawaban
+## Aplikasi Todo List dengan Autentikasi user
 
-```dart
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
-import 'dart:convert';
-import 'package:crypto/crypto.dart';
+### Langkah 1 : Menyiapkan Basis Data dengan Supabase
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Supabase.initialize(
-    url: 'url supabase-mu',
-    anonKey:
-        'anonKey supabase-mu',
-    debug: true,
-  );
-  runApp(const MyApp());
-}
+1. Buat Akun Supabase :
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+   - Pergi ke [Supabase](https://supabase.com/dashboard/sign-in?returnTo=%2Fprojects) dan daftar untuk sebuah akun.
+   <p align="center">
+   <img src="assets/final-project-supabase-login.png"> 
+   </p>
 
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'TodoList with Auth',
-      theme: ThemeData(primarySwatch: Colors.blue),
-      home: const LoginPage(),
-    );
-  }
-}
+2. Buat Proyek Baru :
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+   - Setelah masuk, buat proyek baru dan catat `URL` dan `anonKey` yang diberikan oleh Supabase, karena Anda akan membutuhkannya nanti.
+   <p align="center">
+   <img src="assets/final-project-supabase-new-project.png"> 
+   </p>
 
-  @override
-  _LoginPageState createState() => _LoginPageState();
-}
+   <p align="center">
+   <img src="assets/final-project-supabase-key.png"> 
+   </p>
 
-class _LoginPageState extends State<LoginPage> {
-  final TextEditingController _usernameController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
-  final _formKey = GlobalKey<FormState>();
+3. Siapkan Tabel Basis Data :
 
-  String _hashPassword(String password) {
-    final bytes = utf8.encode(password);
-    final digest = sha256.convert(bytes);
-    return digest.toString();
-  }
+   - Navigasikan ke SQL Editor di Supabase dan jalankan perintah SQL berikut untuk membuat tabel `tbl_user` dan `tbl_todo`:
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              const Text(
-                "Login",
-                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(
-                height: 50,
-              ),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-                child: TextFormField(
+   ```sql
+   CREATE TABLE tbl_user (
+   id serial PRIMARY KEY,
+   username text NOT NULL UNIQUE,
+   email text NOT NULL UNIQUE,
+   password text NOT NULL
+   );
+
+   CREATE TABLE tbl_todo (
+   id serial PRIMARY KEY,
+   user_id integer REFERENCES tbl_user(id) ON DELETE CASCADE,
+   body text NOT NULL
+   );
+   ```
+
+   <p align="center">
+   <img src="assets/final-project-supabase-sql-editor.gif"> 
+   </p>
+
+### Langkah 2 : Menyiapkan Proyek Flutter dan Menambahkan Dependensi
+
+1. Buat Proyek Flutter Baru :
+
+   - Buka visual Studio Code, lalu ikuti video dibawah ini :
+   <p align="center">
+   <img src="assets/final-project-create-flutter-app.gif"> 
+   </p>
+
+2. Tambahkan Dependensi :
+
+   - Buka `pubspec.yaml` di proyek Flutter Anda dan tambahkan dependensi berikut :
+
+   ```yaml
+   dependencies:
+   crypto: ^3.0.3
+   flutter:
+     sdk: flutter
+   provider: ^6.1.2
+   supabase_flutter: ^2.5.6
+   ```
+
+   <p align="center">
+   <img src="assets/final-project-pubspec.gif"> 
+   </p>
+
+   - Lalu tekan `CTRL` + `S` agar dependencies ditambahkan.
+
+### Langkah 3: Inisialisasi Supabase
+
+1. Inisialisasi Supabase :
+
+   - Di file `main.dart`, inisialisasi Supabase sebelum menjalankan aplikasi :
+
+   ```dart
+   import 'package:flutter/material.dart';
+   import 'package:supabase_flutter/supabase_flutter.dart';
+
+   void main() async {
+   WidgetsFlutterBinding.ensureInitialized();
+   await Supabase.initialize(
+      url: 'URL_SUPABASE_ANDA',
+      anonKey: 'ANON_KEY_SUPABASE_ANDA',
+   );
+   runApp(const MyApp());
+   }
+
+   class MyApp extends StatelessWidget {
+   const MyApp({Key? key}) : super(key: key);
+
+   @override
+   Widget build(BuildContext context) {
+      return MaterialApp(
+         debugShowCheckedModeBanner: false,
+         title: 'TodoList dengan Auth',
+         theme: ThemeData(primarySwatch: Colors.blue),
+         home: const LoginPage(),
+      );
+   }
+   }
+   ```
+
+### Langkah 4 : Buat Halaman Login
+
+1. UI Halaman Login :
+
+   - Buat file baru login_page.dart dan tambahkan kode berikut :
+
+   ```dart
+   import 'package:flutter/material.dart';
+   import 'package:supabase_flutter/supabase_flutter.dart';
+   import 'package:crypto/crypto.dart';
+   import 'dart:convert';
+
+   import 'signup_page.dart';
+   import 'todo_page.dart';
+
+   class LoginPage extends StatefulWidget {
+   const LoginPage({Key? key}) : super(key: key);
+
+   @override
+   _LoginPageState createState() => _LoginPageState();
+   }
+
+   class _LoginPageState extends State<LoginPage> {
+   final TextEditingController _usernameController = TextEditingController();
+   final TextEditingController _passwordController = TextEditingController();
+   final _formKey = GlobalKey<FormState>();
+
+   String _hashPassword(String password) {
+      final bytes = utf8.encode(password);
+      final digest = sha256.convert(bytes);
+      return digest.toString();
+   }
+
+   @override
+   Widget build(BuildContext context) {
+      return Scaffold(
+         body: Padding(
+         padding: const EdgeInsets.all(16.0),
+         child: Form(
+            key: _formKey,
+            child: Column(
+               mainAxisAlignment: MainAxisAlignment.center,
+               children: <Widget>[
+               const Text(
+                  "Login",
+                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+               ),
+               const SizedBox(height: 50),
+               TextFormField(
                   controller: _usernameController,
                   decoration: const InputDecoration(
-                      labelText: 'Username',
-                      contentPadding:
-                          EdgeInsets.symmetric(horizontal: 6, vertical: 3),
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(3)))),
-                  validator: (value) =>
-                      value!.isEmpty ? 'Username is required' : null,
-                ),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-                child: TextFormField(
+                     labelText: 'Username',
+                     border: OutlineInputBorder(),
+                  ),
+                  validator: (value) => value!.isEmpty ? 'Username is required' : null,
+               ),
+               const SizedBox(height: 10),
+               TextFormField(
                   controller: _passwordController,
                   decoration: const InputDecoration(
-                      labelText: 'Password',
-                      contentPadding:
-                          EdgeInsets.symmetric(horizontal: 6, vertical: 3),
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(3)))),
+                     labelText: 'Password',
+                     border: OutlineInputBorder(),
+                  ),
                   obscureText: true,
-                  validator: (value) =>
-                      value!.isEmpty ? 'Password is required' : null,
-                ),
-              ),
-              const SizedBox(height: 20),
-              ElevatedButton(
-                style: const ButtonStyle(
-                  backgroundColor:
-                      WidgetStatePropertyAll(Color.fromARGB(255, 82, 177, 255)),
-                ),
-                onPressed: () async {
-                  if (_formKey.currentState!.validate()) {
-                    final username = _usernameController.text;
-                    final password = _hashPassword(_passwordController.text);
-                    try {
-                      final response = await Supabase.instance.client
-                          .from('tbl_user')
-                          .select()
-                          .eq('username', username)
-                          .eq('password', password);
+                  validator: (value) => value!.isEmpty ? 'Password is required' : null,
+               ),
+               const SizedBox(height: 20),
+               ElevatedButton(
+                  onPressed: () async {
+                     if (_formKey.currentState!.validate()) {
+                     final username = _usernameController.text;
+                     final password = _hashPassword(_passwordController.text);
+                     try {
+                        final response = await Supabase.instance.client
+                           .from('tbl_user')
+                           .select()
+                           .eq('username', username)
+                           .eq('password', password)
+                           .single();
 
-                      if (response.isNotEmpty) {
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => ChangeNotifierProvider(
-                              create: (_) =>
-                                  TodoProvider(response[0]['id'].toString()),
-                              child: const TodoListPage(),
-                            ),
-                          ),
-                        );
-                      } else {
+                        if (response.data != null) {
+                           Navigator.pushReplacement(
+                           context,
+                           MaterialPageRoute(
+                              builder: (context) => TodoPage(userId: response.data['id']),
+                           ),
+                           );
+                        } else {
+                           ScaffoldMessenger.of(context).showSnackBar(
+                           const SnackBar(content: Text('Invalid username or password')),
+                           );
+                        }
+                     } catch (error) {
                         ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                                content: Text('Invalid username or password')));
-                      }
-                    } catch (error) {
-                      print(error);
-                      ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text('Login failed: $error')));
-                    }
-                  }
-                },
-                child: const Text(
-                  'Login',
-                  style: TextStyle(fontSize: 20, color: Colors.black),
-                ),
-              ),
-              TextButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const SignupPage()),
-                  );
-                },
-                child: const Text('Don\'t have an account? Signup'),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
+                           SnackBar(content: Text('Login failed: $error')),
+                        );
+                     }
+                     }
+                  },
+                  child: const Text('Login'),
+               ),
+               TextButton(
+                  onPressed: () {
+                     Navigator.push(
+                     context,
+                     MaterialPageRoute(builder: (context) => const SignupPage()),
+                     );
+                  },
+                  child: const Text("Don't have an account? Sign Up"),
+               ),
+               ],
+            ),
+         ),
+         ),
+      );
+   }
+   }
+   ```
 
-class SignupPage extends StatefulWidget {
-  const SignupPage({super.key});
+### Langkah 5 : Buat Halaman Signup
 
-  @override
-  _SignupPageState createState() => _SignupPageState();
-}
+1. UI Halaman Signup :
 
-class _SignupPageState extends State<SignupPage> {
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _usernameController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
-  final _formKey = GlobalKey<FormState>();
+   - Buat file baru `signup_page.dart` dan tambahkan kode berikut :
 
-  String _hashPassword(String password) {
-    final bytes = utf8.encode(password);
-    final digest = sha256.convert(bytes);
-    return digest.toString();
-  }
+   ```dart
+   import 'package:flutter/material.dart';
+   import 'package:supabase_flutter/supabase_flutter.dart';
+   import 'package:crypto/crypto.dart';
+   import 'dart:convert';
 
-  Future<bool> _checkUsernameAvailability(String username) async {
-    try {
-      final response = await Supabase.instance.client
-          .from('tbl_user')
-          .select('id')
-          .eq('username', username);
-      return response.isEmpty;
-    } catch (error) {
-      print('Error checking username availability: $error');
-      return false;
-    }
-  }
+   import 'login_page.dart';
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              const Text(
-                "Sign Up",
-                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(
-                height: 50,
-              ),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-                child: TextFormField(
+   class SignupPage extends StatefulWidget {
+   const SignupPage({Key? key}) : super(key: key);
+
+   @override
+   _SignupPageState createState() => _SignupPageState();
+   }
+
+   class _SignupPageState extends State<SignupPage> {
+   final TextEditingController _emailController = TextEditingController();
+   final TextEditingController _usernameController = TextEditingController();
+   final TextEditingController _passwordController = TextEditingController();
+   final _formKey = GlobalKey<FormState>();
+
+   String _hashPassword(String password) {
+      final bytes = utf8.encode(password);
+      final digest = sha256.convert(bytes);
+      return digest.toString();
+   }
+
+   Future<bool> _checkUsernameAvailability(String username) async {
+      try {
+         final response = await Supabase.instance.client
+            .from('tbl_user')
+            .select('id')
+            .eq('username', username);
+         return response.isEmpty;
+      } catch (error) {
+         print('Error checking username availability: $error');
+         return false;
+      }
+   }
+
+   @override
+   Widget build(BuildContext context) {
+      return Scaffold(
+         body: Padding(
+         padding: const EdgeInsets.all(8.0),
+         child: Form(
+            key: _formKey,
+            child: Column(
+               mainAxisAlignment: MainAxisAlignment.center,
+               children: <Widget>[
+               const Text(
+                  "Sign Up",
+                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+               ),
+               const SizedBox(height: 50),
+               TextFormField(
                   controller: _emailController,
                   decoration: const InputDecoration(
-                      labelText: 'Email',
-                      contentPadding:
-                          EdgeInsets.symmetric(horizontal: 6, vertical: 3),
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(3)))),
+                     labelText: 'Email',
+                     border: OutlineInputBorder(),
+                  ),
                   validator: (value) {
-                    if (value!.isEmpty) {
-                      return 'Email is required';
-                    } else if (!value.contains('@gmail.com')) {
-                      return 'Email must be a valid Gmail address';
-                    }
-                    return null;
+                     if (value!.isEmpty) {
+                     return 'Email is required';
+                     } else if (!value.contains('@')) {
+                     return 'Email must be a valid email address';
+                     }
+                     return null;
                   },
-                ),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-                child: TextFormField(
+               ),
+               const SizedBox(height: 10),
+               TextFormField(
                   controller: _usernameController,
                   decoration: const InputDecoration(
-                      labelText: 'Username',
-                      contentPadding:
-                          EdgeInsets.symmetric(horizontal: 6, vertical: 3),
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(3)))),
+                     labelText: 'Username',
+                     border: OutlineInputBorder(),
+                  ),
                   validator: (value) {
-                    if (value!.isEmpty) {
-                      return 'Username is required';
-                    } else if (value.length < 3 || value.length > 20) {
-                      return 'Username must be between 3 and 20 characters';
-                    }
-                    return null;
+                     if (value!.isEmpty) {
+                     return 'Username is required';
+                     } else if (value.length < 3 || value.length > 20) {
+                     return 'Username must be between 3 and 20 characters';
+                     }
+                     return null;
                   },
-                ),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-                child: TextFormField(
+               ),
+               const SizedBox(height: 10),
+               TextFormField(
                   controller: _passwordController,
                   decoration: const InputDecoration(
-                      labelText: 'Password',
-                      contentPadding:
-                          EdgeInsets.symmetric(horizontal: 6, vertical: 3),
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(3)))),
+                     labelText: 'Password',
+                     border: OutlineInputBorder(),
+                  ),
                   obscureText: true,
                   validator: (value) {
-                    if (value!.isEmpty) {
-                      return 'Password is required';
-                    } else if (value.length < 8) {
-                      return 'Password must be at least 8 characters';
-                    }
-                    return null;
+                     if (value!.isEmpty) {
+                     return 'Password is required';
+                     } else if (value.length < 6) {
+                     return 'Password must be at least 6 characters';
+                     }
+                     return null;
                   },
-                ),
-              ),
-              const SizedBox(height: 20),
-              ElevatedButton(
-                style: const ButtonStyle(
-                    backgroundColor: WidgetStatePropertyAll(
-                        Color.fromARGB(255, 82, 177, 255))),
-                onPressed: () async {
-                  if (_formKey.currentState!.validate()) {
-                    final email = _emailController.text;
-                    final username = _usernameController.text;
-                    final password = _hashPassword(_passwordController.text);
-                    try {
-                      final isUsernameAvailable =
-                          await _checkUsernameAvailability(username);
-                      if (!isUsernameAvailable) {
+               ),
+               const SizedBox(height: 20),
+               ElevatedButton(
+                  onPressed: () async {
+                     if (_formKey.currentState!.validate()) {
+                     final email = _emailController.text;
+                     final username = _usernameController.text;
+                     final password = _hashPassword(_passwordController.text);
+
+                     final isUsernameAvailable = await _checkUsernameAvailability(username);
+                     if (!isUsernameAvailable) {
                         ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                                content: Text('Username already exists')));
+                           const SnackBar(content: Text('Username is already taken')),
+                        );
                         return;
-                      }
+                     }
 
-                      await Supabase.instance.client.from('tbl_user').insert({
-                        'email': email,
-                        'username': username,
-                        'password': password,
-                      });
-
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const LoginPage(),
-                        ),
-                      );
-                    } catch (error) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text('Signup failed: $error')));
-                    }
-                  }
-                },
-                child: const Text(
-                  'Signup',
-                  style: TextStyle(fontSize: 20, color: Colors.black),
-                ),
-              ),
-              TextButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const LoginPage()),
-                  );
-                },
-                child: const Text('Already have an account? Login'),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class TodoProvider with ChangeNotifier {
-  final String userId;
-
-  TodoProvider(this.userId);
-
-  List<Map<String, dynamic>> _todos = [];
-  List<Map<String, dynamic>> get todos => _todos;
-
-  Future<void> fetchTodos() async {
-    try {
-      final response = await Supabase.instance.client
-          .from('tbl_todo')
-          .select()
-          .eq('user_id', userId);
-
-      _todos = List<Map<String, dynamic>>.from(response);
-      notifyListeners();
-    } catch (error) {
-      throw Exception('Error fetching todos: $error');
-    }
-  }
-
-  Future<void> addTodo(String body) async {
-    try {
-      await Supabase.instance.client.from('tbl_todo').insert({
-        'user_id': userId,
-        'body': body,
-      });
-      await fetchTodos();
-    } catch (error) {
-      throw Exception('Error adding todo: $error');
-    }
-  }
-
-  Future<void> updateTodo(int todoId, String newBody) async {
-    try {
-      await Supabase.instance.client
-          .from('tbl_todo')
-          .update({'body': newBody}).eq('id', todoId);
-      await fetchTodos();
-    } catch (error) {
-      throw Exception('Error updating todo: $error');
-    }
-  }
-
-  Future<void> deleteTodo(int todoId) async {
-    try {
-      await Supabase.instance.client.from('tbl_todo').delete().eq('id', todoId);
-      await fetchTodos();
-    } catch (error) {
-      throw Exception('Error deleting todo: $error');
-    }
-  }
-}
-
-class TodoListPage extends StatelessWidget {
-  const TodoListPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    final provider = Provider.of<TodoProvider>(context);
-
-    return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        title: const Text('Todo List'),
-        centerTitle: true,
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.logout),
-            onPressed: () async {
-              try {
-                await Supabase.instance.client.auth.signOut();
-                Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => const LoginPage()),
-                );
-              } catch (error) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text('Logout failed: $error')));
-              }
-            },
-          ),
-        ],
-      ),
-      body: RefreshIndicator(
-        onRefresh: () => provider.fetchTodos(),
-        child: FutureBuilder<void>(
-            key: UniqueKey(),
-            future: provider.fetchTodos(),
-            builder: (context, snapshot) {
-              if (provider.todos.isEmpty) {
-                return const Center(child: Text("No todo added yet"));
-              } else {
-                return ListView.builder(
-                  itemCount: provider.todos.length,
-                  itemBuilder: (context, index) {
-                    final todo = provider.todos[index];
-                    return Padding(
-                      padding: const EdgeInsets.all(7),
-                      child: ListTile(
-                        tileColor: const Color.fromARGB(255, 232, 224, 224),
-                        title: Text(todo['body']),
-                        trailing: GestureDetector(
-                          onTap: () async {
-                            await provider.deleteTodo(todo['id']);
-                            await provider.fetchTodos();
-                          },
-                          child: const Icon(
-                            Icons.delete,
-                            color: Colors.red,
-                            size: 30,
-                          ),
-                        ),
-                        onTap: () async {
-                          final newBody = await showDialog<String>(
-                            context: context,
-                            builder: (context) {
-                              final controller =
-                                  TextEditingController(text: todo['body']);
-                              return AlertDialog(
-                                title: const Text('Edit Todo'),
-                                content: TextField(
-                                  controller: controller,
-                                  decoration:
-                                      const InputDecoration(labelText: 'Todo'),
-                                ),
-                                actions: [
-                                  TextButton(
-                                    onPressed: () => Navigator.pop(context),
-                                    child: const Text('Cancel'),
-                                  ),
-                                  TextButton(
-                                    onPressed: () =>
-                                        Navigator.pop(context, controller.text),
-                                    child: const Text('Save'),
-                                  ),
-                                ],
-                              );
-                            },
-                          );
-
-                          if (newBody != null) {
-                            await provider.updateTodo(todo['id'], newBody);
-                            await provider.fetchTodos();
-                          }
-                        },
-                      ),
-                    );
+                     try {
+                        await Supabase.instance.client.from('tbl_user').insert({
+                           'email': email,
+                           'username': username,
+                           'password': password,
+                        });
+                        Navigator.pushReplacement(
+                           context,
+                           MaterialPageRoute(builder: (context) => const LoginPage()),
+                        );
+                     } catch (error) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                           SnackBar(content: Text('Signup failed: $error')),
+                        );
+                     }
+                     }
                   },
-                );
-              }
-            }),
-      ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: const Color.fromARGB(255, 98, 184, 255),
-        onPressed: () async {
-          final body = await showDialog<String>(
-            context: context,
-            builder: (context) {
-              final controller = TextEditingController();
-              return AlertDialog(
-                title: const Text('New Todo'),
-                content: TextField(
-                  controller: controller,
-                  decoration: const InputDecoration(labelText: 'Todo'),
-                ),
-                actions: [
-                  TextButton(
-                    onPressed: () => Navigator.pop(context),
-                    child: const Text('Cancel'),
+                  child: const Text('Sign Up'),
+               ),
+               TextButton(
+                  onPressed: () {
+                     Navigator.pushReplacement(
+                     context,
+                     MaterialPageRoute(builder: (context) => const LoginPage()),
+                     );
+                  },
+                  child: const Text("Already have an account? Login"),
+               ),
+               ],
+            ),
+         ),
+         ),
+      );
+   }
+   }
+   ```
+
+### Langkah 6 : Buat Halaman To-Do
+
+1. UI Halaman To-Do :
+
+   - Buat file baru `todo_page.dart` dan tambahkan kode berikut :
+
+   ```dart
+   import 'package:flutter/material.dart';
+   import 'package:supabase_flutter/supabase_flutter.dart';
+
+   class TodoPage extends StatefulWidget {
+   final int userId;
+   const TodoPage({Key? key, required this.userId}) : super(key: key);
+
+   @override
+   _TodoPageState createState() => _TodoPageState();
+   }
+
+   class _TodoPageState extends State<TodoPage> {
+   final TextEditingController _todoController = TextEditingController();
+   List<dynamic> _todos = [];
+
+   @override
+   void initState() {
+      super.initState();
+      _fetchTodos();
+   }
+
+   Future<void> _fetchTodos() async {
+      try {
+         final response = await Supabase.instance.client
+            .from('tbl_todo')
+            .select()
+            .eq('user_id', widget.userId);
+         setState(() {
+         _todos = response.data;
+         });
+      } catch (error) {
+         print('Error fetching todos: $error');
+      }
+   }
+
+   Future<void> _addTodo() async {
+      if (_todoController.text.isEmpty) return;
+      try {
+         await Supabase.instance.client.from('tbl_todo').insert({
+         'user_id': widget.userId,
+         'body': _todoController.text,
+         });
+         _todoController.clear();
+         _fetchTodos();
+      } catch (error) {
+         print('Error adding todo: $error');
+      }
+   }
+
+   Future<void> _deleteTodo(int id) async {
+      try {
+         await Supabase.instance.client.from('tbl_todo').delete().eq('id', id);
+         _fetchTodos();
+      } catch (error) {
+         print('Error deleting todo: $error');
+      }
+   }
+
+   Future<void> _editTodo(int id, String newBody) async {
+      try {
+         await Supabase.instance.client
+            .from('tbl_todo')
+            .update({'body': newBody})
+            .eq('id', id);
+         _fetchTodos();
+      } catch (error) {
+         print('Error editing todo: $error');
+      }
+   }
+
+   @override
+   Widget build(BuildContext context) {
+      return Scaffold(
+         appBar: AppBar(title: const Text('To-Do List')),
+         body: Column(
+         children: <Widget>[
+            Padding(
+               padding: const EdgeInsets.all(8.0),
+               child: Row(
+               children: <Widget>[
+                  Expanded(
+                     child: TextField(
+                     controller: _todoController,
+                     decoration: const InputDecoration(
+                        labelText: 'New To-Do',
+                        border: OutlineInputBorder(),
+                     ),
+                     ),
                   ),
-                  TextButton(
-                    onPressed: () => Navigator.pop(context, controller.text),
-                    child: const Text('Save'),
+                  const SizedBox(width: 8),
+                  ElevatedButton(
+                     onPressed: _addTodo,
+                     child: const Text('Add'),
                   ),
-                ],
-              );
-            },
-          );
+               ],
+               ),
+            ),
+            Expanded(
+               child: ListView.builder(
+               itemCount: _todos.length,
+               itemBuilder: (context, index) {
+                  final todo = _todos[index];
+                  return ListTile(
+                     title: Text(todo['body']),
+                     trailing: Row(
+                     mainAxisSize: MainAxisSize.min,
+                     children: <Widget>[
+                        IconButton(
+                           icon: const Icon(Icons.edit),
+                           onPressed: () {
+                           _showEditDialog(todo['id'], todo['body']);
+                           },
+                        ),
+                        IconButton(
+                           icon: const Icon(Icons.delete),
+                           onPressed: () => _deleteTodo(todo['id']),
+                        ),
+                     ],
+                     ),
+                  );
+               },
+               ),
+            ),
+         ],
+         ),
+      );
+   }
 
-          if (body != null) {
-            await provider.addTodo(body);
-            await provider.fetchTodos();
-          }
-        },
-        child: const Icon(Icons.add),
-      ),
-    );
-  }
-}
-```
+   void _showEditDialog(int id, String currentBody) {
+      final TextEditingController _editController = TextEditingController(text: currentBody);
+      showDialog(
+         context: context,
+         builder: (context) {
+         return AlertDialog(
+            title: const Text('Edit To-Do'),
+            content: TextField(
+               controller: _editController,
+               decoration: const InputDecoration(
+               border: OutlineInputBorder(),
+               ),
+            ),
+            actions: <Widget>[
+               TextButton(
+               onPressed: () => Navigator.pop(context),
+               child: const Text('Cancel'),
+               ),
+               TextButton(
+               onPressed: () {
+                  _editTodo(id, _editController.text);
+                  Navigator.pop(context);
+               },
+               child: const Text('Save'),
+               ),
+            ],
+         );
+         },
+      );
+   }
+   }
+   ```
 
-## Penjelasan Kode
+### Langkah 7 : Perbarui File Utama untuk Menyertakan Rute
 
-Kode ini adalah aplikasi Flutter dengan integrasi Supabase untuk autentikasi dan pengelolaan daftar tugas (to-do list). Aplikasi ini memiliki dua halaman utama: halaman login dan halaman pendaftaran. Berikut adalah penjelasan bagian-bagian utama kode:
+1. Perbarui `main.dart` :
 
-### Struktur Utama
+   - Modifikasi `main.dart` untuk menyertakan import yang benar dan memperbarui rute halaman utama :
 
-- `main()`: Fungsi utama yang menginisialisasi Supabase dan menjalankan aplikasi.
+   ```dart
+   import 'package:flutter/material.dart';
+   import 'package:supabase_flutter/supabase_flutter.dart';
+   import 'login_page.dart';
 
-- `MyApp`: Widget utama yang mengatur tema dan halaman awal aplikasi.
+   void main() async {
+   WidgetsFlutterBinding.ensureInitialized();
+   await Supabase.initialize(
+      url: 'URL supabase-mu',
+      anonKey: 'AnonKey supabase-mu',
+   );
+   runApp(const MyApp());
+   }
 
-### Skema Database
+   class MyApp extends StatelessWidget {
+   const MyApp({Key? key}) : super(key: key);
 
-- Tabel `tbl_user`
-  Tabel ini menyimpan informasi user yang melakukan registrasi pada aplikasi. Berikut adalah skema untuk tabel `tbl_user`:
+   @override
+   Widget build(BuildContext context) {
+      return MaterialApp(
+         debugShowCheckedModeBanner: false,
+         title: 'TodoList dengan Auth',
+         theme: ThemeData(primarySwatch: Colors.blue),
+         home: const LoginPage(),
+      );
+   }
+   }
+   ```
 
-  ```sql
-  CREATE TABLE tbl_user (
-  id serial PRIMARY KEY,
-  username text NOT NULL UNIQUE,
-  email text NOT NULL UNIQUE,
-  password text NOT NULL
-  );
-  ```
+## Result
 
-  - `id`: Kolom ini merupakan primary key dengan tipe data `serial`, yang berarti nilainya akan secara otomatis bertambah untuk setiap entri baru.
+### Signup Page :
 
-  - `username`: Kolom ini menyimpan username user. Tipe datanya adalah `text` dan harus unik serta tidak boleh kosong (`NOT NULL`).
+<img src="assets/final-project-signup-page.gif" width="300">
 
-  - `email`: Kolom ini menyimpan alamat email user. Tipe datanya adalah `text` dan harus unik serta tidak boleh kosong (`NOT NULL`).
+### Login Page :
 
-  - `password`: Kolom ini menyimpan password user yang sudah di-hash. Tipe datanya adalah `text` dan tidak boleh kosong (`NOT NULL`).
+<img src="assets/final-project-login-page.gif" width="300">
 
-- Tabel `tbl_todo`
-  Tabel ini menyimpan todo list yang dibuat oleh user. Berikut adalah skema untuk tabel tbl_todo:
+### Todo Page :
 
-  ```sql
-  CREATE TABLE public.tbl_todo (
-  id serial PRIMARY KEY,
-  user_id integer REFERENCES public.tbl_user(id) ON DELETE CASCADE,
-  body text NOT NULL
-  );
-  ```
-
-  - `id`: Kolom ini merupakan primary key dengan tipe data `serial`, yang berarti nilainya akan secara otomatis bertambah untuk setiap entri baru.
-
-  - `user_id`: Kolom ini merupakan foreign key yang merujuk ke kolom `id` di tabel `tbl_user`. Tipe datanya adalah `integer`. Jika pengguna dihapus, semua to-do yang terkait dengan pengguna tersebut juga akan dihapus (`ON DELETE CASCADE`).
-
-  - `body`: Kolom ini menyimpan isi atau deskripsi dari to-do. Tipe datanya adalah `text` dan tidak boleh kosong (`NOT NULL`).
-
-### Halaman Login
-
-- `LoginPage`: StatefulWidget yang mengatur tampilan dan logika halaman login.
-
-- `_LoginPageState`: State untuk `LoginPage` yang mengelola input user dan proses login.
-
-- `_hashPassword`: Fungsi untuk mengenkripsi password menggunakan SHA-256.
-
-- `onPressed`: Metode yang dipanggil saat tombol login ditekan, memeriksa kredensial user terhadap database Supabase dan navigasi ke halaman daftar tugas jika berhasil.
-
-### Halaman Pendaftaran
-
-- `SignupPage`: StatefulWidget yang mengatur tampilan dan logika halaman pendaftaran.
-
-- `_SignupPageState`: State untuk SignupPage yang mengelola input user dan proses pendaftaran.
-
-- `_hashPassword`: Fungsi untuk mengenkripsi password menggunakan SHA-256.
-  \_checkUsernameAvailability: Fungsi untuk memeriksa ketersediaan username di database Supabase.
-
-- `onPressed`: Metode yang dipanggil saat tombol signup ditekan, memeriksa validitas input user, memeriksa ketersediaan username, dan menambahkan user baru ke database Supabase jika valid.
-
-### Todo List Provider
-
-- `TodoProvider`: Penyedia yang mengelola daftar tugas untuk user tertentu.
-
-- `fetchTodos`: Mengambil daftar tugas dari database.
-
-- `addTodo`: Menambahkan tugas baru ke database.
-
-- `updateTodo`: Memperbarui tugas di database.
-
-- `deleteTodo`: Menghapus tugas dari database.
-
-### Halaman Todo List
-
-`TodoListPage`: StatelessWidget yang menampilkan daftar tugas user.
+<img src="assets/final-project-todo-page.gif" width="300">
 
 Tidak masalah jika aplikasi yang Anda buat tidak mirip persis seperti ini. Yang terpenting adalah aplikasi yang Anda buat memenuhi kriteria yang telah ditentukan, seperti memiliki fungsi login, pendaftaran, dan pengelolaan daftar tugas dengan integrasi ke Supabase.

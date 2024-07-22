@@ -3,16 +3,19 @@
 <br />
 
 ## Navigasi Dasar
+
 Navigasi dalam Flutter mengacu pada proses berpindah antara layar atau halaman dalam aplikasi. Salah satu cara dasar untuk melakukan navigasi adalah dengan menggunakan `Navigator` class. Berikut adalah langkah-langkah dasar untuk melakukan navigasi menggunakan `Navigator`:
 
 - ### Tambahkan Widget Navigasi:
-    Untuk melakukan navigasi, pastikan Anda telah menambahkan widget `Navigator` di dalam widget utama aplikasi Anda. Widget `Navigator` bertanggung jawab untuk menangani perpindahan antara halaman-halaman dalam aplikasi.
+
+  Untuk melakukan navigasi, pastikan Anda telah menambahkan widget `Navigator` di dalam widget utama aplikasi Anda. Widget `Navigator` bertanggung jawab untuk menangani perpindahan antara halaman-halaman dalam aplikasi.
 
 - ### Navigasi ke Halaman Baru:
-    Untuk navigasi ke halaman baru, Anda dapat menggunakan method `Navigator.push()`. Method ini memungkinkan Anda untuk menentukan rute tujuan yang ingin ditampilkan.
+
+  Untuk navigasi ke halaman baru, Anda dapat menggunakan method `Navigator.push()`. Method ini memungkinkan Anda untuk menentukan rute tujuan yang ingin ditampilkan.
 
 - ### Kembali ke Halaman Sebelumnya:
-    Untuk kembali ke halaman sebelumnya, Anda dapat menggunakan method `Navigator.pop()`. Ini akan menghapus halaman saat ini dari tumpukan navigasi dan kembali ke halaman sebelumnya.
+  Untuk kembali ke halaman sebelumnya, Anda dapat menggunakan method `Navigator.pop()`. Ini akan menghapus halaman saat ini dari tumpukan navigasi dan kembali ke halaman sebelumnya.
 
 ```dart
 import 'package:flutter/material.dart';
@@ -81,21 +84,25 @@ class SecondScreen extends StatelessWidget {
 Dalam contoh di atas, `Navigator.push()` digunakan untuk perpindahan dari `FirstScreen` ke `SecondScreen`, sedangkan `Navigator.pop()` digunakan untuk kembali dari `SecondScreen` ke `FirstScreen`.
 
 ## Routing
+
 Routing dalam Flutter mengacu pada proses membuat dan mengelola rute (routes) aplikasi. Rute merupakan representasi dari halaman atau layar dalam aplikasi. Flutter menyediakan berbagai cara untuk mengelola rute, termasuk menggunakan `MaterialApp`, `Navigator`, dan `Route` class.
 
 Beberapa konsep penting dalam routing Flutter meliputi:
 
-- ### Named Routes: 
-    Penggunaan nama sebagai identifikasi untuk setiap rute dalam aplikasi.
+- ### Named Routes:
 
-- ### Route Table: 
-    Daftar yang berisi semua rute yang tersedia dalam aplikasi.
+  Penggunaan nama sebagai identifikasi untuk setiap rute dalam aplikasi.
 
-- ### Route Generator: 
-    Fungsi untuk menghasilkan rute berdasarkan nama yang diberikan.
+- ### Route Table:
 
-- ### Initial Route: 
-    Rute yang ditampilkan saat aplikasi pertama kali dijalankan.
+  Daftar yang berisi semua rute yang tersedia dalam aplikasi.
+
+- ### Route Generator:
+
+  Fungsi untuk menghasilkan rute berdasarkan nama yang diberikan.
+
+- ### Initial Route:
+  Rute yang ditampilkan saat aplikasi pertama kali dijalankan.
 
 ```dart
 import 'package:flutter/material.dart';
@@ -166,16 +173,17 @@ Dalam contoh ini, kita menggunakan properti `initialRoute` untuk menentukan rute
 
 Mungkin kalian bertanya-tanya kenapa hasil output navigasi biasa dan routing terlihat sama? Berikut adalah perbedaannya:
 
-- ### Navigasi Biasa: 
-    Pada contoh navigasi biasa, kita menggunakan `Navigator.push()` dan `Navigator.pop()` untuk berpindah antara halaman-halaman dalam aplikasi. Setiap perpindahan halaman akan diinisiasi dan dikelola secara manual.
+- ### Navigasi Biasa:
 
-- ### Routing: 
-    Dalam contoh kode routing, kita menggunakan pendekatan yang lebih terstruktur dengan mendefinisikan rute-rute dalam bentuk daftar yang terpisah dari widget-widger halaman. Ini memungkinkan kita untuk dengan mudah mengatur dan mengelola rute-rute aplikasi, serta memisahkan logika navigasi dari tampilan halaman.
+  Pada contoh navigasi biasa, kita menggunakan `Navigator.push()` dan `Navigator.pop()` untuk berpindah antara halaman-halaman dalam aplikasi. Setiap perpindahan halaman akan diinisiasi dan dikelola secara manual.
 
-Dengan menggunakan pendekatan routing, Anda dapat memiliki kontrol yang lebih baik terhadap navigasi dalam aplikasi yang lebih besar dan kompleks. Ini juga mempermudah untuk menambahkan fitur seperti pengolahan parameter rute, menangani rute tidak ditemukan, dan banyak lagi. Semoga penambahan backticks dan double asterisks membantu memperjelas materi ini!
+- ### Routing:
+  Dalam contoh kode routing, kita menggunakan pendekatan yang lebih terstruktur dengan mendefinisikan rute-rute dalam bentuk daftar yang terpisah dari widget-widger halaman. Ini memungkinkan kita untuk dengan mudah mengatur dan mengelola rute-rute aplikasi, serta memisahkan logika navigasi dari tampilan halaman.
+
+Dengan menggunakan pendekatan routing, Anda dapat memiliki kontrol yang lebih baik terhadap navigasi dalam aplikasi yang lebih besar dan kompleks. Ini juga mempermudah untuk menambahkan fitur seperti pengolahan parameter rute, menangani rute tidak ditemukan, dan banyak lagi.
 
 Jika kalian ingin tahu lebih lanjut tentang materi diatas kalian bisa check langsung dokumentasi [Navigasi dan Routing](https://docs.flutter.dev/ui/navigation).
 
-
 # Author
+
 author : [SulaimanLmn](https://github.com/SulaimanLmn)
