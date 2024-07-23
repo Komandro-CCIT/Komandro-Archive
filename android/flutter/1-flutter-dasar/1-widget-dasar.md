@@ -1,8 +1,51 @@
+| Author                                        | Editor |
+| --------------------------------------------- | ------ |
+| [SulaimanLmn](https://github.com/SulaimanLmn) | Ifarra |
+
+- [Widget Dasar](#widget-dasar)
+  - [Apa itu Widget?](#apa-itu-widget)
+  - [Widget penting yang harus anda ketahui](#widget-penting-yang-harus-anda-ketahui)
+    - [Scaffold](#scaffold)
+    - [Properti pada widget Scaffold yang Digunakan](#properti-pada-widget-scaffold-yang-digunakan)
+    - [Container](#container)
+    - [Properti pada widget Container yang Digunakan](#properti-pada-widget-container-yang-digunakan)
+    - [Text](#text)
+    - [Properti pada widget Text yang Digunakan](#properti-pada-widget-text-yang-digunakan)
+    - [Icon](#icon)
+    - [Properti pada widget Icon yang Digunakan](#properti-pada-widget-icon-yang-digunakan)
+    - [Row](#row)
+    - [Properti pada widget Row yang Digunakan](#properti-pada-widget-row-yang-digunakan)
+    - [Column](#column)
+    - [Properti pada widget Column yang Digunakan](#properti-pada-widget-column-yang-digunakan)
+    - [Properti pada widget Image yang Digunakan](#properti-pada-widget-image-yang-digunakan)
+    - [Button](#button)
+    - [ElevatedButton](#elevatedbutton)
+    - [Properti pada widget ElevatedButton yang Digunakan](#properti-pada-widget-elevatedbutton-yang-digunakan)
+    - [TextButton](#textbutton)
+    - [Properti pada widget TextButton yang Digunakan](#properti-pada-widget-textbutton-yang-digunakan)
+    - [IconButton](#iconbutton)
+    - [Properti pada widget IconButton yang Digunakan](#properti-pada-widget-iconbutton-yang-digunakan)
+  - [Jenis-Jenis Widget](#jenis-jenis-widget)
+    - [Stateless Widget](#stateless-widget)
+    - [Contoh Stateless Widget](#contoh-stateless-widget)
+    - [Stateful Widget](#stateful-widget)
+    - [Contoh Stateful Widget](#contoh-stateful-widget)
+    - [Inherited Widget](#inherited-widget)
+  - [MaterialApp](#materialapp)
+    - [Apa Itu MaterialApp?](#apa-itu-materialapp)
+    - [Fitur Utama MaterialApp](#fitur-utama-materialapp)
+    - [Contoh Penggunaan MaterialApp](#contoh-penggunaan-materialapp)
+  - [Apa Itu CupertinoApp?](#apa-itu-cupertinoapp)
+    - [Kapan Menggunakan MaterialApp?](#kapan-menggunakan-materialapp)
+    - [Kapan Menggunakan CupertinoApp?](#kapan-menggunakan-cupertinoapp)
+  - [Widget Tree](#widget-tree)
+    - [Contoh Widget Tree](#contoh-widget-tree)
+
 # Widget Dasar
 
 <br />
 
-### Apa itu Widget?
+## Apa itu Widget?
 
 Di Flutter, semua yang ada di aplikasi adalah **widget**. Tapi, apa sebenarnya yang dimaksud dengan **widget**?
 
@@ -15,432 +58,464 @@ Di Flutter, semua yang ada di aplikasi adalah **widget**. Tapi, apa sebenarnya y
 - **Formulir**
 - Bahkan seluruh halaman aplikasi
 
-# Widget penting yang harus anda ketahui
+## Widget penting yang harus anda ketahui
 
 Daftar **widget** di bawah ini menawarkan berbagai fungsi untuk membuat antarmuka pengguna yang menarik.
 
-- ### Scaffold
+### Scaffold
 
-  **Scaffold** adalah widget tata letak utama yang menyediakan struktur dasar untuk aplikasi. Ini memberikan API untuk menambahkan **app bar**, **drawer**, **snackbar**, dan banyak lagi.
+**Scaffold** adalah widget tata letak utama yang menyediakan struktur dasar untuk aplikasi. Ini memberikan API untuk menambahkan **app bar**, **drawer**, **snackbar**, dan banyak lagi.
 
+```dart
+import 'package:flutter/material.dart';
 
-  ```dart
-  import 'package:flutter/material.dart';
+void main() {
+  runApp(MyApp());
+}
 
-  void main() {
-    runApp(MyApp());
-  }
-
-  class MyApp extends StatelessWidget {
-    @override
-    Widget build(BuildContext context) {
-      return MaterialApp(
-        home: Scaffold(
-          appBar: AppBar(
-            title: Text('My App'),
-          ),
-          body: Text('Hello, Scaffold!'),
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('My App'),
         ),
-      );
-    }
+        body: Text('Hello, Scaffold!'),
+      ),
+    );
   }
-  ```
-  <p align="center">
-  <img src="assets/scaffold-widget.png" width="300">
-  </p>
+}
+```
 
-  ### Properti pada widget Scaffold yang Digunakan
-  - **appBar**: Menambahkan toolbar di bagian atas layar.
-  - **body**: Menentukan konten utama aplikasi.
+<p align="center">
+<img src="assets/scaffold-widget.png" width="300">
+</p>
 
-- ### Container
-  `Container` adalah **widget** serbaguna yang dapat menampung **widget** lain dan dapat diatur tata letak serta tampilannya sesuai keinginan.
+### Properti pada widget Scaffold yang Digunakan
 
-  ```dart
-  import 'package:flutter/material.dart';
+- **appBar**: Menambahkan toolbar di bagian atas layar.
+- **body**: Menentukan konten utama aplikasi.
 
-  void main() {
-    runApp(MyApp());
-  }
+### Container
 
-  class MyApp extends StatelessWidget {
-    @override
-    Widget build(BuildContext context) {
-      return MaterialApp(
-        home: Scaffold(
-          body: Center(
-            child: Container(
-              padding: EdgeInsets.all(16.0),
-              color: Colors.blue,
-              child: Text('Hello, Container!'),
-            ),
-          ),
-        ),
-      );
-    }
-  }
-  ```
-  <p align="center">
-  <img src="assets/container-widget.png" width="300">
-  </p>
+`Container` adalah **widget** serbaguna yang dapat menampung **widget** lain dan dapat diatur tata letak serta tampilannya sesuai keinginan.
 
-  ### Properti pada widget Container yang Digunakan
-  - **padding**: Menentukan ruang di sekitar konten dalam **Container**. Padding sebesar 16 piksel membuat teks tidak menempel pada tepi **Container**.
+```dart
+import 'package:flutter/material.dart';
 
-  - **color**: Menentukan warna latar belakang **Container**. Warna biru digunakan di sini.
+void main() {
+  runApp(MyApp());
+}
 
-- ### Text
-  **Text** adalah **widget** yang digunakan untuk menampilkan teks. Anda bisa mengatur font, warna, ukuran, dan gaya lainnya.
-
-  ```dart
-  import 'package:flutter/material.dart';
-
-  void main() {
-    runApp(MyApp());
-  }
-
-  class MyApp extends StatelessWidget {
-    @override
-    Widget build(BuildContext context) {
-      return MaterialApp(
-        home: Scaffold(
-          body: Center(
-            child: Text(
-              'Hello, Flutter!',
-              style: TextStyle(fontSize: 24, color: Colors.black),
-            ),
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        body: Center(
+          child: Container(
+            padding: EdgeInsets.all(16.0),
+            color: Colors.blue,
+            child: Text('Hello, Container!'),
           ),
         ),
-      );
-    }
+      ),
+    );
   }
-  ```
-  <p align="center">
-  <img src="assets/text-widget.png" width="300">
-  </p>
- 
-  ### Properti pada widget Text yang Digunakan
-  - **style**: Properti ini digunakan untuk mengatur gaya teks, seperti `fontSize` dan `color`. Di sini, ukuran font adalah 24 dan warna teks adalah hitam.
+}
+```
 
-  ### Icon
-  **Icon** adalah **widget** yang digunakan untuk menampilkan ikon.
-  ```dart
-  import 'package:flutter/material.dart';
+<p align="center">
+<img src="assets/container-widget.png" width="300">
+</p>
 
-  void main() {
-    runApp(MyApp());
-  }
+### Properti pada widget Container yang Digunakan
 
-  class MyApp extends StatelessWidget {
-    @override
-    Widget build(BuildContext context) {
-      return MaterialApp(
-        home: Scaffold(
-          body: Center(
-            child: Icon(
-              Icons.favorite,
-              color: Colors.pink,
-              size: 24.0,
-            ),
+- **padding**: Menentukan ruang di sekitar konten dalam **Container**. Padding sebesar 16 piksel membuat teks tidak menempel pada tepi **Container**.
+
+- **color**: Menentukan warna latar belakang **Container**. Warna biru digunakan di sini.
+
+### Text
+
+**Text** adalah **widget** yang digunakan untuk menampilkan teks. Anda bisa mengatur font, warna, ukuran, dan gaya lainnya.
+
+```dart
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        body: Center(
+          child: Text(
+            'Hello, Flutter!',
+            style: TextStyle(fontSize: 24, color: Colors.black),
           ),
         ),
-      );
-    }
+      ),
+    );
   }
+}
+```
 
-  ```
-  <p align="center">
-  <img src="assets/icon-widget.png" width="300">
-  </p>
+<p align="center">
+<img src="assets/text-widget.png" width="300">
+</p>
 
-  ### Properti pada widget Icon yang Digunakan
-  - **Icons.favorite**: Menentukan jenis ikon yang akan ditampilkan, di sini kita menggunakan ikon hati (favorite).
+### Properti pada widget Text yang Digunakan
 
-  - **color**: Menentukan warna ikon. Di sini, warna ikon adalah pink.
+- **style**: Properti ini digunakan untuk mengatur gaya teks, seperti `fontSize` dan `color`. Di sini, ukuran font adalah 24 dan warna teks adalah hitam.
 
-  - **size**: Menentukan ukuran ikon dalam piksel. Ukuran ikon di sini adalah 24 piksel.
+### Icon
+
+**Icon** adalah **widget** yang digunakan untuk menampilkan ikon.
+
+```dart
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        body: Center(
+          child: Icon(
+            Icons.favorite,
+            color: Colors.pink,
+            size: 24.0,
+          ),
+        ),
+      ),
+    );
+  }
+}
+```
+
+<p align="center">
+<img src="assets/icon-widget.png" width="300">
+</p>
+
+### Properti pada widget Icon yang Digunakan
+
+- **Icons.favorite**: Menentukan jenis ikon yang akan ditampilkan, di sini kita menggunakan ikon hati (favorite).
+
+- **color**: Menentukan warna ikon. Di sini, warna ikon adalah pink.
+
+- **size**: Menentukan ukuran ikon dalam piksel. Ukuran ikon di sini adalah 24 piksel.
 
 - ### Row dan Column
-  **Row** dan **Column** adalah **widget** yang mengatur **widget** anak dalam garis horizontal dan vertikal.
 
-  ### Row
-  ```dart
-  import 'package:flutter/material.dart';
+**Row** dan **Column** adalah **widget** yang mengatur **widget** anak dalam garis horizontal dan vertikal.
 
-  void main() {
-    runApp(MyApp());
-  }
+### Row
 
-  class MyApp extends StatelessWidget {
-    @override
-    Widget build(BuildContext context) {
-      return MaterialApp(
-        home: Scaffold(
-          body: Center(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                Icon(Icons.star, color: Colors.red),
-                Icon(Icons.star, color: Colors.green),
-                Icon(Icons.star, color: Colors.blue),
-              ],
-            ),
+```dart
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        body: Center(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              Icon(Icons.star, color: Colors.red),
+              Icon(Icons.star, color: Colors.green),
+              Icon(Icons.star, color: Colors.blue),
+            ],
           ),
         ),
-      );
-    }
+      ),
+    );
   }
-  ```
-  <p align="center">
-  <img src="assets/row-widget.png" width="300">
-  </p>
+}
+```
 
-  ### Properti pada widget Row yang Digunakan
-  - **mainAxisAlignment**: Properti ini menentukan bagaimana widget anak disejajarkan di sepanjang sumbu utama (horizontal untuk **Row**). **spaceEvenly** memastikan bahwa jarak antara, sebelum, dan sesudah setiap ikon adalah sama.
+<p align="center">
+<img src="assets/row-widget.png" width="300">
+</p>
 
-  ### Column
-  ```dart
-  import 'package:flutter/material.dart';
+### Properti pada widget Row yang Digunakan
 
-  void main() {
-    runApp(MyApp());
-  }
+- **mainAxisAlignment**: Properti ini menentukan bagaimana widget anak disejajarkan di sepanjang sumbu utama (horizontal untuk **Row**). **spaceEvenly** memastikan bahwa jarak antara, sebelum, dan sesudah setiap ikon adalah sama.
 
-  class MyApp extends StatelessWidget {
-    @override
-    Widget build(BuildContext context) {
-      return MaterialApp(
-        home: Scaffold(
-          body: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Text('Item 1'),
-                Text('Item 2'),
-                Text('Item 3'),
-              ],
-            ),
+### Column
+
+```dart
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text('Item 1'),
+              Text('Item 2'),
+              Text('Item 3'),
+            ],
           ),
         ),
-      );
-    }
+      ),
+    );
   }
-  ```
-  <p align="center">
-  <img src="assets/column-widget.png" width="300">
-  </p>
+}
+```
 
-  ### Properti pada widget Column yang Digunakan
-    - **mainAxisAlignment**: Properti ini menentukan bagaimana widget anak disejajarkan di sepanjang sumbu utama (vertikal untuk **Column**). **center** membuat semua teks terpusat di tengah layar.
+<p align="center">
+<img src="assets/column-widget.png" width="300">
+</p>
+
+### Properti pada widget Column yang Digunakan
+
+- **mainAxisAlignment**: Properti ini menentukan bagaimana widget anak disejajarkan di sepanjang sumbu utama (vertikal untuk **Column**). **center** membuat semua teks terpusat di tengah layar.
 
 - ### Image
-  **Image** adalah **widget** yang digunakan untuk menampilkan gambar. Anda dapat memuat gambar dari berbagai sumber seperti internet atau file lokal.
 
-  ```dart
-  import 'package:flutter/material.dart';
+**Image** adalah **widget** yang digunakan untuk menampilkan gambar. Anda dapat memuat gambar dari berbagai sumber seperti internet atau file lokal.
 
-  void main() {
-    runApp(MyApp());
-  }
+```dart
+import 'package:flutter/material.dart';
 
-  class MyApp extends StatelessWidget {
-    @override
-    Widget build(BuildContext context) {
-      return MaterialApp(
-        home: Scaffold(
-          body: Center(
-              child: Image.network('https://i.kym-cdn.com/photos/images/newsfeed/002/697/316/d31'),
-          ),
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        body: Center(
+            child: Image.network('https://i.kym-cdn.com/photos/images/newsfeed/002/697/316/d31'),
         ),
-      );
-    }
+      ),
+    );
   }
-  ```
-  <p align="center">
-  <img src="assets/image-nah-i&apos;d-win-widget.png" width="300">
-  </p>
+}
+```
 
-  ### Properti pada widget Image yang Digunakan
-  - `Image.network`: Properti ini digunakan untuk memuat gambar dari internet dengan URL yang diberikan. Gambar akan ditampilkan di pusat layar.
+<p align="center">
+<img src="assets/image-nah-i&apos;d-win-widget.png" width="300">
+</p>
+
+### Properti pada widget Image yang Digunakan
+
+- `Image.network`: Properti ini digunakan untuk memuat gambar dari internet dengan URL yang diberikan. Gambar akan ditampilkan di pusat layar.
   
-- ### Button
-  Flutter menyediakan beberapa jenis tombol, seperti **ElevatedButton**, **TextButton**, dan **IconButton**.
+### Button
 
-  ### ElevatedButton
-  ```dart
-  import 'package:flutter/material.dart';
+Flutter menyediakan beberapa jenis tombol, seperti **ElevatedButton**, **TextButton**, dan **IconButton**.
 
-  void main() {
-    runApp(MyApp());
-  }
+### ElevatedButton
 
-  class MyApp extends StatelessWidget {
-    @override
-    Widget build(BuildContext context) {
-      return MaterialApp(
-        home: Scaffold(
-          body: Center(
-            child: ElevatedButton(
-              onPressed: () {
-                // Aksi yang dilakukan saat tombol ditekan
-              },
-              child: Text('Click Me'),
-            ),
-          ),
-        ),
-      );
-    }
-  }
-  ```
-  <p align="center">
-  <img src="assets/elevatedButton-widget.png" width="300">
-  </p>
+```dart
+import 'package:flutter/material.dart';
 
-  ### Properti pada widget ElevatedButton yang Digunakan
-  - **onPressed**: Fungsi yang akan dijalankan saat tombol ditekan.
+void main() {
+  runApp(MyApp());
+}
 
-  - **child**: **Widget** yang ditampilkan di dalam tombol, di sini berupa teks "Click Me".
-
-  ### TextButton
-  ```dart
-  import 'package:flutter/material.dart';
-
-  void main() {
-    runApp(MyApp());
-  }
-
-  class MyApp extends StatelessWidget {
-    @override
-    Widget build(BuildContext context) {
-      return MaterialApp(
-        home: Scaffold(
-          body: TextButton(
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        body: Center(
+          child: ElevatedButton(
             onPressed: () {
               // Aksi yang dilakukan saat tombol ditekan
             },
             child: Text('Click Me'),
           ),
         ),
-      );
-    }
+      ),
+    );
   }
-  ```
-  <p align="center">
-  <img src="assets/textButton-widget.png" width="300">
-  </p>
+}
+```
 
-  ### Properti pada widget TextButton yang Digunakan
-  - **onPressed**: Fungsi yang akan dijalankan saat tombol ditekan.
+<p align="center">
+<img src="assets/elevatedButton-widget.png" width="300">
+</p>
 
-  - **child**: **Widget** yang ditampilkan di dalam tombol, di sini berupa teks "Click Me".
+### Properti pada widget ElevatedButton yang Digunakan
 
-  ### IconButton
-  ```dart
-  import 'package:flutter/material.dart';
+- **onPressed**: Fungsi yang akan dijalankan saat tombol ditekan.
+- **child**: **Widget** yang ditampilkan di dalam tombol, di sini berupa teks "Click Me".
 
-  void main() {
-    runApp(MyApp());
-  }
+### TextButton
 
-  class MyApp extends StatelessWidget {
-    @override
-    Widget build(BuildContext context) {
-      return MaterialApp(
-        home: Scaffold(
-          body: IconButton(
-            onPressed: () {
-              // Aksi yang dilakukan saat tombol ditekan
-            },
-            icon: Icon(Icons.favorite),
-            color: Colors.red,
-            iconSize: 24.0,
-          ),
+```dart
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        body: TextButton(
+          onPressed: () {
+            // Aksi yang dilakukan saat tombol ditekan
+          },
+          child: Text('Click Me'),
         ),
-      );
-    }
+      ),
+    );
   }
-  ```
-  <p align="center">
-  <img src="assets/iconButton-widget.png" width="300">
-  </p>
+}
+```
 
-  ### Properti pada widget IconButton yang Digunakan
-  - **onPressed**: Fungsi yang akan dijalankan saat tombol ditekan.
+<p align="center">
+<img src="assets/textButton-widget.png" width="300">
+</p>
 
-  - **icon**: Ikon yang ditampilkan di dalam tombol.
+### Properti pada widget TextButton yang Digunakan
 
-  - **color**: Warna ikon.
+- **onPressed**: Fungsi yang akan dijalankan saat tombol ditekan.
+- **child**: **Widget** yang ditampilkan di dalam tombol, di sini berupa teks "Click Me".
 
-  - **iconSize**: Ukuran ikon dalam piksel.
+### IconButton
 
-# Jenis-Jenis Widget
+```dart
+import 'package:flutter/material.dart';
 
-- ### Stateless Widget
+void main() {
+  runApp(MyApp());
+}
 
-    **Stateless Widget** adalah **widget** yang tidak memiliki state (keadaan) yang dapat berubah. Mereka dirender sekali dan tidak berubah selama siklus hidup aplikasi.
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        body: IconButton(
+          onPressed: () {
+            // Aksi yang dilakukan saat tombol ditekan
+          },
+          icon: Icon(Icons.favorite),
+          color: Colors.red,
+          iconSize: 24.0,
+        ),
+      ),
+    );
+  }
+}
+```
 
-    ### Contoh Stateless Widget
-    ```dart
-    import 'package:flutter/material.dart';
+<p align="center">
+<img src="assets/iconButton-widget.png" width="300">
+</p>
 
-    class MyStatelessWidget extends StatelessWidget {
+### Properti pada widget IconButton yang Digunakan
+
+- **onPressed**: Fungsi yang akan dijalankan saat tombol ditekan.
+- **icon**: Ikon yang ditampilkan di dalam tombol.
+- **color**: Warna ikon.
+- **iconSize**: Ukuran ikon dalam piksel.
+
+## Jenis-Jenis Widget
+
+### Stateless Widget
+
+**Stateless Widget** adalah **widget** yang tidak memiliki state (keadaan) yang dapat berubah. Mereka dirender sekali dan tidak berubah selama siklus hidup aplikasi.
+
+### Contoh Stateless Widget
+
+```dart
+import 'package:flutter/material.dart';
+
+class MyStatelessWidget extends StatelessWidget {
     @override
     Widget build(BuildContext context) {
         return Text('Hello, Flutter!');
     }
-    }
-    ```
-    Pada contoh di atas, `MyStatelessWidget` hanya menampilkan teks "Hello, Flutter!" dan tidak pernah berubah.
+}
+```
 
-- ### Stateful Widget
-    **Stateful Widget** adalah widget yang memiliki state yang dapat berubah. Mereka dapat dirender ulang ketika state mereka berubah, memungkinkan tampilan yang dinamis.
-    
-    ### Contoh Stateful Widget
-    ```dart 
-    import 'package:flutter/material.dart';
+Pada contoh di atas, `MyStatelessWidget` hanya menampilkan teks "Hello, Flutter!" dan tidak pernah berubah.
 
-    class MyStatefulWidget extends StatefulWidget {
+### Stateful Widget
+
+**Stateful Widget** adalah widget yang memiliki state yang dapat berubah. Mereka dapat dirender ulang ketika state mereka berubah, memungkinkan tampilan yang dinamis.
+
+### Contoh Stateful Widget
+
+```dart
+import 'package:flutter/material.dart';
+
+class MyStatefulWidget extends StatefulWidget {
     @override
-    _MyStatefulWidgetState createState() => _MyStatefulWidgetState();
+        _MyStatefulWidgetState createState() => _MyStatefulWidgetState();
     }
 
-    class _MyStatefulWidgetState extends State<MyStatefulWidget> {
-    int _counter = 0;
+class _MyStatefulWidgetState extends State<MyStatefulWidget> {
+int _counter = 0;
 
-    void _incrementCounter() {
-        setState(() {
-        _counter++;
-        });
-    }
+void _incrementCounter() {
+    setState(() {
+    _counter++;
+    });
+}
 
-    @override
-    Widget build(BuildContext context) {
-        return Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-            Text('Counter: $_counter'),
-            ElevatedButton(
-            onPressed: _incrementCounter,
-            child: Text('Increment'),
-            ),
-        ],
-        );
-    }
-    }
-    ```
-    Pada contoh ini, `MyStatefulWidget` memiliki state `_counter` yang dapat diubah dengan menekan tombol. Setiap kali tombol ditekan, tampilan diperbarui dengan nilai counter yang baru.
+@override
+Widget build(BuildContext context) {
+    return Column(
+    mainAxisAlignment: MainAxisAlignment.center,
+    children: <Widget>[
+        Text('Counter: $_counter'),
+        ElevatedButton(
+        onPressed: _incrementCounter,
+        child: Text('Increment'),
+        ),
+    ],
+    );
+  }
+}
+```
 
-- ### Inherited Widget
-  **InheritedWidget** adalah salah satu cara untuk berbagi state antara widget di Flutter. **InheritedWidget** memungkinkan state untuk diakses oleh widget yang berada jauh di dalam hierarki widget tanpa perlu melewatkan state tersebut secara eksplisit melalui constructor. Kita akan bahas **inheritedWidget** lebih detail pada materi state management.
+Pada contoh ini, `MyStatefulWidget` memiliki state `_counter` yang dapat diubah dengan menekan tombol. Setiap kali tombol ditekan, tampilan diperbarui dengan nilai counter yang baru.
 
-  **Inherited Widget** memiliki dua komponen utama:
-  - **InheritedWidget**: Widget ini menyimpan data yang ingin dibagikan dengan subtree widget.
+### Inherited Widget
 
-  - **InheritedWidget.of(context)**: Metode statis yang digunakan untuk mendapatkan instance dari InheritedWidget dari subtree widget mana pun.
+**InheritedWidget** adalah salah satu cara untuk berbagi state antara widget di Flutter. **InheritedWidget** memungkinkan state untuk diakses oleh widget yang berada jauh di dalam hierarki widget tanpa perlu melewatkan state tersebut secara eksplisit melalui constructor. Kita akan bahas **inheritedWidget** lebih detail pada materi state management.
 
-  Implementasi **InheritedWidget** dapat menjadi kompleks, tetapi memberikan manfaat yang besar dalam mengelola state dan data dalam aplikasi Flutter.
+**Inherited Widget** memiliki dua komponen utama:
 
-# MaterialApp dan CupertinoApp
+- **InheritedWidget**: Widget ini menyimpan data yang ingin dibagikan dengan subtree widget.
+
+- **InheritedWidget.of(context)**: Metode statis yang digunakan untuk mendapatkan instance dari InheritedWidget dari subtree widget mana pun.
+
+Implementasi **InheritedWidget** dapat menjadi kompleks, tetapi memberikan manfaat yang besar dalam mengelola state dan data dalam aplikasi Flutter.
+
+## MaterialApp
 
 Flutter mendukung dua jenis desain antarmuka pengguna utama: **Material Design** yang dikembangkan oleh Google, dan **Cupertino Design** yang merupakan gaya antarmuka pengguna dari iOS oleh Apple. Flutter menyediakan dua widget utama untuk masing-masing desain ini: `MaterialApp` dan `CupertinoApp`.
 
@@ -495,10 +570,12 @@ class MyHomePage extends StatelessWidget {
 }
 ```
 
-### Apa Itu CupertinoApp?
+## Apa Itu CupertinoApp?
+
 **CupertinoApp** adalah widget utama untuk aplikasi yang mengikuti panduan desain Cupertino (iOS). Cupertino Design adalah gaya desain visual yang dikembangkan oleh Apple, yang digunakan secara luas dalam aplikasi iOS.
 
 Fitur Utama CupertinoApp
+
 - **Tema**: Mendukung tema Cupertino yang mirip dengan tampilan dan nuansa aplikasi iOS.
 
 - **Navigasi**: Mendukung navigasi dan routing yang konsisten dengan navigasi iOS.
@@ -540,25 +617,28 @@ class MyHomePage extends StatelessWidget {
 }
 ```
 
-### Perbandingan MaterialApp dan CupertinoApp
 ### Kapan Menggunakan MaterialApp?
+
 Saat mengembangkan aplikasi yang mengikuti panduan desain Material Design.
 Saat menargetkan pengguna Android sebagai audiens utama.
 Saat memerlukan akses ke widget dan komponen spesifik Material Design.
 
 ### Kapan Menggunakan CupertinoApp?
+
 Saat mengembangkan aplikasi yang mengikuti panduan desain Cupertino.
 Saat menargetkan pengguna iOS sebagai audiens utama.
 Saat memerlukan akses ke widget dan komponen spesifik Cupertino Design.
 
+## Widget Tree
 
-# Widget Tree
-   <p align="center">
-    <img src="assets/widget-tree.png" width="400">
-   </p>
+<p align="center">
+<img src="assets/widget-tree.png" width="400">
+</p>
+
 Widget tree adalah hierarki dari semua widget yang digunakan dalam aplikasi. Root widget adalah titik awal dari pohon, dan semua widget lain adalah anak dari root widget atau turunannya. Struktur ini memungkinkan pengembangan antarmuka pengguna yang kompleks dari komponen-komponen kecil yang dapat digunakan kembali.
 
 ### Contoh Widget Tree
+
 ```dart
 Widget build(BuildContext context) {
   return Scaffold(
@@ -577,7 +657,9 @@ Widget build(BuildContext context) {
   );
 }
 ```
+
 Pada contoh ini, widget tree-nya adalah sebagai berikut:
+
 ```matematica
 Scaffold
  ├── AppBar
@@ -587,15 +669,10 @@ Scaffold
            ├── Text
            └── Icon
 ```
+
 - **Scaffold** adalah root widget yang memiliki dua anak: `AppBar` dan `Center`.
-
 - **AppBar** memiliki satu anak yaitu **Text**.
-
 - **Center** memiliki satu anak yaitu **Column**.
-
 - **Column** memiliki dua anak: **Text** dan **Icon**.
 
 Jika kalian ingin tahu lebih lanjut tentang materi diatas kalian bisa check langsung dokumentasi yang sudah disediakan pihak [flutter](https://docs.flutter.dev/ui/widgets).
-
-# Author
-author : [SulaimanLmn](https://github.com/SulaimanLmn)

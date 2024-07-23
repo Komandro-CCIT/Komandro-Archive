@@ -1,7 +1,17 @@
+| Author                                        | Editor |
+| --------------------------------------------- | ------ |
+| [SulaimanLmn](https://github.com/SulaimanLmn) | Ifarra |
+
 # State Management Dasar
+
+- [State Management Dasar](#state-management-dasar)
+  - [setState](#setstate)
+  - [InheritedWidget](#inheritedwidget)
+
 State management adalah salah satu aspek paling penting dalam pengembangan aplikasi Flutter. Ada beberapa teknik untuk mengelola state di Flutter, mulai dari yang paling dasar seperti `setState`, hingga yang lebih kompleks seperti menggunakan `InheritedWidget` atau berbagai state management library. Di bagian ini, kita akan membahas cara mengelola state lokal dengan `setState` dan memahami cara kerja `InheritedWidget` yang sebelumnya sudah kita bahas pada materi widget dasar untuk berbagi state.
 
-# setState
+## setState
+
 `setState` adalah cara paling dasar untuk mengelola state di Flutter. `setState` digunakan untuk memberi tahu framework bahwa state telah berubah dan UI perlu diperbarui. Biasanya digunakan dalam `StatefulWidget`.
 
 ```dart
@@ -61,15 +71,15 @@ class _CounterScreenState extends State<CounterScreen> {
   }
 }
 ```
+
 <p align="center">
 <img src="assets/set-state.gif" width="300">
 </p>
 
-
-
 Dalam contoh di atas, ketika tombol `FloatingActionButton` ditekan, metode `_incrementCounter` dipanggil, yang kemudian memanggil setState untuk memperbarui nilai `_counter` dan memicu pembaruan UI.
 
-# InheritedWidget
+## InheritedWidget
+
 Seperti pada materi widget dasar `InheritedWidget` adalah salah satu cara untuk berbagi state antara widget di Flutter. `InheritedWidget` memungkinkan state untuk diakses oleh widget yang berada jauh di dalam hierarki widget tanpa perlu melewatkan state tersebut secara eksplisit melalui constructor.
 
 ```dart
@@ -158,6 +168,7 @@ class CounterScreen extends StatelessWidget {
   }
 }
 ```
+
 <p align="center">
 <img src="assets/inherited-widget.gif" width="300">
 </p>
@@ -167,6 +178,3 @@ Dalam contoh di atas, `CounterProvider` adalah `InheritedWidget` yang menyediaka
 Dengan memahami `setState` dan `InheritedWidget`, Anda memiliki dasar yang kuat untuk mengelola state dalam aplikasi Flutter.
 
 Jika kalian ingin tahu lebih lanjut tentang materi diatas kalian bisa check langsung dokumentasi [State Management](https://docs.flutter.dev/data-and-backend/state-mgmt/options).
-
-# Author
-author : [SulaimanLmn](https://github.com/SulaimanLmn)

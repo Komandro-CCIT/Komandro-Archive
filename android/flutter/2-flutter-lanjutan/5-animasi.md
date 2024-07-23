@@ -1,10 +1,17 @@
-# Animasi 
+| Author                                        | Editor |
+| --------------------------------------------- | ------ |
+| [SulaimanLmn](https://github.com/SulaimanLmn) | Ifarra |
+
+# Animasi
+
 Animasi adalah salah satu aspek penting dalam pengembangan aplikasi mobile yang memberikan pengalaman pengguna yang halus dan interaktif. Flutter menyediakan beberapa cara untuk membuat animasi, mulai dari animasi dasar hingga animasi yang dikendalikan oleh controller. Dalam panduan ini, kita akan membahas dua jenis animasi utama di Flutter:
 
-# Animasi Dasar
+## Animasi Dasar
 
 ### AnimatedContainer
+
 `AnimatedContainer` memungkinkan Anda membuat animasi dengan mudah dengan mengubah properti kontainer seperti ukuran, warna, dan margin.
+
 ```dart
 import 'package:flutter/material.dart';
 
@@ -50,14 +57,17 @@ class _AnimatedContainerExampleState extends State<AnimatedContainerExample> {
   }
 }
 ```
+
 <p align="center">
-<img src="assets/animated-container.gif" width="300"> 
+<img src="assets/animated-container.gif" width="300">
 </p>
 
 Pada contoh di atas, ketika `_isExpanded` berubah, Flutter akan menganimasi perubahan properti `width`, `height`, dan `color` dari `AnimatedContainer`.
 
 ### AnimatedOpacity
+
 `AnimatedOpacity` digunakan untuk mengubah tingkat opacity dari sebuah widget secara animasi.
+
 ```dart
 import 'package:flutter/material.dart';
 
@@ -108,15 +118,17 @@ class _AnimatedOpacityExampleState extends State<AnimatedOpacityExample> {
 ```
 
 <p align="center">
-<img src="assets/animated-opacity.gif" width="300"> 
+<img src="assets/animated-opacity.gif" width="300">
 </p>
 
 Pada contoh di atas, ketika `_visible` berubah, opacity dari `AnimatedOpacity` akan diubah dari 1.0 (sepenuhnya terlihat) menjadi 0.0 (sepenuhnya tidak terlihat) atau sebaliknya dalam 1 detik.
 
-# Animasi Berbasis Controller
+## Animasi Berbasis Controller
 
 ### AnimationController dan Tween
+
 `AnimationController` dan `Tween` digunakan untuk membuat animasi yang lebih kompleks dan terperinci. `AnimationController` mengontrol durasi dan status animasi, sedangkan `Tween` mendefinisikan nilai awal dan akhir dari animasi.
+
 ```dart
 import 'package:flutter/material.dart';
 
@@ -173,8 +185,9 @@ class _ControllerBasedAnimationExampleState extends State<ControllerBasedAnimati
   }
 }
 ```
+
 <p align="center">
-<img src="assets/controller-based-animation.gif" width="300"> 
+<img src="assets/controller-based-animation.gif" width="300">
 </p>
 
 Pada contoh di atas, sebuah `AnimationController` dibuat dengan durasi 2 detik. `Tween` mendefinisikan bahwa nilai animasi akan berubah dari 0 ke 300. `addListener` digunakan untuk mendengarkan perubahan nilai animasi dan memperbarui UI dengan `setState`.
@@ -182,6 +195,3 @@ Pada contoh di atas, sebuah `AnimationController` dibuat dengan durasi 2 detik. 
 Animasi di Flutter dapat dibuat dengan mudah menggunakan widget seperti `AnimatedContainer` dan `AnimatedOpacity` untuk kebutuhan dasar, atau dengan `AnimationController` dan `Tween` untuk animasi yang lebih kompleks. Dengan memahami dasar-dasar ini, Anda dapat mulai membuat aplikasi yang interaktif dan menarik secara visual.
 
 Jika kalian ingin tahu lebih lanjut tentang materi diatas kalian bisa check langsung dokumentasi [Animasi](https://docs.flutter.dev/ui/animations).
-
-# Author
-author : [SulaimanLmn](https://github.com/SulaimanLmn)

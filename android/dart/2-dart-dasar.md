@@ -19,7 +19,7 @@ Agar kode dalam file dart bisa dijalankan, maka kode tersebut harus memiliki fun
 
 ```dart
 void main() {
-print("Hello world");
+    print("Hello world");
 }
 ```
 
