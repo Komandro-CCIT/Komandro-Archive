@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorial Web Satis Part 2</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #333;
+            padding: 10px 0;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        nav ul li a:hover {
+            background-color: #111;
+        }
+
+        article {
+            margin: 20px;
+        }
+
+        article h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        article p {
+            font-size: 18px;
+        }
+
+        section {
+            margin-bottom: 20px;
+        }
+
+        figure {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 20px;
+        }
+
+        figure img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        figure figcaption {
+            margin-top: 10px;
+            font-size: 16px;
+            color: #333;
+        }
+
+        footer {
+            background-color: #000;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            position: absolute;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- #1 Buatlah navbar menggunakan semantic html -->
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#">Beranda</a></li>
+                <li><a href="#">Tentang</a></li>
+                <li><a href="#">Kontak</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- #2 Buatlah konten dari tag `article`, buatlah judul dan isi seperti pada article pada umumnya -->
+    <article>
+        <h2>ت - エゴノミー (Egonomy) ft. 可不 (KAFU) (English Translation)</h2>
+        <p>This is just silly talk, though <br><br>
+            A mass-produced “You’re the only one…”<br>
+            Conciliating the masses, “I need you”!<br>
+            Yeah, yeah, you’re so skillful at that<br>
+            An escort to Hell</p>
+    </article>
+
+    <!-- #3 Isi setiap bagian dari `section` dengan tag `article` beserta isinya -->
+    <section>
+        <article>
+            <h2>ت - エゴノミー (Egonomy) ft. 可不 (KAFU) (English Translation)-Part1</h2>
+            <p>This is just silly talk, though <br><br>
+                A mass-produced “You’re the only one…”<br>
+                Conciliating the masses, “I need you”!<br>
+                Yeah, yeah, you’re so skillful at that<br>
+                An escort to Hell</p>
+        </article>
+    </section>
+
+    <section>
+        <article>
+            <h2>ت - エゴノミー (Egonomy) ft. 可不 (KAFU) (English Translation)-Part2</h2>
+            <p>And? And? And?<br>
+                Egonomy<br>
+                There’s really nothing but ego, ego, ego!<br>
+                Such a wicked scheme you’ve got<br>
+                Enough of your jokes—you’re burying me crazy<br>
+                Egonomy won’t stop love;<br>
+                Lie, lie, lie, li-ar?</p>
+        </article>
+    </section>
+
+    <!-- #4 Tampilkanlah gambar menggunakan tag `figure` beserta caption menggunakan `figcaption` -->
+    <figure>
+        <img src="https://images.genius.com/a155fbbdea75d6c08ec1ee6021265dfa.1000x562x1.png" alt="Egonomy">
+        <figcaption>ت - エゴノミー (Egonomy) ft. 可不 (KAFU)</figcaption>
+    </figure>
+
+    <!-- #5 Buatlah footer menggunakan semantic html-->
+    <footer>
+        <p>Hak Cipta &copy; 2024 Meiga</p>
+    </footer>
+</body>
+
+</html>

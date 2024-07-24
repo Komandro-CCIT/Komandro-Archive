@@ -1,0 +1,12 @@
+async-timeout==4.0.3
+certifi==2024.2.2
+charset-normalizer==3.3.2
+idna==3.6
+midtransclient==1.4.2
+python-dotenv==1.0.1
+redis==5.0.1
+requests==2.31.0
+SimpleWebSocketServer==0.1.2
+urllib3==2.2.0
+websocket-client==1.7.0
+websocket-server==0.6.4
