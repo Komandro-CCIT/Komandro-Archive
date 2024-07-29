@@ -3,7 +3,7 @@
 
 ![](assets/apa-itu-devops-ilustrasi.jpeg)
 
-Kalian anak IT? udah pernah denger yang namanya Development Operationals belum? kalau belum sini saya jelaskan. Berdasarkan pengertian google DevOps adalah serangkaian praktik yang bertujuan untuk meningkatkan kolaborasi dan komunikasi antara tim pengembangan (Development) dan tim operasional (Operations) dalam proses pengembangan dan pengelolaan sistem perangkat lunak.
+Kalian anak IT? udah pernah denger yang namanya Development Operational belum? kalau belum sini saya jelaskan. Berdasarkan pengertian google DevOps adalah serangkaian praktik yang bertujuan untuk meningkatkan kolaborasi dan komunikasi antara tim pengembangan (Development) dan tim operasional (Operations) dalam proses pengembangan dan pengelolaan sistem perangkat lunak.
 
 
 Masih bingung? mari kita ambil contoh dibidang manufaktur. Bayangkan ada pabrik mobil yang ingin memproduksi mobil yang berkualitas tinggi dan sesuai dengan kebutuhan pelanggan. Dalam hal ini, tim pengembangan (Development) seperti tim desain yang merancang mobil, sedangkan tim operasional (Operations) seperti tim produksi yang memasang mobil.
