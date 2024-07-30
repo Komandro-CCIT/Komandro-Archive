@@ -11,7 +11,8 @@ Author :
 Setelah kalian mempelajari bagaimana cara build dan deploy aplikasi pada materi sebelumnya, pada materi kali ini kalian akan belajar bagaimana cara mengemas, mendistribusikan dan menjalankan suatu aplikasi menggunakan docker.
 
 ## Docker
-[<img src="../assets/docker-Logo.png">](docker.com)
+[![](../assets/docker-Logo.png)](https://docker.com)
+
 Docker merupakan sebuah platform open-source yang memungkinkan developer untuk mengemas dan menjalankan aplikasi di dalam environment yang terisolasi bernama container. Nah container yang terisolasi ini bagaikan "wadah" yang menampung suatu aplikasi sehingga tidak tumpah ke "wadah" lain dalam suatu sistem.
 
 ## Arsitektur Docker
