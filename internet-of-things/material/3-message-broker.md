@@ -159,3 +159,60 @@ Queue (antrian) adalah tempat untuk menyimpan data yang diterima oleh Exchange. 
 - Classic, jenis antrean serbaguna yang cocok untuk kasus penggunaan di mana keamanan data bukan prioritas karena data yang disimpan dalam antrean klasik tidak direplikasi. Antrean klasik menggunakan implementasi antrean FIFO yang tidak direplikasi.Jika keamanan data menjadi prioritas, rekomendasinya adalah menggunakan antrean dan aliran Quorum , bukan antrean Classic.
 - Quorum, jenis antrean modern, yang menerapkan antrean FIFO yang tahan lama dan tereplikasi berdasarkan algoritma konsensus Raft . Antrean kuorum dirancang agar lebih aman dan menyediakan semantik penanganan kegagalan yang lebih sederhana dan terdefinisi dengan baik yang seharusnya lebih mudah dipahami pengguna saat merancang dan mengoperasikan sistem mereka.
 - Streams, queue yangdigunakan untuk kebutuhan data streaming. Stream memodelkan log pesan yang hanya dapat ditambahkan dan dapat dibaca berulang kali hingga kedaluwarsa. Stream selalu persisten dan direplikasi. Deskripsi yang lebih teknis tentang perilaku stream ini adalah "semantik konsumen yang tidak merusak".
+
+# Install RabbitMQ di Python
+Pertama-tama, pastikan VSCode kalian telah terhubung dengan instance multipass yang telah kita buat sebelumnya. (Cek bab pertama jika kalian lupa cara untuk menghubungkan instance multipass ke VSCode)
+
+Jika sudah terhubung, buka terminal pada VSCode dengan cara pencet titik tiga di tab atas > Terminal > New Terminal
+
+Kita akan install library RabbitMQ yang bernama 'pika' didalam VirtualEnv yang telah kita buat pada bab sebelumnya, masukkan kode dibawah ini satu persatu setiap barisnya:
+
+```bash
+sudo su
+
+source venv/bin/activate
+
+apt-get update
+
+pip install pika
+```
+
+# Membuat program RabbitMQ pertama di Python
+Kita akan membuat program dengan alur seperti diagram dibawah ini :
+
+```mermaid
+graph LR
+    P((Producer)) --> E{{notification}}
+    subgraph RabbitMQ
+        E -- email --> Q[[email]]
+        E -- whatsapp --> Q2[[whatsapp]]
+    end
+    Q --> C((Consumer 1))
+    Q2 --> C2((Consumer 2))
+```
+
+Sebelum itu, kita akan buat 2 file yang masing masing bernama :
+1. sending.py (untuk mengirim data dari producer)
+2. receive.py (untuk menerima data dari queue di consumer)
+
+## Sending
+### Menghubungkan file python dengan server RabbitMQ
+Hal pertama yang perlu kita lakukan adalah membuat koneksi dengan server RabbitMQ. kita akan mengoneksikannya ke mesin lokal kita yaitu 'localhost' :
+
+```python
+import pika
+
+connection = pika.BlockingConnection(pika.ConnectionParameters('localhost'))
+channel = connection.channel()
+```
+
+## Receive
+### Menghubungkan file python dengan server RabbitMQ
+Sama seperti saat mengirim data, hal pertama yang perlu kita lakukan adalah membuat koneksi dengan server RabbitMQ. kita akan mengoneksikannya ke mesin lokal kita yaitu 'localhost' karna sama degnan server untuk mengirim data :
+
+```python
+import pika
+
+connection = pika.BlockingConnection(pika.ConnectionParameters('localhost'))
+channel = connection.channel()
+```
