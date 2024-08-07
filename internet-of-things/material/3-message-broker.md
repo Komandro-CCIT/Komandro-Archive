@@ -170,9 +170,11 @@ Kita akan install library RabbitMQ yang bernama 'pika' didalam VirtualEnv yang t
 ```bash
 sudo su
 
-source venv/bin/activate
-
 apt-get update
+
+apt install rabbitmq-server
+
+source venv/bin/activate
 
 pip install pika
 ```
