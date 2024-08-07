@@ -26,7 +26,7 @@ graph TB
 
 Pada aplikasi 'order' di diagram diatas merupakan aplikasi yang masih menggunakan protokol RPC (Remote Procedure Call). Memang salahsatu keuntungan menggunakan RPC yaitu Synchronous dan Realtime, tetapi kekurangan terbesarnya yaitu **ketergantungan** jika dalam 1 aplikasi terhubung dengan banyak aplikasi lainnya.
 
-Jika kita lihat aplikasi 'order' pada diagram diatas, dia terhubung dengan 3 aplikasi yaitu "Logistic", "Fraud Detection", dan "Payment". Jika salahsatu aplikasi itu tidak berjalan, maka aplikasi "Order" otomatis tidak bisa dijalankan juga. Itulah salahsatu kelemahan dari RPC dalam kasus ini. Maka dari itu, kita pakai konsep messaging agar menghindari kasus seperti itu. 
+Jika kita lihat aplikasi 'order' pada diagram diatas, dia terhubung dengan 3 aplikasi yaitu `Logistic`, `Fraud Detection`, dan `Payment`. Jika salahsatu aplikasi itu tidak berjalan, maka aplikasi `Order` otomatis tidak bisa dijalankan juga. Itulah salahsatu kelemahan dari RPC dalam kasus ini. Maka dari itu, kita pakai konsep messaging agar menghindari kasus seperti itu. 
 
 Jika kita menggunakan message broker pada aplikasi 'order', alur diagram sistem toko onlinenya berubah seperti dibawah ini :
 
@@ -36,12 +36,12 @@ graph TB
     SC --> OR(Order) --> MO(Message Broker) --> LO(Logistic) & FD(Fraud Detection) & PY(Payment)
 ```
 
-Jadi, data-data yang ingin dikirim aplikasi 'Order' ke 3 aplikasi yang terhubung dengannya("Logistic", "Fraud Detection", dan "Payment"), akan dikirim ke message broker terlebih dahulu. Setelah itu, data data tersebut akan disimpan di message broker untuk disebarkan ke 3 aplikasi tersebut. Aplikasi 'order' mengerahkan data sepenuhnya ke message broker, setelah itu data-data tersebut bukan tanggung jawab aplikasi 'order' lagi, melainkan menjadi tanggung jawab message broker. Setelah itu, data-data yang disimpan di message broker akan dikirim ke 3 aplikasi tersebut. Kita bisa mengatur arah kirim data-data tersebut di software message brokernya.
+Jadi, data-data yang ingin dikirim aplikasi 'Order' ke 3 aplikasi yang terhubung dengannya(`Logistic`, `Fraud Detection`, dan `Payment`), akan dikirim ke message broker terlebih dahulu. Setelah itu, data data tersebut akan disimpan di message broker untuk disebarkan ke 3 aplikasi tersebut. Aplikasi 'order' mengerahkan data sepenuhnya ke message broker, setelah itu data-data tersebut bukan tanggung jawab aplikasi 'order' lagi, melainkan menjadi tanggung jawab message broker. Setelah itu, data-data yang disimpan di message broker akan dikirim ke 3 aplikasi tersebut. Kita bisa mengatur arah kirim data-data tersebut di software message brokernya.
 
 # RabbitMQ
 
-<p align="center">
-<img width="50%" height="auto" src="./assets/3-message-broker/rabbitmq.jpg">
+<p align=`center`>
+<img width=`50%` height=`auto` src=`./assets/3-message-broker/rabbitmq.jpg`>
 </p>
 
 RabbitMQ merupakan salahsatu perangkat lunak Message Broker yang open-source untuk komunikasi Messaging. RabbitMQ merupakan perangkat lunak yang sangat ringan sehingga cocok digunakan di semua sistem operasi seperti Windows, Linux, dan MAC. 
@@ -71,16 +71,16 @@ graph LR
 
 Jika kita analogikan, sistem RabbitMQ ini sama seperti kita mengirimkan barang menggunakan jasa kurir. 
 
-<p align="center">
-<img width="25%" height="auto" src="./assets/3-message-broker/kirara.jpeg">
+<p align=`center`>
+<img width=`25%` height=`auto` src=`./assets/3-message-broker/kirara.jpeg`>
 </p>
 
 Sebagai contoh, kita ingin mengirimkan 2 barang ke tempat yang berbeda. Alamat kita di Jakarta, sedangkan barang pertama ingin dikirimkan ke Bekasi dan barang kedua akan dikirimkan ke Bandung. Maka alurnya akan seperti berikut :
 
 ```mermaid
 graph LR
-    P("Jakarta 
-    (alamat kita)") --> E(Jasa Kurir terdekat)
+    P(`Jakarta 
+    (alamat kita)`) --> E(Jasa Kurir terdekat)
     subgraph Jasa Kurir
         E -- Bekasi --> Q(Gudang Sortir Bekasi)
         E -- Bandung --> Q2(Gudang Sortir Bandung)
@@ -137,18 +137,18 @@ graph LR
     Q2 --> C2(Consumer B)
 ```
 
-- Topic Exchange => Tipe exchange sama seperti Direct Exchange tetapi perbedaannya yaitu routing keynya menggunakan titik "." sebagai pemisah kata. Misalnya "order.logistic", "order.payment", "order.fraud". Kita bisa juga menggunakan beberapa tanda berikut :
-    - Tanda bintang digunakan untuk mewakili 1 kata. Misal "order.*", artinya bisa untuk routing key "order.logistic", "order.payment", "order.fraud".
-    - Tanda Hash digunakan untuk mewakili 1 atau lebih kata. Misal "order.#", artinya bisa untuk "order.a", "order.a.b", "order.a.b.c". Jika "#", artinya bisa untuk semua routing.
+- Topic Exchange => Tipe exchange sama seperti Direct Exchange tetapi perbedaannya yaitu routing keynya menggunakan titik (.) sebagai pemisah kata. Misalnya `order.logistic`, `order.payment`, `order.fraud`. Kita bisa juga menggunakan beberapa tanda berikut :
+    - Tanda bintang digunakan untuk mewakili 1 kata. Misal `order.*`, artinya bisa untuk routing key `order.logistic`, `order.payment`, `order.fraud`.
+    - Tanda Hash digunakan untuk mewakili 1 atau lebih kata. Misal `order.#`, artinya bisa untuk `order.a`, `order.a.b`, `order.a.b.c`. Jika `#`, artinya bisa untuk semua routing.
 
 ```mermaid
 graph LR
     P(Producer) --> E(Topic Exchange)
     subgraph RabbitMQ
-        E -- order.* --> Q("Queue A
-        (All Order)")
-        E -- # --> Q2("Queue B 
-        (All Data)")
+        E -- order.* --> Q(`Queue A
+        (All Order)`)
+        E -- # --> Q2(`Queue B 
+        (All Data)`)
     end
     Q --> C(Consumer A)
     Q2 --> C2(Consumer B)
@@ -191,9 +191,10 @@ graph LR
     Q2 --> C2((Consumer 2))
 ```
 
-Sebelum itu, kita akan buat 2 file yang masing masing bernama :
+Sebelum itu, kita akan buat 3 file yang masing masing bernama :
 1. sending.py (untuk mengirim data dari producer)
-2. receive.py (untuk menerima data dari queue di consumer)
+2. email.py (untuk menerima data melalui queue email)
+3. whatsapp.py (untuk menerima data melalui queue whatsapp)
 
 ## Sending
 ### Menghubungkan file python dengan server RabbitMQ
@@ -205,8 +206,102 @@ import pika
 connection = pika.BlockingConnection(pika.ConnectionParameters('localhost'))
 channel = connection.channel()
 ```
+### Deklarasi Exchange
+Pada pembahasan sebelumnya, kita sudah mempelajari pentingnya Exchange dan Queue. Maka dari itu, sekarang kita akan membuat/mendeklarasikan exchange terlebih dahulu.
 
-## Receive
+```python
+channel.exchange_declare(exchange='notification', exchange_type='direct')
+```
+
+Perhatikan Kode diatas :
+- Kita memanggil channel pada server rabbitmq lalu disusul dengan `exchange_declare` untuk mendeklarasikan sebuah exchange.
+- Parameter `exchange = 'notification'` gunanya untuk memberi nama 'notification' pada exchange yang ingin kita buat.
+- Parameter `exchange_type='direct'` gunanya untuk menandakan tipe 'direct exchange' pada exchange yang ingin kita buat.
+
+### Deklarasi Queue
+Setelah kita mendeklarasikan/membuat exchange, kita akan membuat 2 queue agar dapat menyimpan masing masing data notifikasi.
+
+```python
+channel.queue_declare(queue='email')
+channel.queue_declare(queue='whatsapp')
+```
+
+Perhatikan Kode diatas :
+- Kita memanggil channel pada server rabbitmq lalu disusul dengan `queue_declare` untuk mendeklarasikan sebuah queue.
+- Parameter `queue = 'email'`  dan `queue='whatsapp'` gunanya untuk memberi nama 'email' dan 'whatsapp' pada 2 queue yang ingin kita buat.
+
+### Mengirim pesan ke Queue 'email'
+Sekarang kita akan mengirim pesan dari producer ke Queue yang telah kita buat. Pertama, kita akan mengirim pesan ke queue 'email' terlebih dahulu. 
+
+```python
+pesan1 = 'Halo, Ali! Selamat anda diterima untuk bekerja di perusahaan kami!'
+channel.basic_publish(exchange='notification', routing_key='email', body=pesan1)
+```
+
+Perhatikan Kode diatas :
+- Kita akan membuat variabel 'pesan1' untuk menyimpan sebuah data pesan email.
+- Memanggil channel pada server rabbitmq lalu disusul dengan `basic_publish` untuk mengirimkan sebuah data.
+- Parameter `exchange = 'notification'` gunanya untuk mengetahui data dikirim dari exchange 'notification'
+- Parameter `routing_key='email'` gunanya untuk mengetahui data akan dikirim ke routing key 'email'
+- Parameter `body=pesan1` gunanya untuk memanggil variabel 'pesan1' agar menjadi pesan email yang akan dikirimkan.
+
+### Mengirim pesan ke Queue 'whatsapp'
+Sekarang kita akan mengirim ke Queue 'whatsapp'.
+
+```python
+pesan2 = 'Halo sayangg ><'
+channel.basic_publish(exchange='notification', routing_key='whatsapp', body=pesan2)
+```
+
+Sama seperti sebelumnya, tetapi ada beberapa yang berbeda :
+- Kita akan membuat variabel 'pesan2' untuk menyimpan sebuah data pesan whatsapp.
+- Parameter `routing_key='whatsapp'` gunanya untuk menandakan bahwa data akan dikirim ke routing key 'whatsapp'
+- Parameter `body=pesan2` gunanya untuk memanggil variabel 'pesan2' agar menjadi pesan whatsapp yang akan dikirimkan.
+
+### Menutup Koneksi
+Setelah program dijalankan dan data telah dikirim, akan ada pemberitahuan kalau data terkirim dan koneksi akan ditutup.
+
+```python
+print('Pesan terkirim!')
+
+connection.close()
+```
+
+Perhatikan Kode diatas :
+- Pertama kita akan membuat sebuah output 'Pesan terkirim!' agar sender mengetahui bahwa pesan telah terkirim
+- `connection.close()` gunanya untuk menutup koneksi server rabbitmq
+
+### Hasil kode
+
+```python
+import pika
+
+# Koneksi ke RabbitMQ
+connection = pika.BlockingConnection(pika.ConnectionParameters('localhost'))
+channel = connection.channel()
+
+# Deklarasi exchange dan queue
+channel.exchange_declare(exchange='notification', exchange_type='direct')
+channel.queue_declare(queue='email')
+channel.queue_declare(queue='whatsapp')
+
+# Mengirim pesan ke queue1
+pesan1 = 'Halo, Ali! Selamat anda diterima untuk bekerja di perusahaan kami!'
+channel.basic_publish(exchange='notification', routing_key='email', body=pesan1)
+
+# Mengirim pesan ke queue2
+pesan2 = 'Halo sayangg ><'
+channel.basic_publish(exchange='notification', routing_key='whatsapp', body=pesan2)
+
+print('Pesan terkirim!')
+
+# Menutup koneksi
+connection.close()
+```
+>[!IMPORTANT]
+>Jangan lupa simpan (save) filenya!!
+
+## Receive (email.py)
 ### Menghubungkan file python dengan server RabbitMQ
 Sama seperti saat mengirim data, hal pertama yang perlu kita lakukan adalah membuat koneksi dengan server RabbitMQ. kita akan mengoneksikannya ke mesin lokal kita yaitu 'localhost' karna sama degnan server untuk mengirim data :
 
@@ -216,3 +311,128 @@ import pika
 connection = pika.BlockingConnection(pika.ConnectionParameters('localhost'))
 channel = connection.channel()
 ```
+
+### Deklarasi Exchange dan Queue
+Kita akan mendeklarasikan Exchange dan Queue yang telah kita buat sebelumnya. Bedanya, kita hanya mendeklarasikan queue 'email' disini karena kita hanya fokus mengirimkan data ke queue email saja.
+
+```python
+channel.exchange_declare(exchange='notification', exchange_type='direct')
+channel.queue_declare(queue='email')
+```
+
+### Binding Queue dengan Exchange
+Pastinya kita harus menghubungkan/binding queue 'email' dengan exchange 'notification' dan memberi routing key diantara queue dan exchange tersebut.
+
+```python
+channel.queue_bind(exchange='notification', queue='email', routing_key='email')
+```
+
+Perhatikan kode diatas :
+- Kita memanggil channel pada server rabbitmq lalu disusul dengan `queue_bind` untuk binding queue dengan exchange.
+- Parameter `exchange='notification'` gunanya untuk menandakan exchange 'notification' yang akan kita binding.
+- Parameter `queue='email'` gunanya untuk menandakan queue 'email' untuk dihubungkan dengan exchange yang telah kita tandai sebelumnya (exchange 'notification')
+- Parameter `routing_key='email'` gunanya untuk mmberi routing key 'email' diantara queue dan exchange yang telah kita tandai sebelumnya.
+
+### Membuat Fungsi untuk menerima pesan
+Setelah itu, kita akan membuat fungsi bawaan  `callback` untuk menerima pesan yang telah dikirim 'sending.py'.
+
+```python
+def callback(ch, method, properties, body):
+    print('Pesan diterima :', body)
+```
+
+Perhatikan kode berikut :
+- Fungsi dan parameter `callback(ch, method, properties, body)` dipanggil dari library pika. jadi itu adalah sebuah fungsi bawaan RabbitMQ.
+- Saat pesan telah diterima, akan muncul output `Pesan diterima :` lalu ditambah dengan pesan yang dikirim oleh sender.
+
+### Menerima(consume) pesan dari Queue 'email'
+Sekarang kita akan menerima pesan dari queue 'email' sebagai sebuah 'consumer'.
+
+```python
+channel.basic_consume(queue='email', on_message_callback=callback, auto_ack=True)
+```
+
+Perhatikan kode diatas :
+- Kita memanggil channel pada server rabbitmq lalu disusul dengan `basic_consume` untuk menerima data pesan dari queue sebagai consumer.
+- Parameter `queue='email'` gunanya untuk menandai kalau kita ingin menerima data dari queue 'email'.
+- Parameter `on_message_callback=callback` gunanya untuk memanggil perintah didalam fungsi 'callback' agar terdapat output yang telah tersedia di fungsi 'callback'
+- Parameter `auto_ack=True` gunanya agar consumer melaporkan ke rabbitmq kalau pesan itu telah diterima consumer. Setelah rabbitmq menerima laporan, data didalam queue rabbitmq akan segera dihapus
+
+### Proses menerima pesan
+Terakhir, kita akan menjalankan proses menerima pesan secara terus-menerus serta memberi output agar receiver dapat mengetahui kalau sedang dalam proses menerima pesan.
+
+```python
+print('Menerima pesan email...')
+
+channel.start_consuming()
+```
+
+Perhatikan kode diatas :
+- Kita akan print output "Menerima pesan email..." agar receiver dapat mengetahui kalau proses menerima pesan sedang berjalan.
+- Kita memanggil channel pada server rabbitmq lalu disusul dengan `start_consuming` untuk memulai menerima data pesan.
+
+### Hasil Kode
+```python
+import pika
+
+# Koneksi ke RabbitMQ
+connection = pika.BlockingConnection(pika.ConnectionParameters('localhost'))
+channel = connection.channel()
+
+# Deklarasi exchange dan queue
+channel.exchange_declare(exchange='notification', exchange_type='direct')
+channel.queue_declare(queue='email')
+channel.queue_bind(exchange='notification',
+                   queue='email',
+                   routing_key='email')
+
+# Fungsi callback untuk menerima pesan
+def callback(ch, method, properties, body):
+    print('Pesan diterima :', body)
+
+# Menerima pesan dari queue1
+channel.basic_consume(queue='email', on_message_callback=callback, auto_ack=True)
+
+print('Menerima pesan email...')
+
+# Menjalankan proses menerima pesan
+channel.start_consuming()
+```
+
+>[!IMPORTANT]
+>Jangan lupa simpan (save) filenya!!
+
+## Receive (whatsapp.py)
+### Hasil Kode
+Kode pada `whatsapp.py` tidak jauh beda dengan `email.py`. Hanya terdapat beberapa perbedaan seperti pada nama queue dan routing key-nya. berikut hasil kode dari `whatsapp.py`.
+
+```python
+import pika
+
+connection = pika.BlockingConnection(pika.ConnectionParameters('localhost'))
+channel = connection.channel()
+
+# Deklarasi exchange dan queue
+channel.exchange_declare(exchange='notification', exchange_type='direct')
+channel.queue_declare(queue='whatsapp')
+channel.queue_bind(exchange='notification',
+                   queue='whatsapp',
+                   routing_key='whatsapp')
+
+# Fungsi callback untuk menerima pesan
+def callback(ch, method, properties, body):
+    print('Pesan diterima :', body)
+
+# Menerima pesan dari queue2
+channel.basic_consume(queue='whatsapp', on_message_callback=callback, auto_ack=True)
+
+print('Menerima pesan whatsapp...')
+
+# Menjalankan proses menerima pesan
+channel.start_consuming()
+```
+
+>[!IMPORTANT]
+>Jangan lupa simpan (save) filenya!!
+
+# Menjalankan proses RabbitMQ
