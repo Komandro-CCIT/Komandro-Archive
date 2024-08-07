@@ -40,8 +40,8 @@ Jadi, data-data yang ingin dikirim aplikasi 'Order' ke 3 aplikasi yang terhubung
 
 # RabbitMQ
 
-<p align=`center`>
-<img width=`50%` height=`auto` src=`./assets/3-message-broker/rabbitmq.jpg`>
+<p align="center">
+<img width="50%" height="auto" src="./assets/3-message-broker/rabbitmq.jpg">
 </p>
 
 RabbitMQ merupakan salahsatu perangkat lunak Message Broker yang open-source untuk komunikasi Messaging. RabbitMQ merupakan perangkat lunak yang sangat ringan sehingga cocok digunakan di semua sistem operasi seperti Windows, Linux, dan MAC. 
@@ -71,16 +71,16 @@ graph LR
 
 Jika kita analogikan, sistem RabbitMQ ini sama seperti kita mengirimkan barang menggunakan jasa kurir. 
 
-<p align=`center`>
-<img width=`25%` height=`auto` src=`./assets/3-message-broker/kirara.jpeg`>
+<p align="center">
+<img width="25%" height="auto" src="./assets/3-message-broker/kirara.jpeg">
 </p>
 
 Sebagai contoh, kita ingin mengirimkan 2 barang ke tempat yang berbeda. Alamat kita di Jakarta, sedangkan barang pertama ingin dikirimkan ke Bekasi dan barang kedua akan dikirimkan ke Bandung. Maka alurnya akan seperti berikut :
 
 ```mermaid
 graph LR
-    P(`Jakarta 
-    (alamat kita)`) --> E(Jasa Kurir terdekat)
+    P("Jakarta 
+    (alamat kita)") --> E(Jasa Kurir terdekat)
     subgraph Jasa Kurir
         E -- Bekasi --> Q(Gudang Sortir Bekasi)
         E -- Bandung --> Q2(Gudang Sortir Bandung)
