@@ -1,6 +1,7 @@
-3- Message Broker
+3 - Message Broker
 ---
- = Ali Ikhwan Habibie (@al_ikhwan.h)
+
+Author = Ali Ikhwan Habibie (@al_ikhwan.h)
 
 # Overview
 Message Broker adalah perangkat lunak yang memungkinkan aplikasi, sistem, dan layanan berkomunikasi satu sama lain dan bertukar informasi. Dengan adanya Message Broker, kita dapat mengirim data dari suatu aplikasi/sistem ke beberapa aplikasi/sistem lainnya yang kompleks dengan aman dan andal.
@@ -15,7 +16,7 @@ Message Broker adalah perangkat lunak yang memungkinkan aplikasi, sistem, dan la
 - Terdapat delay (jeda waktu) data yang tidak konsisten dari pengirim data sampai ke penerima data,
 - Saat data gagal dikirim, pengirim data tidak tahu kalau data yang dikirim itu mengalami kegagalan.
 
-# Design System'
+# Design System
 Mari kita lihat contoh alur sistem toko online dan mempunyai aplikasi pada diagram dibawah ini :
 
 ```mermaid
@@ -145,10 +146,10 @@ graph LR
 graph LR
     P(Producer) --> E(Topic Exchange)
     subgraph RabbitMQ
-        E -- order.* --> Q(`Queue A
-        (All Order)`)
-        E -- # --> Q2(`Queue B 
-        (All Data)`)
+        E -- order.* --> Q("Queue A
+        (All Order)")
+        E -- # --> Q2("Queue B 
+        (All Data)")
     end
     Q --> C(Consumer A)
     Q2 --> C2(Consumer B)
@@ -179,7 +180,7 @@ source venv/bin/activate
 pip install pika
 ```
 
-# Membuat program RabbitMQ pertama di Python
+# Membuat program RabbitMQ pertama dengan Python
 Kita akan membuat program dengan alur seperti diagram dibawah ini :
 
 ```mermaid
@@ -438,3 +439,29 @@ channel.start_consuming()
 >Jangan lupa simpan (save) filenya!!
 
 # Menjalankan proses RabbitMQ
+Sekarang kita akan coba menjalankan proses RabbitMQ pada python yang telah kita buat sebelumnya. 
+Pertama tama, kalian buka terminal dahulu dengan cara pencet titik tiga di tab atas > Terminal > New Terminal. Dikarenakan kita akan menjalankan 3 proses yang berbeda, maka kita akan membuka 3 terminal pada VSCode kita. Klik tanda "+" pada kanan atas terminal.
+
+![Alt Text](./assets/3-message-broker/1.png)
+
+Setelah kalian buat 3 terminal, beri nama masing masing terminal agar lebih mudah diakses. Klik kanan pada salashatu terminal lalu pencet rename, setelah itu berilah nama terminal sesuai dengan prosesnya.
+
+![Alt Text](./assets/3-message-broker/2.png)
+
+Jika sudah, aktifkan venv di **semua terminal** dengan cara masukkan kode dibawah ini :
+
+```bash
+source venv/bin/activate
+```
+
+Jalankan file python untuk menerima data terlebih dahulu di masing masing terminal. Dikasus ini yaitu `whatsapp.py` dan `email.py` :
+- Pada terminal `Email`, masukkan perintah `python3 email.py`
+- Pada terminal `Whatsapp`, masukkan perintah `python3 whatsapp.py`
+
+Setelah kalian menjalankan kedua file tersebut, maka proses consume data akan dimulai secara terus menerus. Jika kalian ingin keluar dari proses menerima datanya, pencet CTRL + C.
+
+Setelah itu, jalankan file `sending.py` di terminal `Sending` dengan cara masukkan perintah `python3 sending.py`. Maka pesan akan dikirim. Setelah itu, lihat kembali terminal `whatsapp` dan `email`. Kalian akan lihat pesan yang telah dikirim dari `sending.py`.
+
+![Alt Text](./assets/3-message-broker/3.gif)
+
+## Ganbatteee nee~ ^^ 
