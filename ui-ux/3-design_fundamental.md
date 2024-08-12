@@ -2,7 +2,7 @@
 
 ![Untitled](./assets/design_fundamental/Untitled.png)
 
-Nah kalian udah pada tau belum, apa itu Design Fundamental \*\*\*\*?
+Nah kalian udah pada tau belum, apa itu Design Fundamental ?
 
 ## Pengertian Design Fundamental
 
