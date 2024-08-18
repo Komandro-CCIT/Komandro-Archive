@@ -119,7 +119,6 @@ Selamat Belajar! 🔥
 
 ![Alt Text](https://media1.tenor.com/m/R0D2MpGV-vwAAAAC/hi.gif)
 
-
 ---
 
 ## Raspberry PI
@@ -148,7 +147,8 @@ Kami dari Komunitas Android CCIT - FTUI akan membagikan langkah-langkah dasar da
 
 Sebelum kita menjelajah Internet of Things menggunakan Raspbian OS, mari kita fokus untuk mempelajari logika dari Internet of Things itu sendiri menggunakan **Ubuntu OS dibantu dengan Multipass dan Visual Studio Code.**
 >Kenapa kita gak langsung menggunakan Raspbian OS saja?
-Ada beberapa alasan mengapa saat ini kita lebih baik menggunakan Ubuntu OS melalui Multipass dibanding langsung menggunakan Raspbian OS :
+Ada beberapa alasan mengapa saat ini kita lebih baik menggunakan Ubuntu OS melalui Multipass dibanding langsung menggunakan Raspbian OS:
+
 - Beginner Friendly. Jadi sangat cocok untuk kita yang baru mulai belajar tentang struktur logika Internet of Things
 - Multipass lebih ringan dibanding virtual maching lainnya (seperti virtual box, etc)
 - Praktis. Kita bisa bulak balik buka browser dan Visual Studio agar dapat melihat dokumentasi/tutorial sekalian kita mempraktekannya
@@ -185,49 +185,80 @@ Selanjutnya kita akan membuat instance sebagai wadah dari Ubuntu.
 ```bash
 multipass launch --name [nama instance kalian]
 ```
+
 Kita akan coba menamai instance kita dengan nama "komandro", kodenya akan menjadi seperti ini
 
 ```bash
 multipass launch --name komandro
 ```
 
-Setelah itu, multipass akan otomatis membuat instance baru lalu download dan install ubuntunya, disini kalian tunggu saja sampai selesai download semuanya.
-**Pastikan koneksi internet kalian lancar!**
+Kalian juga dapat merubah versinya sesuai yang kita mau, misalnya
+
+```bash
+multipass launch [versi] --name komandro
+```
+
+Contoh:
+
+```bash
+multipass launch 22.04 --name komandro
+```
+
+> [!NOTE]
+> Untuk saat ini kita tidak perlu memilih versi, jadi cukup ketikkan `multipass launch --name komandro` agar mendapatkan versi terakhir ubuntu
+
+Setelah itu, multipass akan otomatis membuat instance baru lalu, men-download dan menginstall ubuntunya, disini kalian tunggu saja sampai selesai download semuanya.
+
+> [!WARNING]
+> Pastikan koneksi internet kalian lancar dan stabil!
 
 ![Alt Text](./assets/1-introduction/6.png)
 
 > [!NOTE]
 > Jika kalian mengalami error "launch failed: Remote "" is unknown or unreachable", masukkan kode dibawah ini pada powershall
->```bash
-Get-HNSNetwork | ? Name -Like "Default Switch" | Remove-HNSNetwork```
->Setelah itu restart komputer kalian lalu buka powershall as administrator dan launch kembali seperti cara diatas
+
+```bash
+Get-HNSNetwork | ? Name -Like "Default Switch" | Remove-HNSNetwork
+```
+
+Setelah itu restart komputer kalian lalu buka powershall as administrator dan launch kembali seperti cara diatas
 
 Jika sudah selesai launchnya, kita akan lihat apakah instance 'komandro' sudah berjalan atau belum. Coba kalian masukkan kode ini pada powershell
 
 ```bash
 multipass list
 ```
+
 ![Alt Text](./assets/1-introduction/7.png)
 
-Jika instance 'komandro' sudah running dan ada alamat IP nya, berarti kalian sudah berhasil untuk membuat instance pertama kalian! ^^
+Jika instance `komandro` sudah running dan ada alamat IP nya, berarti kalian sudah berhasil untuk membuat instance pertama kalian! ^^
+
 <br/>
 
-Next, kita akan membuka shell dengan instance kita yang bernama 'komandro'
+Next, kita akan membuka shell dengan instance kita yang bernama `komandro`
 
 ```bash
 multipass shell komandro
 ```
-Jika sudah masukkan kode tersebut, powershell akan menampilkan shell dari instance 'komandro' seperti gambar dibawah ini
+
+Jika sudah masukkan kode tersebut, powershell akan menampilkan shell dari instance `komandro` seperti gambar dibawah ini
 
 ![Alt Text](./assets/1-introduction/8.png)
 
-Habis itu, kita akan melakukan konfigurasi. Masukan perintah dibawah ini :
+Apabila sudah muncul data di atas, maka kita sudah berhasil membuat instance yang kita butuhkan.
+
+## Terhubung Tanpa Masuk
+
+Kita perlu terhubung dengan server atau instance yang kita bangun tanpa perlu masuk ke dalamnya, hal ini dikarenakan kitalah yang akan kesulitan apabila ingin melakukan perubahan di dalamnya apabila tidak terhubung.
+
+
+Masuk ke dalam server lalu masukan perintah dibawah ini:
 
 ```bash
 cd /etc/ssh/sshd_config.d
 ```
 
-Dilanjutkan dengan :
+Dilanjutkan dengan:
 
 ```bash
 sudo nano 60-cloudimg-settings.conf
@@ -237,19 +268,21 @@ Setelah itu akan muncul tampilan seperti dibawah ini
 
 ![Alt Text](./assets/1-introduction/9.png)
 
-Jika sudah seperti itu, ikuti langkah berikut (lihat gif dibawah ini untuk lebih jelasnya) :
+Jika sudah seperti itu, ikuti langkah berikut (lihat gif dibawah ini untuk lebih jelasnya):
+
 1. Ganti kata 'no' menjadi 'yes'
-2. Pencet CTRL+SHIFT+X
+2. Tekan `CTRL+SHIFT+X`
 3. Ketik 'y' lalu pencet Enter 2 kali
 
 ![Alt Text](./assets/1-introduction/10.gif)
 
-Jika kalian sudah kembali ke halaman utama lagi, sekarang kita akan membuat password baru untuk ubuntu kita dengan perintah berikut ini :
+Jika kalian sudah kembali ke halaman utama lagi, sekarang kita akan membuat password baru untuk ubuntu kita dengan perintah berikut ini:
 
 ```bash
 sudo passwd ubuntu
 ```
-Lalu kalian akan diminta untuk memasukkan password baru. Mari kita buat passwordnya itu '123456' (opsional, biar simpel wkwk). 
+
+Lalu kalian akan diminta untuk memasukkan password baru. Mari kita buat passwordnya itu '123456' (opsional, biar simpel wkwk).
 
 >[!NOTE]
 >Jika saat kalian masukkan passwordnya tapi tidak muncul di powershellnya, tenang itu fitur agar password tersebut jadi rahasia. Jadi, coba kalian masukkan passwordnya saja lalu tekan enter
@@ -260,31 +293,31 @@ Setelah itu kalian akan diminta untuk masukkan password tadi lagi (Untuk konfirm
 
 <br/>
 
-Sekarang kalian reboot server instance kalian dengan menggunakan perintah :
+Sekarang kalian reboot server instance kalian dengan menggunakan perintah:
 
 ```bash
 sudo reboot
 ```
 
-Kalian akan dibawa ke tampilan powershell seperti awal lagi, disini kita akan cek lagi apakah instance kita sudah berjalan dan ada alamat IP nya atau belum dengan menggunakan perintah :
+Kalian akan dibawa ke tampilan powershell seperti awal lagi, disini kita akan cek lagi apakah instance kita sudah berjalan dan ada alamat IP nya atau belum dengan menggunakan perintah:
 
 ```bash
 multipass list
 ```
 
-Jika sudah running dan ada alamat IPnya, kita akan menjalankan ubuntu kita dengan perintah :
+Jika sudah running dan ada alamat IPnya, kita akan menjalankan ubuntu kita dengan perintah:
 
 ```bash
 ssh ubuntu@ip
 ```
 
-Di setelah simbol '@', masukkan alamat IP kalian yang sudah kita lihat di list tadi. Pada kasus ini, alamat IP instance pada powershell saya yaitu '172.21.179.92'. Berarti saya memasukan perintah seperti ini :
+Di setelah simbol '@', masukkan alamat IP kalian yang sudah kita lihat di list tadi. Pada kasus ini, alamat IP instance pada powershell saya yaitu '172.21.179.92'. Berarti saya memasukan perintah seperti ini:
 
 ```bash
 ssh ubuntu@172.21.179.92
 ```
 
-Selanjutnya, kalian ketik 'yes' lalu enter, dan masukkan password yang telah kita buat tadi yaitu '123456'. 
+Selanjutnya, kalian ketik 'yes' lalu enter, dan masukkan password yang telah kita buat tadi yaitu '123456'.
 
 ![Alt Text](./assets/1-introduction/12.png)
 
@@ -302,13 +335,13 @@ Sebelumnya kita sudah coba install dan setting Multipass pada perangkat kita. Se
 > Sebelum kalian mulaiastikan kalian memiliki ekstensi Remote SSH seperti gambar dibawah ini!
 > ![Alt Text](./assets/1-introduction/ssh.jpeg)
 
-Selanjutnya, ikuti langkah dibawah ini (lihat gif dibawah yang lebih jelasnya) :
+Selanjutnya, ikuti langkah dibawah ini (lihat gif dibawah yang lebih jelasnya):
 
-1. Pencet tombol warna biru dipojok kiri bawah pada window Visual Studio Code 
+1. Pencet tombol warna biru dipojok kiri bawah pada window Visual Studio Code
 2. klik opsi "Connect to Host"
 3. Ketik ```ubuntu@[ip]```. Masukkan IP instance kalian seperti yang ada di powershell. Misalnya kalau saya yaitu ```ubuntu@172.21.179.92```
 4. Lalu kita akan dibawa ke window baru (windows sebelumnya diclose saja), setelah itu kalian pilih opsi "Linux"
-5. Masukkan password yang telah kita bikin tadi, yaitu '123456' 
+5. Masukkan password yang telah kita bikin tadi, yaitu '123456'
 6. Tunggu beberapa menit dikarenakan sedang download dan install beberapa data
 
 ![Alt Text](./assets/1-introduction/15.gif)
@@ -316,28 +349,28 @@ Selanjutnya, ikuti langkah dibawah ini (lihat gif dibawah yang lebih jelasnya) :
 Yeyy! kita sudah selesai menghubungkan Multipass dengan Visual Studio Code ^^
 
 > [!NOTE]
-> Jika disebelah kiri bawah ada tulisan "SSH : (IP Kalian)" berarti Window Visual Studio Code tersebut sedang remote Instance Multipass kita
+> Jika disebelah kiri bawah ada tulisan "SSH: (IP Kalian)" berarti Window Visual Studio Code tersebut sedang remote Instance Multipass kita
 
 ![Alt Text](./assets/1-introduction/16.png)
 
 ## Membuat Program Python Pertama pada Ubuntu yang telah dibuat
 
-Sekarang kita coba buat program python pertama kita di Ubuntu ini. 
+Sekarang kita coba buat program python pertama kita di Ubuntu ini.
 Pertama kita akan membuat direktori baru untuk menyimpan file python kalian. Coba kalian buka terminal di VS Code dengan cara pencet titik tiga di tab atas > Terminal > New Terminal
 
 ![Alt Text](./assets/1-introduction/17.png)
 
-Selanjutnya kita akan membuat direktori/folder baru dengan nama 'projek1' dengan perintah :
+Selanjutnya kita akan membuat direktori/folder baru dengan nama 'projek1' dengan perintah:
 
 ```bash
 mkdir projek1
 ```
 
-Kalau sudah, kita buka folder 'projek1' tadi. Lalu masukkan passwordnya. Perhatikan GIF dibawah ini :
+Kalau sudah, kita buka folder 'projek1' tadi. Lalu masukkan passwordnya. Perhatikan GIF dibawah ini:
 
 ![Alt Text](./assets/1-introduction/18.gif)
 
-Dan selamat kamu sudah masuk ke dalam instance multipass yang telah kamu buat. Setelah itu, buatlah file python dan isi kode sederhana didalam file python tersebut. Misalnya :
+Dan selamat kamu sudah masuk ke dalam instance multipass yang telah kamu buat. Setelah itu, buatlah file python dan isi kode sederhana didalam file python tersebut. Misalnya:
 
 ```python
 print("Hello World!")
@@ -355,7 +388,7 @@ Kalau error, coba kode dibawah ini (sesuai dengan perintah):
 python3 [Nama file kamu]
 ```
 
-Perhatikan gif dibawah ini :
+Perhatikan gif dibawah ini:
 
 ![Alt Text](./assets/1-introduction/19.gif)
 
