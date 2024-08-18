@@ -1,20 +1,20 @@
 ﻿# 4- Basic Figma
 
 - [4- Basic Figma](#4--basic-figma)
-	- [Figma tools](#figma-tools)
-	- [1. Move Tool](#1-move-tool)
-	- [2. Scale Tool](#2-scale-tool)
-	- [3. Frame Tool](#3-frame-tool)
-	- [4. Slice Tool](#4-slice-tool)
-	- [5. Pen Tool](#5-pen-tool)
-	- [6. Pencil Tool](#6-pencil-tool)
-	- [7. Shape Tool](#7-shape-tool)
-	- [8. Text Tool](#8-text-tool)
-	- [9. Hand Tool](#9-hand-tool)
-	- [10.  Comment Tool](#10--comment-tool)
-	- [Figma Design Panel](#figma-design-panel)
-	- [Figma Layer Panel](#figma-layer-panel)
-	- [Catatan akhir](#catatan-akhir)
+  - [Figma tools](#figma-tools)
+    - [1. Move Tool](#1-move-tool)
+    - [2. Scale Tool](#2-scale-tool)
+    - [3. Frame Tool](#3-frame-tool)
+    - [4. Slice Tool](#4-slice-tool)
+    - [5. Pen Tool](#5-pen-tool)
+    - [6. Pencil Tool](#6-pencil-tool)
+    - [7. Shape Tool](#7-shape-tool)
+    - [8. Text Tool](#8-text-tool)
+    - [9. Hand Tool](#9-hand-tool)
+    - [10.  Comment Tool](#10--comment-tool)
+  - [Figma Design Panel](#figma-design-panel)
+  - [Figma Layer Panel](#figma-layer-panel)
+  - [Catatan akhir](#catatan-akhir)
 
 ---
 
@@ -38,7 +38,7 @@ Bagi seorang UIUX designer, menguasai Figma adalah hal yang wajib untuk di lakuk
 
 Toolbar Figma, yang terletak di bagian atas layar kamu, memberikan akses ke alat dan fungsionalitas inti dari program ini Dirancang untuk menyertakan alat penting, memastikan bahwa semua yang kamu butuhkan mudah dijangkau Mengenal toolbar ini adalah langkah pertama dalam membuka kreativitas kamu di Figma Bahkan sebagai pemula, kamu akan menemukan bahwa kamu dapat dengan cepat mulai bereksperimen dan membuat bentuk dasar, membentuk dasar untuk desain yang lebih kompleks seiring dengan meningkatnya keterampilan kamu
 
-## 1. Move Tool
+### 1. Move Tool
 
 Move tool di Figma memungkinkan pengguna untuk memilih dan memindahkan elemen desain dengan mudah.
 
@@ -49,7 +49,7 @@ Kursor panah kustom ini memudahkan untuk memilih dan mengatur lapisan di dalam P
 > [!NOTE]
 > Tip: Kalian dapat menggunakan shortcut "V" untuk Move menggunakan Move tool
 
-## 2. Scale Tool
+### 2. Scale Tool
 
 Scale Tool di Figma memungkinkan pengguna untuk mengubah ukuran elemen desain. Saat alat ini dipilih, kursor berubah menjadi ikon skala khusus, memberi tahu pengguna bahwa mereka berada dalam mode scale.
 
@@ -60,7 +60,7 @@ Dengan Scale tool, pengguna dapat memilih satu atau lebih objek, lalu mengeklik 
 > [!NOTE]
 > Tip : Untuk menskalakan objek secara proporsional di Figma, pilih objek dengan alat Skala, lalu tahan Shift sambil menyeret gagang sudut untuk mempertahankan rasio aspeknya.
 
-## 3. Frame Tool
+### 3. Frame Tool
 
 Frame tool di Figma memungkinkan pengguna untuk membuat dan mengelola komponen layout dasar dalam desain mereka. Saat alat Frame dipilih, kursor berubah menjadi ikon khusus, memberi tahu pengguna bahwa mereka berada dalam mode pembingkaian.
 
@@ -71,7 +71,7 @@ Dengan Frame tool, desainer dapat dengan cepat membuat kotak pembatas untuk meng
 > [!NOTE]
 > Tip: Untuk mengakses Frame Tool, tekan "A", di toolbar Ikon ini terlihat seperti jaringan dari 4 garis yang saling berpotongan
 
-## 4. Slice Tool
+### 4. Slice Tool
 
 Slice tool, dapat ditemukan dengan mengeklik panah di sebelah Frame tool dan dapat dikenali dengan ikon pisau irisnya, dirancang untuk menentukan wilayah layar yang akan diekspor.
 
@@ -80,7 +80,7 @@ Berbeda dengan Frame tool yang digunakan untuk membangun dan mengatur tata letak
 > [!NOTE]
 > Tip: Untuk mengakses Slice Tool, kalian dapat menekan tombol "S" pada keyboard
 
-## 5. Pen Tool
+### 5. Pen Tool
 
 Pen tool di Figma memungkinkan pengguna untuk menggambar dan membuat bentuk vektor secara manual. Saat alat Pen dipilih, kursor berubah menjadi ikon pena khusus, memberi tahu pengguna bahwa mereka berada dalam mode menggambar vektor.
 
@@ -89,7 +89,7 @@ Pen tool sering digunakan untuk kegiatan seperti desain logo, menciptakan elemen
 > [!NOTE]
 > Tip: Untuk mengakses Pen Tool kamu dapat menekan tombol "P" pada keyboard
 
-## 6. Pencil Tool
+### 6. Pencil Tool
 
 Dengan Pencil tool, desainer dapat mengeklik dan menyeret untuk menggambar garis, lengkungan, dan bentuk tidak beraturan pada kanvas. Alat ini berfungsi seperti menggambar dengan pensil di atas kertas, memberikan efek yang lebih spontan dan alami dibandingkan dengan alat Pen vektor.
 
@@ -98,7 +98,7 @@ Pen tool menawarkan freehand approach untuk menambahkan sketsa, catatan, atau se
 > [!NOTE]
 > Tip: Untuk mengakses Pencil Tool kamu dapat menekan tombol "Sift" + "P" pada keyboard, ini berlaku untuk Mac dan Windows!
 
-## 7. Shape Tool
+### 7. Shape Tool
 
 Figma memiliki beberapa alat bentuk default, masing-masing diidentifikasi oleh ikon representatif Untuk menggambar bentuk, cukup pilih alat yang diinginkan dari menu dropdown dan klik serta drag ke kanvas.
 
@@ -119,7 +119,7 @@ Shape Tool juga memiliki opsi untuk menaruh images ke kanvas:
 > [!NOTE]
 > Tip : Untuk menggambar bentuk proporsional (seperti persegi atau lingkaran sempurna), tahan tombol Shift sambil drag di kanvas.
 
-## 8. Text Tool
+### 8. Text Tool
 
 Text tool di Figma memungkinkan pengguna untuk menambahkan dan mengelola teks dalam desain mereka.
 
@@ -128,11 +128,11 @@ Untuk membuat layer teks instan, kalian bisa klik sekali pada kanvas. Jika kamu 
 > [!NOTE]
 > Tip : Kalian dapat menggunakan shortcut "T" untuk menggunakan Text Tool
 
-## 9. Hand Tool
+### 9. Hand Tool
 
 Hand tool adalah alat untuk navigasi yang lancar  di dalam workspace, alat ini memungkinkan kamu untuk menavigasi tanpa sengaja memilih atau mengubah sesuatu. Untuk mengaktifkan Hand tool, cukup tekan dan tahan Spasi/Space.
 
-## 10.  Comment Tool
+### 10.  Comment Tool
 
 Comment tool di Figma, yang dapat diketahui dengan ikon bubble chat, memudahkan komunikasi lancar dengan tim kamu, Cocok untuk membahas perubahan, merespons umpan balik, dan menyempurnakan desain langsung di dalam file desain itu sendiri Setelah diaktifkan, kursor berubah menjadi ikon gelembung obrolan, memungkinkan pengguna mengklik di mana saja pada desain untuk meninggalkan komentar.
 
