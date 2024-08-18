@@ -160,11 +160,13 @@ for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker c
 ```
 
 > [!NOTE]
-> Untuk memasukan command dengan mudah, copy command yang ada lalu klik kanan mouse pada terminal.
+> Untuk memasukan command dengan mudah, copy command yang ingin dimasukan lalu klik kanan mouse pada terminal.
 
 #### 1. Setup Repository Docker
 
 Sebelum Anda menginstal Docker Engine untuk pertama kali pada mesin host baru, Anda perlu menyiapkan repository Docker. Setelah itu, Anda dapat menginstal dan memperbarui Docker dari repository tersebut.
+
+
 
 Masukan command dibawah dari per baris ke terminal
 
@@ -222,4 +224,160 @@ Jika proses instalasi berhasil maka terminal akan memunculkan pesan seperti pada
 
 ## Docker Command Introduction
 
-**WIP**
+Nah sekarang docker engine sudah terinstal didalam multipass kalian tentu itu gak akan berguna kalau kalian gak tahu cara mengoperasikannya. Disini kita akan belajar syntax dan basic command dari Docker ini, jadi siapkan mental kalian kita akan terjun lebih dalam ke materi Docker ini 🔥🔥🔥.
+
+> [!NOTE]
+> Untuk menjalankan command docker kalian perlu akses sudo, jadi setiap menjalankan command pastikan gunakan sudo atau masuk ke akun root kalian.
+
+### 1. `docker pull`
+
+```bash
+docker pull NAME:TAG
+```
+
+Command ini digunakan untuk mendownload image kedalam sistem host kalian, command ini biasanya bersifat opsional karena command `docker run` yang akan kalian pelajari selanjutnya akan otomatis melakukan download pada image yang kalian ingin jalankan. Nama image dan tag image yang dapat kalian download ada pada website [docker hub](https://hub.docker.com/).
+
+- **NAME** adalah nama  dari image yang ingin kalian download. 
+- **TAG** adalah versi atau jenis spesifik dari image.
+  
+
+> [!NOTE]
+> Image merupakan sebuah paket yang berisi semua hal yang dibutuhkan oleh suatu aplikasi untuk berjalan didalam suatu container
+
+Contoh penggunaan command diatas bisa dilihat dibawah :
+```
+sudo docker pull httpd:latest
+```
+Pada command diatas kita melakukan pull atau download image bernama httpd dengan tag latest, setelah kalian melakukan pull diatas saat kalian mau menjalankan image httpd:latest kalian gak perlu download lagi karena sudah tersimpan di sistem lokal kalian.
+
+> Kalau pas pull kita lupa gak masukin tag-nya bakal masalah gak ya?
+
+Nah kalau kalian lupa tenang aja soalnya docker bakal otomatis nyariin image dengan versi yang paling baru buat kalian download jadi kalau kalian gak butuh image dengan versi yang spesifik bakal aman azaaa.
+
+### 2. `docker run`
+**Syntax**
+```bash
+docker run [OPTIONS/FLAG] [COMMAND] [ARG...] [IMAGE:TAG]
+```
+Selanjutnya adalah command `docker run`, command ini bagaikan jantung dari docker karena untuk menjalankan dan membuat container kalian akan menggunakan command ini, container akan otomatis berjalan setelah kalian menggunakan `docker run`. Nah sekarang ayo kita pahami syntax-nya karena lumayan banyak hal yang dapat dilakukan di command ini.
+
+- **`OPTIONS/FLAG`** 
+  <br/>
+  Disini kalian bisa mengatur bagaimana kalian ingin menjalankan container. Untuk option yang sering digunakan itu seperti:
+  <br/>
+  <br/>
+  `-d` : digunakan untuk langsung menjalankan container setelah dibuat, biasanya dipakai kalau kalian langsung memasukan command saat melakukan `docker run` 
+
+
+  ```bash
+  docker run -d --name webnginx nginx:latest
+  ```
+    
+  Nah command diatas berarti kita menjalankan container bernama `webnginx` dengan opsi detach maka container tersebut akan langsung berjalan di background.
+  
+
+  `-p` : Digunakan untuk melakukan port forwarding dari host ke container dengan format `host_port:container_port`. Contohnya seperti `-p 8080:80` artinya kita meneruskan port 8080 dari host ke port 80 yang ada di container.
+
+  ```bash
+  docker run -d -p 8080:80 --name mynginx nginx
+  ```
+
+  Dapat dilihat pada command diatas dilakukan port forwarding saat menjalankan container nginx, dengan port forwarding ini kita akan bisa melakukan akses secara langsung kedalam container melalui host tanpa lewat docker terlebih dahulu. 
+
+  Contoh saat kalian sudah menjalankan command diatas dan melakukan akses kedalam ip host dengan port 8080 maka kalian bisa tampilan default nginx. Semisal kalian mau coba akses bisa lihat gif dibawah ya.
+
+  ![](../assets/docker_port-forwarding.gif)
+
+  `--name`: Untuk menamai container kalian. 
+
+  Kalau kalian tidak menamai container kalian maka docker akan memberikan nama secara otomatis namun pasti kalian bakal lupa karena namanya bakal random banget dari docker, makanya dengan option ini kalian bisa menamai container kalian sendiri sehingga jika kalian ingin melakukan manajemen akan lebih mudah.
+
+  ```bash
+  docker run --name mynginx nginx
+  ```
+
+  pada command diatas container bernama `mynginx` akan dijalankan dengan image nginx.
+
+
+  Sebenarnya masih banyak banget loh flag atau option yang bisa kalian pakai di command `docker run` ini, kalau kalian mau tahu lebih lanjut kalian bisa cek di [dokumentasi docker](https://docs.docker.com/reference/cli/docker/container/run/) kalau ingin tahu lebih lanjut apa aja option yang bisa kalian pakai.
+
+- **`COMMAND` dan `ARG...`**
+  <br/>
+  Bagian `COMMAND` akan berisi perintah yang akan di eksekusikan langsung kedalam container ketika container tersebut dijalankan. Sedangkan `ARG..` adalah argumen untuk `COMMAND` yang akan dimasukan.
+
+  ```bash
+  docker run ubuntu echo "Hello, Docker!"
+  ```
+
+  ![](../assets/docker_command-arg.gif)
+
+  Contoh simpelnya bisa dilihat diatas, pada line diatas container ubuntu akan eksekusi command echo dengan argumen "Hello, World!" dan print teks tersebut didalam container dan akan menunjukan ke terminal saat kalian menjalankan command diatas.
+
+- **`IMAGE:TAG`**
+  <br/>
+  Sama seperti penjelsannya sebelumnya kalian bisa mengisikan nama image dan tag-nya untuk dijalankan docker.
+
+
+### 3. Docker container management command
+
+Setelah kalian membuat container kalian pasti pengen tau dong gimana sih cara mengelolanya, kalian bisa manage container kalian dengan command yang ada disini mulai dari start, stop, remove dan masih banyak lagi. Berikut command yang bisa kalian pakai :
+
+#### - `docker start`
+Command `docker start` bisa kalian gunakan jika kalian sudah punya container sebelumnya tapi dalam status **stop**.
+
+```bash
+docker start [OPTIONS] [CONTAINER]
+```
+
+- `OPTIONS`: Sama seperti sebelumnya ini merupakan pilihan opsional saat menjalankan command
+- `CONTAINER`: Nama atau ID dari container kalian.
+
+![](../assets/docker_start.gif)
+
+`docker start` juga bisa menjalankan lebih dari 1 container dengan cara
+
+```bash
+docker start [NAMA-CONTAINER_1] [NAMA-CONTAINER_2] [NAMA-CONTAINER_...]
+```
+
+Contohnya ada dibawah yang dimaana ada container mynginx, mydebian dan myubuntu yang akan di-start bersamaan.
+
+```bash
+docker start mynginx mydebian myubuntu
+```
+
+
+#### - `docker stop`
+Kalau ada command untuk start pasti ada juga dong untuk stop, `docker stop` digunakan untuk menghentikan container yang sedang berada dalam status aktif atau berjalan.
+
+```bash
+docker stop [OPTIONS] [CONTAINER]
+```
+
+![](../assets/docker_stop.gif)
+
+> [!NOTE]
+> Untuk docker stop syntax-nya kurang lebih sama seperti `docker start`, hanya berbeda pada option.
+
+#### - `docker ps`
+Pada command sebelumnya ada status dari container dan pada demonstrasi ada command `docker ps`
+
+Pasti kalian bingung.
+
+>Cara biar tau status jalan dan berhenti nya gimana?
+
+>`docker ps -a` di demo sebelumnya buat apaan dah?
+
+Nah `docker ps` memungkinkan kalian bisa melihat container berjalan yang ada di host kalian dan juga seluruh container yang ada di host tanpa memandang status "UP" atau "EXITED" kalau pakai option `-a`
+
+```bash
+docker ps
+```
+
+```bash
+docker ps -a
+```
+
+![](../assets/docker_ps.gif)
+
+
