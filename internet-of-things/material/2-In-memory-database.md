@@ -70,6 +70,10 @@ Pada akhirnya, pilihan antara IMDB dan RDBMS tergantung pada kebutuhan spesifik 
 
 ## Redis
 
+<p align="center">
+<img width="auto" height="auto" src="./assets/2-inMemoryDatabase/images.png">
+</p>
+
 Redis adalah database NoSQL yang menggunakan memori utama. Redis adalah singkatan dari "Remote Dictionary Server". Redis sendiri merupakan system data key-value berbasis memory (RAM) yang diriilis pada tahun 2009 sebagai project open source.
 
 Mengapa redis tidak dipakai sebagai database utama? Dikarenakan apabila redis mati, data otomatis akan hilang.
@@ -127,22 +131,39 @@ Pertama, hubungkan VSCode kalian dengan instance multipass yang telah kita buat 
 
 Jika sudah terhubung, buka terminal pada VSCode dengan cara pencet titik tiga di tab atas > Terminal > New Terminal
 
-Setelah itu, masukkan kode dibawah ini satu persatu setiap barisnya:
-
-```bash
-curl -fsSL https://packages.redis.io/gpg | sudo gpg --dearmor -o /usr/share/keyrings/redis-archive-keyring.gpg
-
-echo "deb [signed-by=/usr/share/keyrings/redis-archive-keyring.gpg] https://packages.redis.io/deb $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/redis.list
-
-sudo apt-get update
-
-sudo apt-get install redis
-```
+Sebelum kita install redis, mari kita install redis-server dan venv.
 
 > [!NOTE]
-> Jika nantinya diminta persetujuan [Y/n], ketik 'y' lalu enter.
+> Virtualenv (venv) adalah alat yang digunakan untuk membuat lingkungan Python yang terisolasi. Lingkungan ini memiliki direktori instalasinya sendiri yang tidak berbagi pustaka dengan lingkungan virtualenv lainnya (dan secara opsional juga tidak mengakses pustaka yang diinstal secara global).
 
-Sekarang kalian sudah selesai menginstall Redis pada Ubuntu kalian. Sangat mudah dan cepat bukan? Setelah itu mari kita coba apakah Redis sudah terhubung atau belum.
+Silahkan masukkan kode dibawah ini satu persatu setiap barisnya:
+
+```bash
+sudo su
+
+apt-get update
+
+apt-get install redis-server
+
+python3 -m venv venv
+```
+Jika ada perintah seperti dibawah ini, silahkan install terlebih dahulu sesuai yang diperintahkan
+
+![Alt Text](./assets/2-inMemoryDatabase/req.png)
+
+Misalnya, pada gambar diatas kita diperintahkan untuk menginstall "python3.10-venv" terlebih dahulu. Setelah install, kita akan mengaktifkan venvnya dan install redis didalamnya. Ikuti kode dibawah ini satu persatu setiap barisnya :
+
+```bash
+apt install python3.10-venv
+
+source venv/bin/activate
+
+pip install redis
+
+apt install redis-tools
+```
+
+Sekarang kalian sudah selesai menginstall Redis pada venv di Ubuntu kalian. Sangat mudah dan cepat bukan? Setelah itu mari kita coba apakah Redis sudah terhubung atau belum.
 
 ### Menghubungkan Redis
 
