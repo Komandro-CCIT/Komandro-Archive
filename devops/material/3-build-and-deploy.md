@@ -126,7 +126,7 @@ Menggunakan python, kita bisa membuat server web sederhana untuk menguji coba fi
 
 Setelah dijalankan akses browser kamu menggunakan ip multipass kamu dan kamu akan melihat tampilan berikut:
 
-![alt text](./assets/3-build-deploy/1.png)
+![alt text](./assets/3-build-and-deploy/1.png)
 
 
 Lanjutkan membuat proses automation dengan script build dan deploy.
@@ -445,7 +445,7 @@ ip -4 a | grep -oP '(?<=inet )[\d\.]+' | grep -v 127.0.0.1
 
 Lalu buka di browser kalian dengan `IP:PORT` contohnya `172.17.44.122:8080`, tidak usah masukan port jika kalian menentukan portnya 80 cukup masukan IP saja.
 
-![](assets/3-build-deploy/2.png)
+![](assets/3-build-and-deploy/2.png)
 
 Dari sini pasti sudah kebayang gimana prosess Build & Deploy sebuah project, selanjutnya kita akan mencoba cloning project lagi tapi projectnya menggunakan framework lain yaitu `react.js` dan `vite.js` lalu di Build & Deploy secara automate dengan script yang sudah dibuat.
 
@@ -519,7 +519,7 @@ Terakhir deploy artifact dan akses project yang sudah dideploy di browser.
 ./automate-deploy.sh MatrixWebsite
 ```
 
-![](assets/3-build-deploy/3.png)
+![](assets/3-build-and-deploy/3.png)
 
 <br />
 
