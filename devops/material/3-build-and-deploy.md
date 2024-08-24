@@ -1,20 +1,22 @@
 # 3 - Build and Deployment
 
-Author: Hudya Ramadhana
+Author: Hudya Ramadhana & Kheyral
 
-- [**Overview**](#overview)
-	- [Build](#build)
-	- [Deployment](#deployment)
-- [**Build and Deployment Process**](#build-and-deployment-process)
-- [**Automate Build & Deployment Process**](#automate-build-&-deployment-process)
-	- [Automating Building Process](#automating-building-process)
-	- [Automating-Deploy Process](#automating-deploy-process)
-	- [Deploying Another Project](#deploying-another-project)
-- [**Summary**](#summary)
+- [3 - Build and Deployment](#3---build-and-deployment)
+  - [Overview](#overview)
+    - [Build](#build)
+    - [Deployment](#deployment)
+  - [Build and Deployment Process](#build-and-deployment-process)
+  - [Automate Build \& Deploy Processes](#automate-build--deploy-processes)
+    - [Automating Build Process](#automating-build-process)
+    - [Automating Deploy Process](#automating-deploy-process)
+    - [Deploying Another Project](#deploying-another-project)
+  - [Summary](#summary)
 
 <br />
 
 ## Overview
+
 ***
 
 Pada materi kali ini kamu akan belajar mengenai proses build dan deploy pada lingkungan DevOps.
@@ -75,7 +77,6 @@ graph LR
 <br />
 
 ## Build and Deployment Process
-***
 
 Proses build dan deploy akan dipisah menggunakan dua file berbeda, yaitu `build.sh` untuk membangun proyek dan `deploy.sh` untuk mendeploy proyek.
 
@@ -128,13 +129,9 @@ Setelah dijalankan akses browser kamu menggunakan ip multipass kamu dan kamu aka
 
 ![alt text](./assets/3-build-and-deploy/1.png)
 
-
-Lanjutkan membuat proses automation dengan script build dan deploy.
-
 <br />
 
 ## Automate Build & Deploy Processes
-***
 
 Karena kalian sudah paham bagaimana proses dari Build & Deployment, Sekarang kita akan membuat script untuk melakukan automasi dalam proses Build & Deployment, proses ini penting untuk diautomatisasi agar proses lebih cepat dan efisien dalam masa development.
 
@@ -151,19 +148,19 @@ Langsung saja langkah-langkah untuk automatisasi dibawah ini.
 
 ### Automating Build Process
 
-Pertama buat instance multipass baru di cmd/powershell kalian yang sudah diajarkan sebelumnya dichapter 1.
+Pertama buat instance multipass baru di cmd/powershell kalian yang sudah diajarkan sebelumnya pada chapter pertama.
 
-```powershell
+```bash
 multipass launch --name server-build-deploy --disk 20gb
 ```
 
-```powershell
+```bash
 multipass shell server-build-deploy
 ```
 
-Struktur foldernya akan seperti ini:
+Struktur foldernya akan kita bentuk seperti ini:
 
-```css
+```bash
 projects/
 ├── automate-build.sh
 ├── automate-deploy.sh
@@ -174,20 +171,27 @@ projects/
 │   │    └── source-code & etc
 ├── artifacts/
 │   ├── project-artifact/ 
-│	│    └── time.tar.gz & latest.tar.gz
+│ │    └── time.tar.gz & latest.tar.gz
 │   ├── another-project-artifact/
 │   │    └── time.tar.gz & latest.tar.gz
 ```
 
-Perlu diingatkan seharusnya folder artifacts itu berada di cloud namun karena ini hanya untuk demonstrasi kita hanya akan menggunakan folder artifacts lokal yang dibuat nanti.
+> [!NOTE]
+> Perlu diingatkan seharusnya folder artifacts itu berada di cloud namun karena ini hanya untuk demonstrasi kita hanya akan menggunakan folder artifacts lokal yang dibuat nanti.
 
-Pastikan posisi kalian di home
+Pastikan posisi kalian berada di home
 
 ```bash
 pwd
 
-#result
-#/home/ubuntu
+# Hasil
+# /home/ubuntu
+```
+
+Apabila kalian belum berada di home cukup ketik
+
+```bash
+cd ~
 ```
 
 Selanjutnya yaitu kita membuat folder `projects` serta sub-foldernya yaitu `build` & `artifacts`.
@@ -196,13 +200,13 @@ Selanjutnya yaitu kita membuat folder `projects` serta sub-foldernya yaitu `buil
 mkdir projects ; mkdir projects/build ; mkdir projects/artifacts
 ```
 
-Kita clone ulang repositori yang diatas tadi kedalam folder build atau kalian bisa pindahkan saja yang tadi.
+Kita clone ulang repositori yang diatas tadi ke dalam folder build atau kalian bisa pindahkan saja yang tadi.
+
+Jalankan script di bawah ini baris per-baris.
 
 ```bash
 cd projects/build
-```
 
-```bash
 git clone https://github.com/Komandro-CCIT/sample-devops-frontend-project.git
 ```
 
@@ -212,11 +216,10 @@ Cek apakah npm sudah terinstall atau belum.
 npm -v
 ```
 
-Jika belum cek note diatas untuk install npm nya.
+> [!NOTE]
+> Pastikan NPM sudah terinstall!
 
-Script ini berdasarkan proses Build & Deploy diatas copy dan paste script dibawah ini:
-
-**automate-build.sh**
+Untuk membuat script automation, pastikan kalian berada pada folder `projects`. Buat file baru bernama `automate-build.sh` lalu copy paste kode berikut:
 
 ```bash
 #!/bin/bash
@@ -273,36 +276,34 @@ cd "$BASE_DIR"
 echo "Build Completed!"
 ```
 
-Balik lagi ke direktori projects.
-
-```bash
-pwd
-#result: /home/ubuntu/projects
-```
-
 Gunakan `vim` untuk membuat script `automate-build.sh`.
 
 ```bash
 vim automate-build.sh
-# press i
-# right click to paste
-# press shift + :
-# type :wq + enter
 ```
 
-Berikan execute permission untuk `automate-build.sh`.
+Pastikan mengikuti langkah berikut:
+
+1. Tekan key `i`
+2. Klik kanan untuk paste atau tekan `CTRL + SHIFT + V`
+3. Tekan key `escape`
+4. Ketik `:wq` lalu enter
+
+Berikan execute permission untuk `automate-build.sh` agar dapat dieksekusi oleh bash.
 
 ```bash
 chmod +x automate-build.sh
 ```
 
-Sekarang coba untuk run scriptnya.
+Sekarang coba jalankan scriptnya.
 
 ```bash
 ./automate-build.sh
-#result:
-#Usage: ./automate-build.sh <project dir name>
-#Ex: ./automate-build.sh sample-devops-frontend-project
+
+# Hasil:
+
+# Usage: ./automate-build.sh <project dir name>
+# Ex: ./automate-build.sh sample-devops-frontend-project
 ```
 
 Masukan argumen dengan cara ketikan nama project foldernya.
@@ -317,6 +318,8 @@ Setelah proses build selesai kalian bisa lihat artifact nya di folder artifact.
 cd /home/ubuntu/projects/artifacts/sample-devops-frontend-project
 ```
 
+Kemudian masukkan perintah berikut untuk mengetahui apakah filenya sudah terbuat atau belum.
+
 ```bash
 ls
 #result: 20240820-105328.tar.gz  latest.tar.gz
@@ -326,7 +329,13 @@ Kurang lebih seperti itulah proses build dan membuat artifacts dari sebuah proje
 
 ### Automating Deploy Process
 
-Seharusnya skenario Build & Deploymentn itu memiliki server masing-masing jadi ada 3 server yaitu `server workstation` (server untuk development sebuah projects dari startup), `server deployment` (server yang hanya menjadi tempat untuk deploy & testing sebuah project) atau `server production` (server yang menjadi produk akhir yang akan dipublish ke publik), tapi kita hanya akan menggunakan satu server all in one di `server-build-deploy` dan seharusnya server deployment & production ini adalah sebuah server cloud, karena kita belum belajar tentang cloud maka kita membuat demo server sendiri dari multipass.
+Seharusnya skenario Build & Deploymennt itu memiliki server masing-masing jadi ada 3 server, yaitu :
+
+1. `server workstation` (server untuk development sebuah projects dari startup)
+2. `server deployment` (server yang hanya menjadi tempat untuk deploy & testing sebuah project)
+3. server production` (server yang menjadi produk akhir yang akan dipublish ke publik)
+
+Pada pembelajaran kali ini, kita hanya akan menggunakan satu server all in one pada `server-build-deploy` dan seharusnya server `deployment` & `production` ini adalah sebuah server cloud, karena kita belum belajar tentang cloud maka kita membuat demo server sendiri dari multipass.
 
 Sebelum copas scriptnya ada beberapa hal yang harus disiapkan terlebih dahulu:
 
@@ -336,10 +345,14 @@ Buat folder `/var/www/html` untuk menjadi destination deploymentnya.
 sudo mkdir /var/www/html
 ```
 
-Pastikan python terinstall di instance kalian.
+> [!NOTE]
+> Menggunakan sudo diharuskan karena folder `var` membutuhkan akses root.
+
+Kemudian Pastikan python terinstall di instance kalian.
 
 ```bash
 dpkg -l python3
+
 #result: python3 3.12.3-0ubuntu1 amd64 ....
 ```
 
@@ -351,15 +364,12 @@ sudo apt install python3 -y
 
 <br />
 
-
 > [!NOTE]
-> Perlu diketahui, seharusnya proses deployment ini menggunakan web server seperti `nginx`, tapi karena kita belum ke materinya kita gunakan modul `http.server` dari `python` aja agar lebih simple.
+> Perlu diketahui, seharusnya proses deployment ini menggunakan web server seperti `nginx`, tapi karena kita belum ke materinya kita gunakan modul `http.server` dari `python` saja agar lebih simple.
 
 <br />
 
-Script ini berdasarkan proses Build & Deploy diatas copy dan paste script dibawah ini:
-
-**automate-deploy.sh**
+Selanjutnya kembali ke folder `projects`, buat file baru bernama `automate-deploy.sh` lalu masukkan kode di bawah:
 
 ```bash
 #!/bin/bash
@@ -424,7 +434,7 @@ while true; do
 done 
 ```
 
-Seperti biasa silahkan copy paste script diatas dan namakan scriptnya `automate-deploy.sh` kemudian berikan `execute` permission.
+Jangan lupa untuk memberikan `execute` permission.
 
 ```bash
 chmod +x automate-deploy.sh
@@ -436,7 +446,7 @@ Setelah itu kalian bisa deploy projectnya secara otomatis dengan execute scriptn
 ./automate-deploy.sh sample-devops-frontend-project
 ```
 
-Akses project yang sudah dideploy.
+Akses project yang sudah di-deploy.
 Pertama copas IP nya dengan command ini.
 
 ```bash
@@ -445,28 +455,38 @@ ip -4 a | grep -oP '(?<=inet )[\d\.]+' | grep -v 127.0.0.1
 
 Lalu buka di browser kalian dengan `IP:PORT` contohnya `172.17.44.122:8080`, tidak usah masukan port jika kalian menentukan portnya 80 cukup masukan IP saja.
 
+Kalian juga dapat menemukan IP instance kalian dengan melihatnya dari luar instance, masukkan perintah:
+
+```bash
+multipass list
+```
+
+Copy IP yang tertera kemudian akses dengan port 8080.
+
 ![](assets/3-build-and-deploy/2.png)
 
-Dari sini pasti sudah kebayang gimana prosess Build & Deploy sebuah project, selanjutnya kita akan mencoba cloning project lagi tapi projectnya menggunakan framework lain yaitu `react.js` dan `vite.js` lalu di Build & Deploy secara automate dengan script yang sudah dibuat.
+Dari sini pasti sudah kebayang gimana prosess Build & Deploy sebuah project bukan?
 
+Selanjutnya kita akan mencoba clone project lagi, namun project tersebut akan menggunakan framework lain yaitu `react.js` dan `vite.js`. Lakukan proses Build & Deploy secara automate dengan script yang sudah dibuat.
 
-### Deploying Another Project 
+### Deploying Another Project
 
- Perlu diingatkan juga didalam sebuah tim DevOps untuk membuat sebuah project mulai dari settingannya, infrastrukturnya, technologynya itu harus benar-benar butuh pertimbangan yang benar-benar matang dan kesepakatan konsensus bersama, maupun itu dari companynya langsung atau dari keputusan tim DevOps itu sendiri, jadi kalian tidak boleh asal pilih-pilih dan buat project tanpa aturannya, dengan adanya aturan konsensus ini membuat proses Build & Deploynya menjadi terstruktur, efisien, dan menghindari conflict antar developer.
- 
- Di contoh deploy project yang lain ini kita tidak bisa langsung deploy project ini karena harus diubah beberapa setting agar tersinkronisasi dengan automate scriptnya, dalam contoh praktek ini kita harus setting beberapa config untuk bisa memenuhi aturan konsensusnya agar proses Build & Deployment berjalan dengan sukses.
+Perlu diingatkan juga didalam sebuah tim DevOps untuk membuat sebuah project mulai dari settingannya, infrastrukturnya, technologynya itu harus benar-benar butuh pertimbangan yang benar-benar matang dan kesepakatan konsensus bersama, maupun itu dari companynya langsung atau dari keputusan tim DevOps itu sendiri, jadi kalian tidak boleh asal pilih-pilih dan buat project tanpa aturannya, dengan adanya aturan konsensus ini membuat proses Build & Deploynya menjadi terstruktur, efisien, dan menghindari conflict antar developer.
 
-Langsung saja kita praktikan dibawah ini.
+Berdasarkan contoh project yang lain ini kita tidak bisa langsung deploy project ini karena harus diubah beberapa setting agar tersinkronisasi dengan automate scriptnya, dalam contoh praktek ini kita harus setting beberapa config untuk bisa memenuhi aturan konsensusnya agar proses Build & Deployment berjalan dengan sukses.
 
-Credit to user github Mif2006 saya menemukan contoh web app keren yang menggunakan framework `react.js` dan `vite.js`, langsung aja ikuti prosessnya dibawah ini.
+Langsung saja kita praktikan kode di bawah ini.
 
-Clone projectnya.
+> [!NOTE]
+> Credit to user github Mif2006 saya menemukan contoh web app keren yang menggunakan framework `react.js` dan `vite.js`, langsung aja ikuti prosessnya dibawah ini.
+
+Clone projectnya pada folder `projects/build`.
 
 ```bash
 git clone https://github.com/Mif2006/MatrixWebsite.git
 ```
 
-Lanjut, pindah ke project directorinya.
+Lanjut, kemudian masuk ke project directorinya.
 
 ```bash
 cd MatrixWebsite
@@ -499,11 +519,11 @@ export default defineConfig({
 
 Selanjutnya install dependenciesnya.
 
-```
+```bash
 npm install
 ```
 
-Next kita build artifactnya terlebih dahulu.
+Next kita kembali ke folder project untuk build artifactnya terlebih dahulu.
 
 ```bash
 cd ~/projects
@@ -513,7 +533,7 @@ cd ~/projects
 ./automate-build.sh MatrixWebsite
 ```
 
-Terakhir deploy artifact dan akses project yang sudah dideploy di browser.
+Terakhir, deploy artifact dan akses project yang sudah dideploy di browser.
 
 ```bash
 ./automate-deploy.sh MatrixWebsite
@@ -523,16 +543,16 @@ Terakhir deploy artifact dan akses project yang sudah dideploy di browser.
 
 <br />
 
-> Alasannya `vite.config.js` diganti itu kenapa?
+> Kenapa file `vite.config.js` harus diganti terlebih dahulu?
 
-Kalau kalian lihat di script `automate-deploy.sh` ada line code dimana tempat modul python `http.server` nya di deploy, yaitu di direktori `out`, dan kalau kalian lihat lagi di settingan `vite.config.js` ada line code yang menambahkan output direktori dari proses deploymentnya yaitu `outDir: 'out'`, ini bisa dijadikan salah satu contoh kesepakatan/konsensus bersama, yaitu setiap project yang dibuat harus memisahkan hasil build nya kedalam folder tersendiri agar terpisah dari product development dan product yang sudah jadi.
+Apabila kalian lihat pada script `automate-deploy.sh`, ada line code dimana tempat modul python `http.server` nya di deploy, yaitu di direktori `out`, dan kalau kalian lihat lagi di settingan `vite.config.js` ada line code yang menambahkan output direktori dari proses deploymentnya yaitu `outDir: 'out'`, ini bisa dijadikan salah satu contoh kesepakatan/konsensus bersama, yaitu setiap project yang dibuat harus memisahkan hasil build nya kedalam folder tersendiri agar terpisah dari product development dan product yang sudah jadi.
 
 <br />
 
 ## Summary
 
-- **Proses build adalah proses yang menjadikan sebuah project menjadi produk akhir.**
-- **Setiap project build harus memilik artifact berbentuk tar.gz atau format lainnya agar mudah melakukan deployment, distribution, versioning, dan testing.**
-- **Project yang sudah dijadikan artifact bisa langsung dideploy ke server testing atau server prodcution.**
-- **Proses Build & Deployment bisa dibuat secara otomatis**
-- **Kesepakatan konsensus harus dibuat agar proses Build & Deploy bisa berlajan dengan lancar.**
+- Proses build adalah proses yang menjadikan sebuah project menjadi produk akhir.
+- Setiap project build harus memilik artifact berbentuk tar.gz atau format lainnya agar mudah melakukan deployment, distribution, versioning, dan testing.
+- Project yang sudah dijadikan artifact bisa langsung dideploy ke server testing atau server prodcution.
+- Proses Build & Deployment bisa dibuat secara otomatis
+- Kesepakatan konsensus harus dibuat agar proses Build & Deploy bisa berlajan dengan lancar.
