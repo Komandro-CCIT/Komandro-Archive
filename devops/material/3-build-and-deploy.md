@@ -333,7 +333,7 @@ Seharusnya skenario Build & Deploymennt itu memiliki server masing-masing jadi a
 
 1. `server workstation` (server untuk development sebuah projects dari startup)
 2. `server deployment` (server yang hanya menjadi tempat untuk deploy & testing sebuah project)
-3. server production` (server yang menjadi produk akhir yang akan dipublish ke publik)
+3. `server production` (server yang menjadi produk akhir yang akan dipublish ke publik)
 
 Pada pembelajaran kali ini, kita hanya akan menggunakan satu server all in one pada `server-build-deploy` dan seharusnya server `deployment` & `production` ini adalah sebuah server cloud, karena kita belum belajar tentang cloud maka kita membuat demo server sendiri dari multipass.
 
