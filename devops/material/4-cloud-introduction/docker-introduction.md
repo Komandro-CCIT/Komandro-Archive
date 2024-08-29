@@ -381,3 +381,8 @@ docker ps -a
 ![](../assets/docker_ps.gif)
 
 
+</br>
+
+Oke kalian barusan sudah belajar gimana sih cara pakai docker dengan command yang dasar banget. Sebenernya masih banyak banget command Docker yang bisa kalian pakai kayak `docker rm` untuk remove container, kalian bisa googling atau langsung baca [dokumentasinya](https://docs.docker.com/reference/cli/docker/) (kalau kuat ya). 
+
+Pada materi selanjutanya kalaian akan dive atau menyelam lebih dalam bersama paus biru satu ini dengan belajar cara push dan build image kalian sendiri di docker dengan command `docker build` dan `docker push` selain itu kalian juga bakal belajar cara pakai script **docker compose** dan **docker file** buat mempermudah kalian bikin container. 
