@@ -138,7 +138,10 @@ Sebelum kita install redis, mari kita install redis-server dan venv.
 > [!NOTE]
 > Virtualenv (venv) adalah alat yang digunakan untuk membuat lingkungan Python yang terisolasi. Lingkungan ini memiliki direktori instalasinya sendiri yang tidak berbagi pustaka dengan lingkungan virtualenv lainnya (dan secara opsional juga tidak mengakses pustaka yang diinstal secara global).
 
-Silahkan masukkan kode dibawah ini satu persatu setiap barisnya untuk mengunduh redis, masukkan huruf y untuk melakukan konfirmasi pada saat install.
+
+Pertama, pastikan kamu sudah masuk ke server multipass dengan cara `multipass shell [nama instance]`.
+
+Setelah berada di dalamnya, silahkan masukkan kode dibawah ini satu persatu setiap barisnya untuk mengunduh redis, masukkan huruf y untuk melakukan konfirmasi pada saat install.
 
 ```bash
 sudo apt-get update
