@@ -380,8 +380,203 @@ docker ps -a
 ![](../assets/docker_ps.gif)
 
 
+#### - `docker build`
+Di command sebelumnya kalian belajar cara membuat container dari image yang sudah ada dari docker hub, sekarang kalian bakal belajar cara untuk membuat image kalian sendiri didalam docker menggunakan command `docker build`.
+
+```
+docker build [OPTIONS] PATH
+```
+
+Parameter utama :
+
+`-t`: Memberikan tag atau nama pada image yang akan dibuat.
+
+`PATH`: Lokasi direktori yang berisi Dockerfile.
+
+>Dockerfile itu buat apa? Perasaan gak ada dari awal
+
+Jadi Dockerfile itu isinya adalah script sederhana yang isinya itu instruksi untuk docker saat sedang membuat Docker image. Ini buat contohnya
+
+```Dockerfile
+# Menggunakan image Ubuntu sebagai base
+FROM ubuntu:20.04
+
+# Menginstal Nginx
+RUN apt-get update && apt-get install -y nginx
+
+# Menyalin file HTML ke dalam image
+COPY ./index.html /var/www/html/index.html
+
+# Mengekspos port 80
+EXPOSE 80
+
+# Menjalankan Nginx saat container dimulai
+CMD ["nginx", "-g", "daemon off;"]
+```
+
+Instruski yang digunakan pada script Dockerfile diatas adalah berikut:
+
+`FROM`: Menentukan image dasar untuk image yang akan kalian gunakan.
+
+`RUN`: Menjalankan perintah di dalam image.
+
+`COPY`: Menyalin file atau direktori dari host kedalam image.
+
+`CMD`: Menentukan perintah default yang akan dijalankan saat container berjalan.
+
+`EXPOSE`: Mendeklarasikan port yang akan digunakan oleh container.
+
+Sekarang waktunya praktek nih gimana caranya bikin image kalian sendiri, perhatikan baik baik ya karena ini bakal kepake untuk materi selanjutnya.
+
+1. Buat folder untuk project
+   
+   Buat direktori baru agar projek kalian tertata lebih rapih.
+   
+   Masukan command dibawah perbaris
+   ```bash
+   mkdir test-build
+
+   cd test-build
+   ```
+   
+   untuk nama folder kalian bisa menamaminya bebas ya
+   
+2. Buat file `index.html`
+   
+   Lalu kalian buat file `index.html` untuk menggantikan yang ada di dalam image nanti
+
+   Masukan command :
+   ```bash
+   vim index.html
+   ```
+
+   lalu isikan dengan bahasa HTML, kalian bisa berkreasi disini untuk tulisan didalam file-nya.
+
+   ```html
+   <h1>Yo Yo Yo i am Testing the build</h1>
+   ```
+
+3. Buat Dockerfile
+   
+   Sekarang kalian harus membuat Dockerfile seperti yang sudah dijelaskan diatas. Berikut caranya:
+
+   ```bash
+   vim Dockerfile
+   ```
+   Lalu kalian isikan script Dockerfile seperti dibawah.
+   ```Dockerfile
+   # Menggunakan image Ubuntu sebagai base
+   FROM ubuntu:20.04
+   # Menginstal Nginx
+   RUN apt-get update && apt-get install -y nginx
+   # Menyalin file HTML ke dalam image
+   COPY ./index.html /var/www/html/index.html
+   # Mengekspos port 80
+   EXPOSE 80
+   # Menjalankan Nginx saat container dimulai
+   CMD ["nginx", "-g", "daemon off;"]
+   ```
+
+4. Lakukan Build !
+   
+   Sekarang semua bahan sudah terkumpul waktunya memasak image ini, kita sudah bisa melakukan build sekarang, langsung saja masukan command dibawah. Nama image kalian bisa kreasikan sesuka kalian.
+
+   ```bash
+   docker build -t image-test-build:1.0 .
+   ```
+
+   Jika sudah kalian bisa cek apakah image kalian sudah terbuat atau belum dengan cek list image dengan command
+
+   ```bash
+   docker images
+   ```
+
+   Kalau sudah terkonfirmasi ada kalian bisa langsung run image-nya !!!
+
+   ```bash
+   docker run -d --name Test-Build -p 8080:80 image-test-build:1.0 
+   ```
+   
+   Kalau sudah selesai langsung saja cus ke browser untuk check apakah container berjalan dan content di index.html terganti sesuai tulisan kalian atau tidak. Kalau berhasil tampilannya akan sesuai dengan index.html yang kalian tulis.
+
+
+#### - `docker push`
+Sekarang setelah image kalian sudah jadi kita akan coba untuk menyimpan image tersebut ke repository docker hub dengan cara di push, kurang lebih sama seperti saat kalian melakukan push dengan git ke github.
+
+> [!WARNING]
+> Pastikan kalian sudah memiliki akun docker di dockerhub sebelum melakukan push.
+
+```bash
+docker push [OPTIONS] NAME[:TAG]
+```
+
+`NAME`: Nama dari image yang ingin di push ke dalam repository yang diikuti dengan username akun docker kalian dan nama repository
+
+`TAG`: Tag dari image yang ingin di push
+
+`OPTIONS`: Ada beberapa opsi uang bisa kalian pakai saat melakukan push, langsung cek [disini](https://docs.docker.com/reference/cli/docker/image/push/#options) kalau kalian penaran opsi apa aja sih yang bisa dipakai.
+
+Sekarang kalian akan praktek untuk melakukan push image yang sebelumnya sudah kalian buat.
+
+1. Buat repositori di Docker Hub
+   
+   Sebelum melakukan push kalian harus menyiapkan repository terlebih dahulu didalam akun Docker Hub kalian, kalian bisa ikuti step by step dibawah jika sudah membuat akun.
+
+   ![](../assets/docker_create-repo.gif)
+2. Login ke Docker Hub
+   
+   Agar image dapat di upload kedalam repo kalian di Docker Hub kalian harus login dulu ke akun docker kalian didalam VM-nya
+
+   ```bash
+   docker login
+   ```
+
+   Setelah kalian memasukan command diatas, kalian harus memasukan username dan password akun Docker Hub kalian.
+
+3. Tagging image
+   
+   Sebelum melakukan push, kalian harus memberikan tag pada image yang akan kalian push. Tag ini berfungsi untuk mengkoneksikan image dengan repositori yang ada di Docker Hub
+   
+   ```bash
+   docker tag local-image:tagname username/repository:tagname
+   ```
+   
+   `local-image:tagname`: Nama dan tag dari image lokal yang kalian buat sebelumnya
+
+   `username/repository:tagname`: Username di Docker Hub dan nama repository yang sudah kalian siapkan, serta tagname yang ingin kalian gunakan.
+
+   Contoh jika ingin push image sebelumnya
+
+   ```bash
+   docker tag image-test-build:1.0 mawanrequiem/coba-push-devops:1.0
+   ```
+   Sekarang ayo bedah command diatas
+
+   `image-test-build:1.0`: Merupakan image dengan tag 1.0 yang di build secara lokal sebelumnya 
+
+   `mawanrequiem/`: Username yang ada pada akun Docker Hub
+
+   `/coba-push-devops:1.0`: Nama repositori yang sudah disiapkan diawal untuk menyimpan image dengan tag 1.0
+
+4. Push Image ke Docker Hub !
+
+   Sekarang tahap terakhir kalian langsung push image yang sebelumnya kalian sudah buat dengan
+
+   ```bash
+   docker push mawanrequiem/coba-push-devops:1.0
+   ```
+
+   Jika sudah kalian cek repo kalian apakah ada image kalian atau belum, kalau sudah selamat kalian sudah bisa melakukan push kedalam Docker Hub !!!
+
+   ![](../assets/docker_push-success.png)
+
 </br>
 
-Oke kalian barusan sudah belajar gimana sih cara pakai docker dengan command yang dasar banget. Sebenernya masih banyak banget command Docker yang bisa kalian pakai kayak `docker rm` untuk remove container, kalian bisa googling atau langsung baca [dokumentasinya](https://docs.docker.com/reference/cli/docker/) (kalau kuat ya). 
+---
+Oke kalian barusan sudah belajar gimana sih cara pakai docker dengan command yang dasar banget. Sebenernya masih banyak banget command Docker yang bisa kalian pakai kayak `docker rm` untuk remove container, kalian bisa googling atau langsung baca [dokumentasinya](https://docs.docker.com/reference/cli/docker/) (kalau kuat ya 💀). 
 
-Pada materi selanjutanya kalaian akan dive atau menyelam lebih dalam bersama paus biru satu ini dengan belajar cara push dan build image kalian sendiri di docker dengan command `docker build` dan `docker push` selain itu kalian juga bakal belajar cara pakai script **docker compose** dan **docker file** buat mempermudah kalian bikin container. 
+## Summary
+
+- Docker merupakan sebuah platform untuk melakukan containerization.
+- Containerization merupakan sebuah konsep membuat sebuah "wadah" untuk menyimpan aplikasi dan dependencies-nya secara terisolasi.
+- WIP
