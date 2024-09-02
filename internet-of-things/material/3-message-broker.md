@@ -208,15 +208,13 @@ Pertama, hubungkan VSCode kalian dengan instance multipass yang telah kita buat 
 
 1. Buka PowerShell kalian lalu ketik `multipass list`
 2. Copy Alamat IP instance kalian (Jika instance Stopped, jalankan dengan perintah `multipass start [nama instance]`)
-
-![Alt Text](./assets/3-message-broker/1.png)
-
 3. Buka VSCode, lalu klik tombol warna biru di pojok kiri bawah
 4. Pilih `Connect to Host`
 5. Ketik `ubuntu@[Alamat IP Instance kalian]` misalnya : `ubuntu@172.17.138.199`. Lalu pencet tombol Enter.
-6. Pilih `Linux`
-7. Masukkan password instance Ubuntu kalian
-8. Berhasil (Ditandai dengan ditampilkannya alamat IP instance kamu di pojok kiri bawah)
+6. Pilih `Linux` (Jika ada)
+7. Jika ada peringatan `"[Alamat IP kalian]" has fingerprint "[Kode unik]"`, pilih opsi `Continue`
+8. Masukkan password instance Ubuntu kalian
+9. Berhasil (Ditandai dengan ditampilkannya alamat IP instance kamu di pojok kiri bawah)
 
 ![Alt Text](./assets/3-message-broker/2.gif)
 
@@ -234,9 +232,10 @@ sudo apt install rabbitmq-server
 Sekarang kita buka folder yang telah kita buat sebelumnya, yaitu `projek1`. Berikut langkah-langkah untuk membuka folder kita sebelumnya (Lihat GIF dibawah untuk lebih jelasnya) :
 1. Klik tombol tulisan `Open Folder`
 2. Pilih folder yang ingin kita pakai, yaitu `projek1`. Lalu pencet tombol biru tulisan `OK` disampingnya
-3. Masukkan password instance kalian
-4. Jika ada popup peringatan `Do you trust the authors of the files in this folder?`, Cekliskan opsi "Trust the authors of all files in the parent folder", lalu klik tombol biru "Yes, I trust the authors"
-5. Berhasil (Ditandai dengan adanya file-file disebelah kiri)
+3. Pilih opsi `Linux` (Jika ada)
+4. Masukkan password instance kalian
+5. Jika ada popup peringatan `Do you trust the authors of the files in this folder?`, Cekliskan opsi "Trust the authors of all files in the parent folder", lalu klik tombol biru "Yes, I trust the authors"
+6. Berhasil (Ditandai dengan adanya file-file disebelah kiri)
 
 ![Alt Text](./assets/3-message-broker/4.gif)
 
