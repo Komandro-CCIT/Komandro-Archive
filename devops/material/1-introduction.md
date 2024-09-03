@@ -55,6 +55,6 @@ Untuk mengasah kemampuan kalian dari modul - modul di atas terdapat latihan dan 
 
 Sebelum mulai saya ada quotes keren buat kalian:
 
-> *Your value is not determined by what you are, it is determined by what you are capable of*
+> _Your value is not determined by what you are, it is determined by what you are capable of_
 
 Apabila kalian ingin memiliki gaji yang besar, maka skill kalian juga harus berharga, makanya wajib tuntas untuk belajar DevOps 😉.
