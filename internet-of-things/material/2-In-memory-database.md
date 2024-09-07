@@ -129,28 +129,48 @@ Redis merupakan aplikasi yang dibuat menggunakan Bahasa pemrograman C, untuk men
 
 Sebelumnya kita telah menginstall OS Ubuntu melalui Multipass Virtual Machine dan menghubungkannya ke Visual Studio Code. Jadi, pada kesempatan kali ini kita akan menginstall Redis didalam OS Ubuntu yang telah kita buat pada instance Multipass dengan mudah dan simpel melalui Visual Studio Code.
 
-Pertama, hubungkan VSCode kalian dengan instance multipass yang telah kita buat sebelumnya. (Cek bab sebelumnya jika kalian lupa cara untuk menghubungkan instance multipass ke VSCode)
+Pertama, hubungkan VSCode kalian dengan instance multipass yang telah kita buat sebelumnya. Berikut langkah langkahnya (Lihat GIF dibawah untuk lebih jelasnya) :
+1. Buka PowerShell kalian lalu ketik `multipass list`
+2. Copy Alamat IP instance kalian (Jika instance Stopped, jalankan dengan perintah `multipass start [nama instance]`)
+3. Buka VSCode, lalu klik tombol warna biru di pojok kiri bawah
+4. Pilih `Connect to Host`
+5. Ketik `ubuntu@[Alamat IP Instance kalian]` misalnya : `ubuntu@172.17.138.199`. Lalu pencet tombol Enter.
+6. Pilih `Linux` (Jika ada)
+7. Jika ada peringatan `"[Alamat IP kalian]" has fingerprint "[Kode unik]"`, pilih opsi `Continue`
+8. Masukkan password instance Ubuntu kalian
+9. Berhasil (Ditandai dengan ditampilkannya alamat IP instance kamu di pojok kiri bawah)
+
+![Alt Text](./assets/2-inMemoryDatabase/2.gif)
 
 Jika sudah terhubung, buka terminal pada VSCode dengan cara pencet titik tiga di tab atas > Terminal > New Terminal
 
-Sebelum kita install redis, mari kita install redis-server dan venv.
-
-> [!NOTE]
-> Virtualenv (venv) adalah alat yang digunakan untuk membuat lingkungan Python yang terisolasi. Lingkungan ini memiliki direktori instalasinya sendiri yang tidak berbagi pustaka dengan lingkungan virtualenv lainnya (dan secara opsional juga tidak mengakses pustaka yang diinstal secara global).
+![Alt Text](./assets/2-inMemoryDatabase/3.png)
 
 
-Pertama, pastikan kamu sudah masuk ke server multipass dengan cara `multipass shell [nama instance]`.
+Sebelum kita install `redis`, mari kita install `redis-server` dan `venv`. `Venv` (Virtualenv) adalah alat yang digunakan untuk membuat lingkungan Python yang terisolasi. Lingkungan ini memiliki direktori instalasinya sendiri yang tidak berbagi pustaka dengan lingkungan virtualenv lainnya (dan secara opsional juga tidak mengakses pustaka yang diinstal secara global).
 
-Setelah berada di dalamnya, silahkan masukkan kode dibawah ini satu persatu setiap barisnya untuk mengunduh redis, masukkan huruf y untuk melakukan konfirmasi pada saat install.
+Setelah berada di terminal instance kalian, silahkan masukkan kode dibawah ini satu persatu setiap barisnya untuk mengunduh redis, masukkan huruf `y` lalu pencet tombol `enter` untuk melakukan konfirmasi pada saat install.
 
 ```bash
 sudo apt-get update
 sudo apt-get install redis-server
 ```
 
-Buat sebuah folder baru, misalnya belajar-redis dengan cara menuliskan `mkdir belajar-redis`. Kemudian masuk ke dalam foldernya dengan cara `cd belajar-redis`.
+Sekarang kita buka folder yang telah kita buat sebelumnya, yaitu `projek1`. Berikut langkah-langkah untuk membuka folder kita sebelumnya (Lihat GIF dibawah untuk lebih jelasnya) :
+1. Klik tombol tulisan `Open Folder`
+2. Pilih folder yang ingin kita pakai, yaitu `projek1`. Lalu pencet tombol biru tulisan `OK` disampingnya
+3. Pilih opsi `Linux` (Jika ada)
+4. Masukkan password instance kalian
+5. Jika ada popup peringatan `Do you trust the authors of the files in this folder?`, Cekliskan opsi "Trust the authors of all files in the parent folder", lalu klik tombol biru "Yes, I trust the authors"
+6. Berhasil (Ditandai dengan adanya file-file disebelah kiri)
 
-Setelah berada di dalam folder belajar-redis, masukkan perintah berikut:
+![Alt Text](./assets/2-inMemoryDatabase/4.gif)
+
+Jika sudah berada di dalam folder kalian yaitu `projek1`, buka terminal pada VSCode dengan cara pencet titik tiga di tab atas > Terminal > New Terminal
+
+![Alt Text](./assets/2-inMemoryDatabase/5.png)
+
+Setelah berada di dalam terminalnya, masukkan perintah berikut:
 
 ```bash
 python3 -m venv venv
@@ -185,14 +205,26 @@ source venv/bin/activate
 Pastikan kamu melihat tulisan venv di samping host kamu, contoh:
 
 ```bash
-(venv) hudya@perogeremmer-pc:~$
+(venv) ubuntu@komandro:~/projek1$
 ```
 
-Terakhir, kita perlu menginstall library redis untuk menghubungkan python dengan redis yang telah kita siapkan.
+Terakhir, kita perlu menginstall library `redis` untuk menghubungkan python dengan redis yang telah kita siapkan. Masukkan kode dibawah ini untuk menginstall library `redis` untuk python :
+
+```bash
+python -m pip install redis
+```
+
+Sekarang kamu sudah menginstall semua dependency yang dibutuhkan. Silahkan lanjut ke materi selanjutnyaa ^^
 
 ## Menghubungkan Redis
 
-Pertama, kalian ketik kode dibawah ini pada terminal **setiap kalian ingin membuka redis di terminal Ubuntu kalian** :
+**Setiap kalian ingin membuka redis di terminal Ubuntu kalian**, kalian aktifkan `venv` kalian terlebih dahulu (Jika belum diaktifkan) dengan memasukan kode dibawah ini :
+
+```bash
+source venv/bin/activate
+```
+
+Jika `venv` sudah aktif, ketik kode dibawah ini pada terminal  :
 
 ```bash
 redis-cli
@@ -203,7 +235,7 @@ Setelah itu akan muncul IP Address kalian serta tempat untuk kalian input perint
 Contohnya seperti ini:
 
 ```bash
-hudya@perogeremmer-pc:~$ redis-cli
+(venv) ubuntu@komandro:~/projek1$ redis-cli
 127.0.0.1:6379> PING
 PONG
 127.0.0.1:6379> 

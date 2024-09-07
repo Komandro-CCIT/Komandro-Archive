@@ -204,19 +204,64 @@ Queue (antrian) adalah tempat untuk menyimpan data yang diterima oleh Exchange. 
 
 ## Install RabbitMQ di Python
 
-Pertama-tama, pastikan VSCode kalian telah terhubung dengan instance multipass yang telah kita buat sebelumnya. (Cek bab pertama jika kalian lupa cara untuk menghubungkan instance multipass ke VSCode)
+Pertama, hubungkan VSCode kalian dengan instance multipass yang telah kita buat sebelumnya. Berikut langkah langkahnya (Lihat GIF dibawah untuk lebih jelasnya) :
+
+1. Buka PowerShell kalian lalu ketik `multipass list`
+2. Copy Alamat IP instance kalian (Jika instance Stopped, jalankan dengan perintah `multipass start [nama instance]`)
+3. Buka VSCode, lalu klik tombol warna biru di pojok kiri bawah
+4. Pilih `Connect to Host`
+5. Ketik `ubuntu@[Alamat IP Instance kalian]` misalnya : `ubuntu@172.17.138.199`. Lalu pencet tombol Enter.
+6. Pilih `Linux` (Jika ada)
+7. Jika ada peringatan `"[Alamat IP kalian]" has fingerprint "[Kode unik]"`, pilih opsi `Continue`
+8. Masukkan password instance Ubuntu kalian
+9. Berhasil (Ditandai dengan ditampilkannya alamat IP instance kamu di pojok kiri bawah)
+
+![Alt Text](./assets/3-message-broker/2.gif)
 
 Jika sudah terhubung, buka terminal pada VSCode dengan cara pencet titik tiga di tab atas > Terminal > New Terminal
 
-Kita akan install library RabbitMQ yang bernama `pika` di dalam `virtual env` yang telah kita buat pada bab sebelumnya, masukkan kode dibawah ini satu persatu setiap barisnya:
+![Alt Text](./assets/3-message-broker/3.png)
+
+Sekarang kita akan install library server untuk menjalankan rabbitmq di instance kita, masukkan kode dibawah ini satu persatu setiap barisnya:
 
 ```bash
 sudo apt-get update
 sudo apt install rabbitmq-server
 ```
 
-> [!NOTE]
-> Kamu dapat menggunakan proyek tutorial sebelumnya atau membuat folder baru.
+Sekarang kita buka folder yang telah kita buat sebelumnya, yaitu `projek1`. Berikut langkah-langkah untuk membuka folder kita sebelumnya (Lihat GIF dibawah untuk lebih jelasnya) :
+1. Klik tombol tulisan `Open Folder`
+2. Pilih folder yang ingin kita pakai, yaitu `projek1`. Lalu pencet tombol biru tulisan `OK` disampingnya
+3. Pilih opsi `Linux` (Jika ada)
+4. Masukkan password instance kalian
+5. Jika ada popup peringatan `Do you trust the authors of the files in this folder?`, Cekliskan opsi "Trust the authors of all files in the parent folder", lalu klik tombol biru "Yes, I trust the authors"
+6. Berhasil (Ditandai dengan adanya file-file disebelah kiri)
+
+![Alt Text](./assets/3-message-broker/4.gif)
+
+Jika sudah berada di dalam folder kalian yaitu `projek1`, buka terminal pada VSCode dengan cara pencet titik tiga di tab atas > Terminal > New Terminal
+
+![Alt Text](./assets/3-message-broker/55.png)
+
+Kita akan install library RabbitMQ yang bernama `pika` di dalam `venv` yang telah kita buat pada bab sebelumnya. Sebelum kita install `pika`, kita perlu mengaktifkan `venv` terlebih dahulu. Masukkan kode dibawah ini pada terminal untuk mengaktifkan `venv`:
+
+```bash
+source venv/bin/activate
+```
+
+Jika sudah, pastikan kamu melihat tulisan venv di samping host kamu, contoh:
+
+```bash
+(venv) ubuntu@komandro:~/projek1$
+```
+
+Kita sudah masuk ke Virtual Environment kita. Sekarang, waktunya kita install library RabbitMQ yang bernama `pika` untuk kita pakai di file projek Python kita. Masukkan kode dibawah ini untuk install `pika` :
+
+```bash
+python -m pip install pika
+```
+
+Sekarang kamu sudah menginstall semua dependency yang dibutuhkan. Silahkan lanjut ke materi selanjutnyaa ^^
 
 ## Membuat program RabbitMQ dengan Python
 
@@ -504,11 +549,11 @@ channel.start_consuming()
 Sekarang kita akan coba menjalankan proses RabbitMQ pada python yang telah kita buat sebelumnya.
 Pertama tama, kalian buka terminal dahulu dengan cara pencet titik tiga di `tab atas > Terminal > New Terminal`. Dikarenakan kita akan menjalankan 3 proses yang berbeda, maka kita akan membuka 3 terminal pada VSCode kita. Klik tanda `+` pada kanan atas terminal.
 
-![Alt Text](./assets/3-message-broker/1.png)
+![Alt Text](./assets/3-message-broker/5.png)
 
 Setelah kalian buat 3 terminal, beri nama masing masing terminal agar lebih mudah diakses. Klik kanan pada salashatu terminal lalu pencet rename, setelah itu berilah nama terminal sesuai dengan prosesnya.
 
-![Alt Text](./assets/3-message-broker/2.png)
+![Alt Text](./assets/3-message-broker/6.png)
 
 Jika sudah, aktifkan venv di **semua terminal** dengan cara masukkan kode dibawah ini:
 
@@ -525,4 +570,4 @@ Setelah kalian menjalankan kedua file tersebut, maka proses consume data akan di
 
 Setelah itu, jalankan file `sending.py` di terminal `Sending` dengan cara masukkan perintah `python3 sending.py`. Maka pesan akan dikirim. Setelah itu, lihat kembali terminal `whatsapp` dan `email`. Kalian akan lihat pesan yang telah dikirim dari `sending.py`.
 
-![Alt Text](./assets/3-message-broker/3.gif)
+![Alt Text](./assets/3-message-broker/7.gif)
