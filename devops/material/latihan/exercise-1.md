@@ -1,17 +1,22 @@
-# Excercise 1: Creating and Managing Files and Folder Based on Their Extension
-***
+# Excercise 1 : Managing Files
 
-#### Dalam latihan ini, Kalian akan mengatur folder dan file berdasarkan ekstensinya menggunakan perintah Linux.
+---
 
-**Objective:**
+Creating and Managing Files and Folder Based on Their Extension
+
+---
+
+Dalam latihan ini, Kalian akan mengatur folder dan file berdasarkan ekstensinya menggunakan perintah Linux.
+
+## Objective
 
 Mempelajari cara mengelola dan mengimplementasikan struktur direktori dengan mengelompokkan file dan subfolder berdasarkan ekstensi ke dalam folder terpisah sesuai jenis file.
 
-**Outcomes:**
+## Outcomes 
 
 Peserta akan mampu mengelola file dan folder berdasarkan ekstensi, termasuk memindahkan dan mengatur file secara efisien ke dalam direktori yang sesuai menggunakan perintah Linux.
 
-**1.**  Di multipass, `launch` atau buka `shell` instance kalian.
+**1.**  Pada multipass, `launch` atau buka `shell` instance kalian.
   <details>
     <summary>Lihat Solusi</summary>
     <code>multipass --launch lab-excercise</code><br />
@@ -20,7 +25,7 @@ Peserta akan mampu mengelola file dan folder berdasarkan ekstensi, termasuk memi
 
 <br />
 
-**2**.  Pastikan kalian di `home`, buat 3 folder untuk file berbentuk `assets`, `source`  dan `etc` kemudian beri nama belakangnya `folder`.
+**2**.  Pastikan kalian di `home`, buat tiga buah folder untuk file berbentuk `assets`, `source`  dan `etc` kemudian beri nama belakangnya `folder`.
   <details>
     <summary>Lihat Solusi</summary>
     <code>cd /home/ubuntu</code><br />
@@ -93,5 +98,3 @@ Peserta akan mampu mengelola file dan folder berdasarkan ekstensi, termasuk memi
 Selamat kalian sudah bisa menguasai bagaimana caranya mengatur file dan folder berdasarkan ekstensi 🥳.
 
 Shoutout buat kalian yang tidak sama sekali melihat solusi 😎.
-
-<br /

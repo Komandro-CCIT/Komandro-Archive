@@ -8,44 +8,33 @@ Contributor :
 Author: snickerdoodles
 # Chapter 1. Linux and Virtualization
 ***
-- [Introcution to Linux](#introduction-to-linux)
+- [Chapter 1. Linux and Virtualization](#chapter-1-linux-and-virtualization)
+- [Introduction to Linux](#introduction-to-linux)
 - [Virtualization](#virtualization)
 	- [Multipass](#multipass)
 		- [Installing Multipass](#installing-multipass)
-	    - [Launching Multipass](#launching-multipass)
+		- [Launching Multipass](#launching-multipass)
 - [Command Line Interface](#command-line-interface)
-	- [Basic Commands](#basic_commands)
+	- [Basic Commands](#basic-commands)
 		- [Navigating Linux System](#navigating-linux-system)
-		- [Managing File & Folder](#managing-file-&-folder)
-		- [Linux Manpages](#linux-manpages)
+		- [Managing Files \& Folder](#managing-files--folder)
+	- [Linux Manpages](#linux-manpages)
 	- [Command Line Expansions](#command-line-expansions)
 		- [Redirection](#redirection)
-		- [Pattern, Brace & Tilde Expansions](#pattern,-Brace-&-Tilde-Expansions)
-		- [Pipes & Command Separator](#pipes-&-command-separator)
-- [Multipass Mounting](#multipass-mounting)
-- VIM
-	- How to Master VIM
-	- VIM Pro & Cons
-- Bash Scripting
-	- Syntax
-		- Variable
-		- Condition
-		- Loops
-	- Making Function
-	- Receiving Bash Input File
-- Practice 1
-- Practice 2
-- Summary
+		- [Pattern, Brace \& Tilde Expansions](#pattern-brace--tilde-expansions)
+		- [Pipes \& Command Separator](#pipes--command-separator)
+	- [Multipass Mounting](#multipass-mounting)
+- [VIM](#vim)
 
 <br />
 
 # Introduction to Linux
-***
+ 
 ![](assets/linux.png)
 
-Sedikit perkenalan untuk Operting System Linux untuk kalian yang belum tahu apa itu Linux. Jadi intinya sama seperti Windows yang kalian pake, Linux itu salah satu dari banyaknya OS. Dibandingkan dengan Windows yang bayar, Linux itu gratis (kecuali yang untuk enterprise seperti redhat) dan Linux juga opensource, yang artinya siapapun bisa buat Linux versinya sendiri. Linux itu banyak gak cuman 1 kalau kalian penasaran bisa lihat di URL berikut:
+Sedikit perkenalan untuk Operating System Linux untuk kalian yang belum tahu apa itu Linux. Jadi intinya sama seperti Windows yang kalian pake, Linux itu salah satu dari banyaknya OS. 
 
-[Linux Distribution](https://upload.wikimedia.org/wikipedia/commons/1/1b/Linux_Distribution_Timeline.svg).
+Dibandingkan dengan Windows yang berbayar, Linux itu gratis (kecuali yang untuk enterprise seperti redhat) dan Linux juga open-source, yang artinya siapapun bisa membuat Linux versinya sendiri. Linux itu banyak gak hanya 1, apabila kalian penasaran bisa lihat di URL [berikut](https://upload.wikimedia.org/wikipedia/commons/1/1b/Linux_Distribution_Timeline.svg).
 
 Tapi jangan pusing, dari segitu banyaknya versi dari Linux modul ini bakalan fokus pake yang versi Ubuntu aja.
 
@@ -61,7 +50,7 @@ Ayo kita kenalan dengan Virtualisasi! 🤖
 <br />
 
 # Virtualization
-***
+
 Pernah kebayang gak? Install Linux didalam Windows? Keren kan! Itulah gunanya Virtualisasi, dengan adanya teknologi ini jadi kita gak perlu tuh beli banyak banyak komputer untuk dijadikan environment.
 
 Contoh, misalkan suatu perusahaan mau membuat websitenya sendiri otomatis yang dia butuhkan environment komputer khusus untuk server, database, dan komponen lainnya, coba kalian bayangin dari segitu banyaknya requirements untuk membuat suatu website, masa perusahaan tersebut harus beli banyak komputer? Gak efisien kan? Mahal pula 🥴.
@@ -419,7 +408,7 @@ ls
 # result: 
 ```
 
-Sampai sini paham? kalau belum paham santai next section kita bakal bahas tentang dokuentasi dari sebuah perintah agar kalian bisa lebih paham tapi kalau kalian sudah paham, selamat kalian adalah calon-calon Linux System Administrator dan satu langkah maju menuju seorang DevOps, horee!! 🥳. 
+Sampai sini paham? kalau belum paham santai next section kita bakal bahas tentang dokuentasi dari sebuah perintah agar kalian bisa lebih paham tapi kalau kalian sudah paham, selamat kalian adalah calon-calon Linux System Administrator dan satu langkah maju menuju seorang DevOps, hore! 🥳
 
 <br />
 
@@ -463,7 +452,6 @@ Table lengkap cara navigasi man interface:
 <br />
 
 ## Command Line Expansions
-***
 
 Command line expansions yaitu fitur shell bawaan dari Linux System yang memungkinkan kalian bisa manipulate and expanding sebuah command, file names, dan directory di CLI kalian, fitur ini bisa digunakan untuk shortcut, patterns, variables untuk men-spesifikan sebuah files, directory atau commands lainnya. 
 
@@ -490,7 +478,8 @@ Simplenya gini ketika kalian mengetikan command di Terminal di background Linux 
 
 Jadi flow nya gini:
 ```
-Kalian input command di terminal > stdin menerima input > diforward ke stdout jika sukses atau ke stderr jika error.
+Kalia***
+n input command di terminal > stdin menerima input > diforward ke stdout jika sukses atau ke stderr jika error.
 ```
 
 Langsung aja kita ke contoh - contoh command dibawah ini.
@@ -740,21 +729,21 @@ Santai di next section bakal dijelaskan dan kegunaannya juga buat apa, tanpa bas
 
 <br />
 
-# Multipass Mounting
-***
+## Multipass Mounting
 
 Kalian tau gak walaupun virtualization itu sharing resource antar host dan virtual machine, tapi mereka itu gak sharing data dan informasi lohh kayak files & folder, nah ini tuh menjadi masalah utama kalau seandainya kita butuh data atau informasi penting entah dari host ke vm atau sebaliknya, makanya kali ini team komandro bakalan ngajarin caranya sharing data di multipass dengan cara mounting storage kalian dari host ke vm agar bisa sharing data, tanpa lama-lama let's go ke tutorialnya dibawah ini.
 
-**1. Pastikan multipass instance nya running seperti digambar ini.**
+1. Pastikan multipass instance nya running seperti digambar ini.
  
  ![](assets/mount-multipass1.png)
 
-**2. Tentukan folder yang akan dibuat untuk sharing data kalian di host.**
-**3. Buat foldernya dan berikan namanya tanpa spasi untuk memudahkan kalian.**
+2. Tentukan folder yang akan dibuat untuk sharing data kalian di host.
+
+3. Buat foldernya dan berikan namanya tanpa spasi untuk memudahkan kalian.
 
 ![](assets/mount-multipass2.gif)
 
-**4. Jika sudah balik lagi ke CMD/Powershell dan ketikan command dibawah ini.**
+4. Jika sudah balik lagi ke CMD/Powershell dan ketikan command dibawah ini.
 
 ```cmd
 multipass set local.privileged-mounts=true
@@ -765,21 +754,21 @@ multipass set local.privileged-mounts=true
 
 <br />
 
-**5. Next, jalankan perintah dibawah ini untuk mount folder share kalian ke instance kalian (sesuaikan path folder kalian).**
+5. Next, jalankan perintah dibawah ini untuk mount folder share kalian ke instance kalian (sesuaikan path folder kalian).
 
 ```cmd
 multipass mount D:\Sharing ubuntu-instance:/home/ubuntu/shares
 ```
 
-**6. Cek status mounting seperti dibawah ini.**
+6. Cek status mounting seperti dibawah ini.
 
 ![](assets/mount-multipass3.png)
 
-**7. Test mountingnya dengan cara buat/copy file di folder mounting kalian seperti dibawah ini.**
+7. Test mountingnya dengan cara buat/copy file di folder mounting kalian seperti dibawah ini.
 
 ![](assets/mount-multipass4.gif)
 
-**8. Jika kalian sudah selesai untuk mountingnya silahkankan unmount kembali folder nya dengan ikuti command dibawah ini.**
+8. Jika kalian sudah selesai untuk mountingnya silahkankan unmount kembali folder nya dengan ikuti command dibawah ini.
 
 ```bash
 multipass unmount ubuntu-instance
@@ -791,4 +780,5 @@ Selamat kalian sudah sejauh ini belajar dan sekali lagi maju satu langkah untuk 
 <br />
 
 Author: mawlibrahim
+
 # VIM

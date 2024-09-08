@@ -53,7 +53,7 @@ Proses kompresi file build biasanya akan menjadi dua file:
 - latest.tar.gz
 - waktubuild.tar.gz
 
-Format waktubuild.tar.gz adalah format yang biasanya berbentuk seperti 20240101-123455 yang artinya sama saja dengan 01-01-2024 12:34:55. Biasanya ini ditujukan untuk memudahkan kita mengetahui versi terakhir yang dibuild pada tanggal apa.
+Format `waktubuild.tar.gz` adalah format yang biasanya berbentuk seperti 20240101-123455 yang artinya sama saja dengan 01-01-2024 12:34:55. Biasanya ini ditujukan untuk memudahkan kita mengetahui versi terakhir yang dibuild pada tanggal apa.
 
 Jadi nanti filenya akan menjadi seperti ini `20240101-123455.tar.gz`. Kita juga dapat membangun proyek berdasarkan semantic version misalnya 1.1.1, tentunya terkait versioning ini perlu diskusi dengan tim developer terkait agar memahami aturannya.
 
@@ -552,7 +552,7 @@ Apabila kalian lihat pada script `automate-deploy.sh`, ada line code dimana temp
 ## Summary
 
 - Proses build adalah proses yang menjadikan sebuah project menjadi produk akhir.
-- Setiap project build harus memilik artifact berbentuk tar.gz atau format lainnya agar mudah melakukan deployment, distribution, versioning, dan testing.
-- Project yang sudah dijadikan artifact bisa langsung dideploy ke server testing atau server prodcution.
-- Proses Build & Deployment bisa dibuat secara otomatis
+- Setiap project build harus memilik artifact misalnya dalam bentu file `tar.gz` atau format lainnya agar mudah melakukan deployment, distribution, versioning, dan testing.
+- Project yang sudah dijadikan artifact bisa langsung di-deploy ke server testing atau server prodcution.
+- Proses Build & Deployment dapat dibuat secara otomatis
 - Kesepakatan konsensus harus dibuat agar proses Build & Deploy bisa berlajan dengan lancar.
