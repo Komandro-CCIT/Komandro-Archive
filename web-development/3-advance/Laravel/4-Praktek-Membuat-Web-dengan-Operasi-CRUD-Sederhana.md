@@ -1,5 +1,21 @@
 # 4 - Praktek Membuat Web dengan Operasi CRUD Sederhana
 
+
+- [4.1 Persiapan](#41-persiapan)
+- [4.2 Membuat Controller](#42-membuat-controller)
+- [4.3 Mendefinisikan Route](#43-mendefinisikan-route)
+- [4.4 Membuat View](#44-membuat-view)
+- [4.5 Implementasi Controller dan View](#45-implementasi-controller-dan-view)
+    - [Menginstal Bootstrap](#menginstal-bootstrap)
+    - [Membuat Layout Dasar](#membuat-layout-dasar-layoutsappbladephp)
+- [4.6 Menjalankan Aplikasi](#46-menjalankan-aplikasi)
+- [4.7 Troubleshooting](#47-troubleshooting)
+- [4.8 Kesimpulan](#48-kesimpulan)
+
+Author: Muhammad Irza Arifin (@rifinsra_05)
+
+---
+
 Pada bagian ini, kita akan mempraktekkan konsep-konsep yang telah dipelajari sebelumnya dengan membangun aplikasi web sederhana yang memiliki operasi CRUD (Create, Read, Update, Delete). Aplikasi ini akan mengelola data "produk", dimana user dapat menambahkan, melihat, mengedit, dan menghapus data produk. Melalui pembuatan aplikasi ini, Kamu akan memperoleh pemahaman yang lebih mendalam tentang bagaimana berbagai komponen Laravel, seperti routing, controller, model, view, dan database, bekerja sama untuk menciptakan fungsionalitas aplikasi.
 
 ### 4.1 Persiapan
@@ -516,7 +532,7 @@ Kemudian sekarang kita akan membuat tampilan untuk setiap fungsi yang ada di `Pr
     - `<input type="number" name="price" ...>`: Input field untuk harga produk.
     - `<button type="submit" ...>Update</button>`: Tombol untuk mengirimkan form.
 
-**Menginstal Bootstrap:**
+#### Menginstal Bootstrap:
 
 Kita akan menggunakan Bootstrap, framework CSS populer, untuk styling aplikasi kita. 
 
@@ -556,7 +572,7 @@ Kita akan menggunakan Bootstrap, framework CSS populer, untuk styling aplikasi k
      - `asset('css/app.css')` akan menghasilkan URL ke file `public/css/app.css` yang berisi CSS Bootstrap yang telah dikompilasi.
 
 
-**Membuat Layout Dasar `layouts/app.blade.php`:**
+#### Membuat Layout Dasar `layouts/app.blade.php`:
 
 ```blade
 <!DOCTYPE html>
