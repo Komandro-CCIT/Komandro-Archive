@@ -226,4 +226,6 @@ Di fungsi juga ada yang namanya **parameter**, apa itu parameter? Parameter adal
 
 Kelas (class) di Python adalah cara untuk mendefinisikan tipe data baru dengan struktur dan perilaku tertentu. 
 
-Class memungkinkan kamu untuk mengelompokkan data dan fungsi dalam satu unit yang bisa dipakai ulang Misalnya, kalau kita punya class `Hewan`, maka kita bisa bikin objek kayak `Kucing`, `Anjing`, dll, yang semua punya sifat dasar sama dari class `Hewan` ini.
+Class memungkinkan kamu untuk mengelompokkan data dan fungsi dalam sebuah unit yang bisa dipakai ulang.
+
+Class juga merupakan koleksi dari fungsi, artinya kita bisa memiliki banyak fungsi di dalam sebuah class.
