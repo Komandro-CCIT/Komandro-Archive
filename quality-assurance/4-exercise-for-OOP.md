@@ -1,134 +1,82 @@
-# 4. Exercise with OOP - Part 1 (Encapsulation and Polymorphism)
+# 3. Functional Programming
 
-Author: Bara Muthi
-
----
-
-Oke, jadi kita punya aplikasi sederhana yang bikin daftar karyawan dengan dua jenis pekerjaan: **Programmer** dan **Manager**. Kita bakal lihat gimana semua ini bekerja dengan konsep **Object-Oriented Programming** (OOP) seperti **encapsulation** dan **polymorphism**.
-
-Pertama, kamu bisa menggunakan projek yang sudah ada atau kamu membuat folder baru.
-
-Kedua, jangan lupa membukanya melalui visual studio code.
-
-Ketiga, kita buat class `Karyawan` terlebih dahulu, karna ini menjadi dasar dari seluruh proyek yang kita bangun. Buat file baru bernama `karyawan.py` lalu masukkan kode di bawah ini:
-
-```python
-class Karyawan():
-    def __init__(self, nama, gaji):
-        self.__nama = nama  # Variabel ini bertipe private, sehingga hanya dapat diakses di dalam kelas yang sama
-        self.__gaji = gaji  # Ini juga variabel private
-
-    def get_nama(self):
-        return self.__nama  # Fungsi untuk mengambil nilai nama
-
-    def set_gaji(self, gaji_baru):
-        if gaji_baru > 0:
-            self.__gaji = gaji_baru  # Fungsi untuk memperbarui nilai gaji apabila lebih dari 0
-        else:
-            raise ValueError("Gaji harus lebih dari 0")  # Terjadi Error apabila gaji kurang dari 0
-
-    def get_gaji(self):
-        return self.__gaji  # Fungsi untuk mengembalikan nilai gaji
-
-    def pekerjaan(self):
-        print("Setiap karyawan punya pekerjaan")
-```
-
-Melihat kode di atas apa yang akan terjadi? Singkatnya kita membuat class `Karyawan` lalu nama dan gaji adalah `private attributes`, artinya kamu nggak bisa akses langsung dari luar kelas. Kalau mau dapet atau ubah, harus pakai metode yang disediakan yaitu metode `get_nama()` dan `get_gaji()` buat ngambil nilai dari atribut tersebut dan method `set_gaji()` buat ngubah gaji, tapi cuma kalau gajinya lebih dari 0. Kalau nggak, dia bakal lempar error. Method `pekerjaan()` itu metode yang bisa diubah oleh class turunannya, hal ini karena kita mengimplementasikan fungsi polymorphism.
+Author: Hudya Ramadhana
 
 ---
 
-Selanjutnya kita perlu membuat kelas `Programmer`, nah kelas `Programmer` ini subclass atau turunan dari `class Karyawan`.
+## Overview
 
-Buat file baru bernama `programmer.py` lalu masukkan kode di bawah ini:
+Functional Programming (FP) adalah salah satu paradigma pemrograman dimana cara penulisan program berfokus pada penggunaan fungsi untuk menyelesaikan masalah, tanpa mengubah data secara langsung.
 
-```python
-from karyawan import Karyawan
+Bayangkan FP seperti resep masakan. Kamu memiliki bahan-bahan (data) dan mengikuti langkah-langkah (fungsi) untuk mengolah bahan tersebut menjadi masakan. Setiap langkah tidak mengubah bahan asli, tapi menghasilkan sesuatu yang baru.
 
-class Programmer(Karyawan):
-    def _init_(self, nama, gaji, bahasa_pemrograman):
-        super()._init_(nama, gaji)  # Memberikan argumen ke konstruktor dari Karyawan
+## Prinsip utama FP
 
-        self.__bahasa_pemrograman = bahasa_pemrograman  # Private attribute
+- Immutability (Tidak Berubah): Data tidak diubah setelah dibuat. Contoh: Alih-alih mengubah list, buat list baru dengan perubahan yang diinginkan.
 
-    def get_bahasa_pemrograman(self):
-        return self.__bahasa_pemrograman  # Fungsi untuk mengembalikan nilai bahasa pemrograman
+- Pure Functions (Fungsi Murni): Fungsi yang selalu menghasilkan output yang sama untuk input yang sama. Tidak memiliki efek samping (seperti mengubah variabel global).
 
-    def pekerjaan(self):
-        return f"{ self.get_nama() } adalah seorang Programmer yang bekerja dengan { self.__bahasa_pemrograman }."
-```
+- First-Class Functions: Fungsi diperlakukan seperti tipe data lainnya. Bisa disimpan dalam variabel, dipass sebagai argumen, atau dikembalikan dari fungsi lain.
 
-Sekarang kita perlu membuat file baru bernama `manager.py`. Masukkan kode ini untuk class `Manager`.
+- Higher-Order Functions: Fungsi yang bisa menerima fungsi lain sebagai argumen atau mengembalikan fungsi.
+
+## Contoh
 
 ```python
-from karyawan import Karyawan
+# Pure function
+def sapa(nama):
+    return f"Halo, {nama}!"
 
-class Manager(Karyawan):
-    def _init_(self, nama, gaji, departemen):
-        super()._init_(nama, gaji)  # Panggil konstruktor dari Karyawan
-        self.__departemen = departemen  # Private attribute
+# Higher-order function
+def ucapkan(fungsi_ucapan, nama):
+    return fungsi_ucapan(nama)
 
-    def get_departemen(self):
-        return self.__departemen  # Fungsi buat ambil departemen
+print(ucapkan(sapa, "Budi"))  # Output: Halo, Budi!
+```    
 
-    def pekerjaan(self):
-        return f"{self.get_nama()} adalah seorang Manager dari departemen {self.__departemen}."
-```
+Berdasarkan contoh di atas kamu dapat melihat bahwa fungsi ucapkan dijalankan dengan mengirimkan dua argumen, yaitu `sapa dimana `sapa` adalah fungsi dan `Budi` dimana nilai ini adalah string.
 
-Nah class ini juga mewarisi atribut dan method dari class `Karyawan` dan menambahkan atribut `departemen` dan metode `get_departemen()` buat dapetin nama departemen. Lalu `pekerjaan()` akan mengimplementasikan method dari `Karyawan` dan membuat deskripsi khusus untuk seorang manager juga.
+Output yang akan terjadi adalah `Halo, Budi!` karena fungsi ucapkan menerima parameter `fungsi_ucapan` yang telah diisi oleh fungsi `sapa`, dan parameter nama menerima nilai nama yang diisi oleh `"Budi"`.
 
-Pada class `Manager`, class `Manager` dan `Programmer` mewarisi semua fungsi dan atribut dari class `Karyawan`, tapi juga menambahkan atribut `bahasa_pemrograman` yang bersifat `private`. Method `get_bahasa_pemrograman()` untuk dapetin nilai dari variabel `bahasa_pemrograman`, lalu method `pekerjaan()` mengimplementasikan metode dari Karyawan dan bikin deskripsi khusus untuk seorang programmer.
+## Code Time
 
+Untuk memahaminya lebih lanjut, mari kita coba buat proyek baru (folder baru) atau kalian dapat menggunakan proyek sebelumnya.
 
-Terakhir, buat sebuah file baru bernama `main.py`, pada class `Main` ini kita buat dua objek, yaitu satu dari class `Programmer` dan satu lagi dari class `Manager`.
+Pertama, kita perlu membuat sebuah file bernama main.py, lalu masukkan kode di bawah ini:
 
 ```python
-from programmer import Programmer
-from manager import Manager
+def sum(a, b):
+    return a + b
+
+def result(func, a, b):
+    x = func(a, b)
+    return f"Hasilnya adalah: {x}"
 
 def main():
-    programmer1 = Programmer("Budi", 8000000, "Python")
-    manager1 = Manager("Siti", 15000000, "Pemasaran")
-
-    print(programmer1.get_nama())  # Output: Budi
-    print(programmer1.get_gaji())  # Output: 8000000
-
-    print(programmer1.pekerjaan())  # Output: Budi adalah seorang Programmer yang bekerja dengan Python.
-    print(manager1.get_nama())  # Output: Siti
-    print(manager1.get_gaji())  # Output: 15000000
-    print(manager1.pekerjaan())  # Output: Siti adalah seorang Manager dari departemen Pemasaran.
-
-    # Mengubah gaji
-    programmer1.set_gaji(9000000)
-    print(programmer1.get_gaji())  # Output: 9000000
+    
+    x = 10
+    y = 20
+    
+    hasil = result(sum, x, y)
+    print(hasil)
 
 if __name__ == "__main__":
     main()
 ```
 
-Oke kita akan bahas...
+Sekarang coba jalankan, kamu akan melihat hasilnya sebagai berikut:
 
-Pertama, kita impor dua kelas yaitu `Programmer` dan `Manager` dari file terpisah. Ini kayak kita manggil blueprint untuk bikin objek. Hal ini disebut **inisiasi objek**.
+```bash
+hudya@perogeremmer-pc:~/code/python/testing$ python main.py 
+Hasilnya adalah: 30
+```
 
-Terus ada fungsi atau method yang diberi nama `main` yang isinya begini:
+Sekarang kita bedah kodenya. Pada bagian awal kamu melihat fungsi bernama `sum` dan `result`, fungsi `sum` menerima dua parameter, dan `result` menerima tiga parameter. Pada fungsi `result`, kamu melihat `x = func(a, b)`. Sintaks `func` artinya kita mencoba menjalankan fungsi yang berada parameter.
 
-1. Kita bikin variabel objek `programmer1` dari kelas `Programmer`, lalu kita beri dua buah argumen, argumen pertama adalah nama, kita kasih nilai `"Budi"`, kemudian argumen kedua adalah gaji, kita beri nilai `8 juta`, dan argumen ketiga adalah bahasa pemrograman, maka kita beri nilai `"Python"`.
-2. Kita buat variabel objek `manager1` dari kelas `Manager`, argumen pertama menerima nama, kita beri nilai `"Siti"`, argumen kedua yaitu gaji kita beri nilai `15 juta`, kemudian argumen ketiga adalah departemen, kita beri nilai `Pemasaran` karena bekerja di bawah departemen pemasaran.
+Pada fungsi main kita coba menjalankan fungsi `result` dengan mengirimkan fungsi `sum` pada argumen nilai pertama, dan nilai x, y sebagai argumen kedua dan ketiga. Hasil yang keluar adalah teks `Hasilnya adalah: ...`.
 
-Nah, kemudian ketika dijalankan kamu akan melihat hal berikut:
+Menggunakan functional programming, kamu dapat menggunakan fungsi yang dilemparkan pada fungsi lain, fungsi lain yang menerima nilai fungsi (method) dapat digunakan kembali pada fungsi tersebut. Ini dia mengapa fungsi `sum` dapat berjalan pada fungsi `result` meskipun kita tidak melihat sintaks `sum` berada di dalamnya. Hal ini disebabkan fungsi sum sudah dilemparkan sebagai objek ketika fungsi result dijalankan, yaitu pada bagian `hasil = result(sum, x, y)`.
 
-- Ketika objek variabel programmer1 diberi nilai nama Budi, nilai gaji 8 juta, dan diberi nilai bahasa Python, maka akan tercetak: `"Budi adalah seorang Programmer yang bekerja dengan Python."`
-- Sama halnya dengan manager, ketika kita beri nilai argumen pada variabel objek `manager1` dengan argumen nama Siti, argumen gaji 15 juta, dan pekerjaannya pada departemen pemasaran, maka yang akan tercetak adalah: `"Siti adalah seorang Manager dari departemen Pemasaran."`
+## Challenge Time
 
-Padabagian bawah kamu akan menemukan baris kode dimana nilai gaji si `programmer1` diubah menjadi jadi 9 juta menggunakan fungsi `set_gaji(9000000)`, pada baris selanjutnya program mencetak nilai dari fungsi `get_gaji()` dan akan menampilkan nilai yang kita ubah.
-
-Terakhir, ada pengecekan kalau kode ini hanya dapat  berjalan kalau kita langsung jalankan file main.py (bukan diimpor ke file lain), oleh karena kita gunakan `if __name__ == "__main__"` untuk memeriksa.
-
-<br/>
-
-> [!NOTE]
-> Jadi singkatnya, kita bikin programmer dan manager, cek data mereka, terus naikin gaji si programmer.
-
-Catatan tambahan:
-- `Encapsulation`: Data seperti nama, gaji, bahasa pemrograman, dan departemen disembunyiin di dalam kelas, jadi cuma bisa diakses pake metode khusus (kayak `get_nama()` atau `get_gaji()`).
-- `Polymorphism`: Metode `pekerjaan()` beda implementasinya di kelas `Programmer` dan `Manager`, tapi cara manggilnya sama aja. Jadi kamu bisa akses info pekerjaan mereka dengan gampang tanpa peduli dia programmer atau manager.
+Menggunakan contoh di atas, dapatkah kamu membuat sebuah fungsi perhitungan luas lingkaran dengan menerapkan higher-order function di atas?
