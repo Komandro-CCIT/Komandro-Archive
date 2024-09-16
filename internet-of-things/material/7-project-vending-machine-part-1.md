@@ -1,4 +1,4 @@
-8 - Project Vending Machine (Part 1)
+7 - Project Vending Machine (Part 1)
 ---
 
 Author: Hudya (@perogeremmer)
