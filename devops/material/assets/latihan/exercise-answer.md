@@ -39,6 +39,11 @@ cd /home/ubuntu/devops-exercise/exercise-1
 ```
 
 ```bash
+# Creating global variable timestamp
+TIMESTAMP=$(date +"%Y-%m-%d_%H:%M:%S")
+```
+
+```bash
 # Creating back up
 tar -cvzf ../exercise-2/target-a/$TIMESTAMP.tar.gz code/
 TIMESTAMP=$(date +"%Y-%m-%d_%H:%M:%S")
