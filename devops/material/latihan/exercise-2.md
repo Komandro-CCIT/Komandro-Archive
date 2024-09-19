@@ -1,7 +1,10 @@
 # Excercise 2: Creating Backup Files with Timestamp Along With Source and Destination Folder
-***
 
-#### Dalam latihan ini, Kalian akan mencoba membuat file menggunakan stempel waktu, serta menentukan folder source dan destination menggunakan perintah Linux.
+<br />
+
+### Dalam latihan ini, Kalian akan mencoba membuat file menggunakan stempel waktu, serta menentukan folder source dan destination menggunakan perintah Linux.
+
+<br />
 
 **Objective:**
 
@@ -11,110 +14,59 @@ Memahami dan mempraktikkan pembuatan file cadangan dengan stempel waktu mengguna
 
 Peserta akan dapat membuat file cadangan dengan stempel waktu yang unik, menentukan dan menggunakan direktori sumber dan tujuan yang berbeda, serta mengembangkan pemahaman yang lebih baik tentang manajemen file dan direktori di lingkungan Linux.
 
-**1.**  Di Multipass, jalankan perintah `launch` dan buka `shell` instance kalian, lalu pastikan kalian berada di direktori `home`.
-  <details>
-    <summary>Lihat Solusi</summary>
-    <code>multipass shell lab-excercise</code><br />
-    <code>cd /home/ubuntu</code>
-  </details>
+<br />
+
+**1.**  Di Multipass, buka `shell` instance kalian, lalu pastikan kalian berada di direktori `home`.
+***
+**2.** Melanjutkan `exercise-1` sekarang `exercise-2` akan menggunakan file yang berada di `exercise-1` untuk sebagai source foldernya.
+***
+**3.** Masuk ke folder `exercise-1` untuk memulai latihan yang ke-2.
+***
+**4.** Buat variabel global bernama `TIMESTAMP` di commandline interface, beri valuenya dengan command `date` dan spesifikan waktunya berdasarkan `YYYY-MM-DD_hh:mm:ss` gunakan man untuk melihat formatnya lalu pastikan variabelnya terbuat.  
+
+Expected Output:
+
+![](../assets/latihan/exercise-2.1.png)
+***
+**5.** Sekarang backup folder `code` yang ada didalam `exercise-1` dengan folder `exercise-2/target-a` sebagai destination dan beri ekstensi `tar.gz` menggunakan perintah `tar` linux, gunakan `man` untuk caranya, dan untuk nama file backup tersebut yaitu variabel `TIMESTAMP` yang baru dibuat.
+
+Expected Output:
+
+![](../assets/latihan/exercise-2.2.png)
+***
+**6.** Lakukan hal yang sama untuk folder `media` dan `static` ke folder `exercise-2/target-b` dan `exercise-2/target-c`, tapi sebelum backup menggunakan `tar` jalankan command membuat variable global `TIMESTAMP` secara bergantian dengan `media` kemudian backup dan `static` dan backup juga, ini dilakukan agar waktu di variabelnya terupdate, kemudian tampilkan semua backup secara terstruktur.
+
+Expected Output:
+
+![](../assets/latihan/exercise-2.3.png)
+***
+**7.** Sekarang hapus semua file yang ada di `target-a`, `target-b`, `target-c`.
+
+Expected Output:
+
+![](../assets/latihan/exercise-2.4.png)
+***
+**8.** Pindah 1 direktori ke belakang dan buatlah `bash script` bernama `backup.sh` dengan command-command yang kalian sudah gunakan untuk backup file dari `step-step sebelumnya`.
+***
+**9.** Berikan `execute permission` pada scriptnya dan jalankan scriptnya.
+***
+**10.** List lagi hasil backup yang menggunakan script
+
+Expected Output:
+
+![](../assets/latihan/exercise-2.5.png)
+***
+Selamat kalian sudah bisa menguasai bagaimana caranya backup file dan folder dengan `tar` command di linux 🥳.
 
 <br />
 
-**2.**  Buatlah sebuah folder `Projects` yang berisikan 1 file kosong bernama `telltime` berekstensikan `.sh`. 
-  <details>
-    <summary>Lihat Solusi</summary>
-    <code>mkdir Projects ; touch Projects/telltime.sh</code>
-  </details>
+## **Reason Why You Should Backup Your File & Folder Frequently:**
+
+- **Data Loss Prevention**
+	Untuk alasan ini sudah pasti sangat wajib dan mutlak, agar kejadian seperti yang dialami kementrian teknologi dan komunikasi itu tidak terjadi pada kalian.
+- **Version Control and Rollback**
+	Terkadang update yang dilakukan pada suatu project itu tidak sesuai ekspektasi, dengan adanya backup kita bisa rollback ke versi sebelumnya.
+- **Knowledge Archiving**
+	File & Folder backup saat sudah tidak bisa dipakai bisa menjadi archive untuk kebutuhan masa mendatang
 
 <br />
-
-**3.**  Buka file kosong yang baru didalam source folder dengan `vim` lalu buat function sederhana untuk menampilkan waktu menggunakan command `date`.
-  <details>
-    <summary>Lihat Solusi</summary>
-    <pre>#!/bin/bash
-
-function show_time() {
-  echo "Current time: $(date)"
-}
-
-show_time</pre></details>
-
-<br />
-
-**4.**  Pastikan scriptnya bisa di `execute` dan coba jalankan scriptnya. 
-  <details>
-    <summary>Lihat Solusi</summary>
-    <code>chmod +x Projects/telltime.sh</code><br />
-    <code>Projects/telltime.sh</code>
-  </details>
-
-<br />
-
-**5.**  Sekarang buatlah sebuah folder baru bernama `Backups` dan buat juga `subfoldernya` dengan nama tahun 2024. 
-  <details>
-    <summary>Lihat Solusi</summary>
-    <code>mkdir -p Backups/2024</code>
-  </details>
-
-<br />
-
-**6.**  Buat variabel global bernama `TIMESTAMP` di commandline interface, beri valuenya dengan command `date` dan spesifikan waktunya berdasarkan `YYYY-MM-D_Dhh:mm:ss` gunakan man untuk melihat formatnya lalu pastikan variabelnya terbuat. 
-  <details>
-    <summary>Lihat Solusi</summary>
-    <code>TIMESTAMP=$(date "+%Y-%m-%d_%H:%M:%S")</code><br />
-    <code>echo $TIMESTAMP</code>
-  </details>
-
-<br />
-
-**7.**  Sekarang `Backup` file `telltime.sh` dengan folder `Backups/2024` sebagai destination dan beri ekstensi `tar.gz` menggunakan perintah `tar` linux, gunakan man untuk caranya, dan beri nama file backup tersebut dengan variabel `TIMESTAMP` yang baru dibuat.
-  <details>
-    <summary>Lihat Solusi</summary>
-    <code>cd Projects ; tar -c -f ../Backups/2024/$TIMESTAMP.tar.gz telltime.sh</code>
-  </details>
-
-<br />
-
-**8.**  Buka kembali file `telltime.sh` dengan vim lalu tambahkan fitur input masukan nama dan berikan output menyapa serta memberi tahu waktu yang sekarang.
-  <details>
-    <summary>Lihat Solusi</summary>
-    <pre>#!/bin/bash
-
-function show_time() {
-	  read -p "Please enter your name: " name
-	  echo "Hello, $name!"
-	  echo "Right now is $(date) at Asia/Jakarta timezone"
-	}
-	
-show_time</pre></details>
-
-<br />
-
-**9.**  Coba jalankan script `telltime.sh` lalu backup lagi filenya dengan cara yang sama sebelumnya tetapi jalankan variabel `TIMESTAMP` lagi sebelum membackup, kemudian hapus `telltime.sh` nya.
-  <details>
-    <summary>Lihat Solusi</summary>
-	<code>./telltime.sh</code><br />
-	<code>TIMESTAMP=$(date "+%Y-%m-%d_%H:%M:%S") ; tar -cf ../Backups/2024/$TIMESTAMP.tar.gz telltime.sh</code><br />
-	<code>rm telltime.sh</code></details>
-
-<br />
-
-**10.**  Selanjutnya `ekstrak` script yang sebelumnya dihapus dengan file `backup` yang sudah dibuat dengan menggunakan perintah `tar` kedalam `source` directory, lihat man untuk caranya.
-  <details>
-    <summary>Lihat Solusi</summary>
-	<code>tar -x -f ../Backups/2024/#archiveyangterbaru -C /home/ubuntu/Projects</code>
-  </details>
-
-<br />
-
-**11.**  Terakhir hapus semua file dan folder yang ada.
-  <details>
-    <summary>Lihat Solusi</summary>
-	<code>cd .. ; rm -rf *</code>
-  </details>
-
-<br />
-
-Selamat kalian sudah bisa menguasai caranya membackup sebuah file berdasarkan source dan destination folder 🥳.
-
-Salute buat kalian yang sama sekali tidak melihat solusi 😎.
