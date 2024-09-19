@@ -31,7 +31,7 @@ https://github.com/Komandro-CCIT/devops-exercise.git
 
 Expected Output:
 
-![](assets/latihan/exercise-1.1.png)
+![](../assets/latihan/exercise-1.1.png)
 
 ***
 **6**.  Pindahkan `semua` file yang berekstensikan `.js` dan `.css` kedalam folder `code`.
@@ -44,7 +44,7 @@ Expected Output:
 
 Expected Output:
 
-![](assets/latihan/exercise-1.2.png)
+![](../assets/latihan/exercise-1.2.png)
 
 ***
 Selamat kalian sudah bisa menguasai bagaimana caranya mengatur file dan folder berdasarkan ekstensi 🥳.
