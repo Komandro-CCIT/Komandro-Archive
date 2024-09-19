@@ -50,3 +50,18 @@ Expected Output:
 Selamat kalian sudah bisa menguasai bagaimana caranya mengatur file dan folder berdasarkan ekstensi 🥳.
 
 <br />
+
+## **Reason Why You Should Organize Your File Based On Extension:**
+
+- **Easier Navigation and Location**
+	Lebih mudah untuk navigasi direktori project dan mencari file tertentu. Misalnya, kalau kalian perlu cari file JavaScript, mereka hanya mencarinya di folder code, js, source atau javascript folder.
+- **Better Collaboration**
+	Anggota tim dapat dengan cepat dan paham struktur project dan mencari file yang mereka butuhkan untuk bekerja. Ini mengurangi kebingungan dan misskomunikasi.
+- **Enhanced Security**
+	Organize file berdasarkan ekstensi juga dapat meningkatkan keamanan. Contohnya memisahkan file sensitif, file konfigurasi atau encryption key ke dalam folder khusus mereka, developer dapat lebih mudah kontrol akses dan mengurangi resiko unauthorized access.
+- **Simplified Build and Deployment**
+	Banyak tools build and deployment scripts bergantung pada file extensionya untuk menentukan proses packaging files. Organizing files by extension lebih mudah untuk konfigurasikan toolsnya dan memastikan files lancar pada saat proses build and deployment.
+- **Reduced Errors and Conflicts**
+	Organizing files by extension meminimalisirkan resiko error dan konflik antar files, Contohnya ketika files tidak terorganize anggota tim terkadang tidak sengaja mengubah file yang salah membuat project error tidak karuan dan sulit untuk di identifikasi.
+
+<br />
