@@ -67,9 +67,14 @@ cd /home/ubuntu/devops-exercise/exercise-1
 
 # Creating back up
 for target in a b c; do
-  TIMESTAMP=$(date +"%Y-%m-%d_%H:%M:%S")
+  case $target in
+    a) folder="code";;
+    b) folder="media";;
+    c) folder="static";;
+  esac
   sleep 2
-  tar -cvzf ../exercise-2/target-$target/$TIMESTAMP.tar.gz code/
+  TIMESTAMP=$(date +"%Y-%m-%d_%H:%M:%S")
+  tar -cvzf ../exercise-2/target-$target/$TIMESTAMP.tar.gz $folder/
 done
 
 echo "Backup Success!"
