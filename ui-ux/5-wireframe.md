@@ -2,8 +2,8 @@
 
 - [5 - Wireframe](#5--Wireframe)
   - [Apasih Wireframe?](#apasih-wireframe)
-   - [Kenapa Wireframing Penting?](#kenapa-wireframing-penting)
-  - [Perbandingan Jenis Wireframe](#perbandingan-jenis-wireframe)
+   - [Kenapa Wireframing Penting?](#kenapa-wireframing-penting-)
+  - [Perbandingan Jenis Wireframe](#perbandingan-jenis-wireframe-)
   - [Berbagai Tools Pembuatan Wireframe](#berbagai-tools-pembuatan-wireframe)
   - [Wireframing di Figma](#wireframing-di-figma)
 
