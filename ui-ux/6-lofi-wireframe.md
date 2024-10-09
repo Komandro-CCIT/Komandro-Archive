@@ -1,7 +1,21 @@
 # LoFi Wireframe
-author: Ifarra
+- [Apa itu LoFi Wireframe?](#apa-itu-low-fidelity-wireframe)
+- [Menggunakan LoFi Wireframe](#menggunakan-lofi-wireframe)
+- [Pembuatan LoFi Wireframe](#pembuatan-lofi-wireframe-di-figma)
+    - [Frame](#1-buat-frame-untuk-memulai-designing)
+    - [Mapping](#2-mapping-area-di-wireframe)
+    - [Naming](#3-naming)
+    - [Top Navbar](#4-membuat-top-navbar)
+    - [Bottom Navbar](#5-membuat-bottom-navbar)
+    - [Main Screen](#6-membuat-main-screen)
+  
+---
 
-![lofi wireframe](https://i.pinimg.com/736x/9d/e4/9a/9de49a84f4e430bb3247372737706fa4.jpg)
+Author : [Muhammad Fauzan Arrafi](https://github.com/ifarra)
+
+---
+
+![lofi wireframe](https://mir-s3-cdn-cf.behance.net/project_modules/1400/0be45796891155.5eb908c24ce61.gif)
 
 # Apa itu Low Fidelity Wireframe?
 Lofi wireframe adalah atau low fidelity wireframe adalah wireframe sederhana di mana di dalam pembuatan wireframe ini detail dari aplikasi bukan jadi prioritas utama, di wireframe ini ada beberapa point yang menjadi fokus dari pembuatan wireframe, di antaranya adalah :
