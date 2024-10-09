@@ -17,3 +17,7 @@ UI/UX:
 Android:
 - changed-files:
   - any-glob-to-any-file: 'android/**'
+
+QA:
+- changed-files:
+  - any-glob-to-any-file: 'quality-assurance/**'
