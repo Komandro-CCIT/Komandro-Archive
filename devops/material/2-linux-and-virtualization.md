@@ -781,7 +781,7 @@ Selamat kalian sudah sejauh ini belajar dan sekali lagi maju satu langkah untuk 
 
 Author: mawlibrahim
 
-# VIM
+# Introduction to Vim
 Kalau command ditulis di terminal, script biasanya ditulis di code editor.
 
 Bagi yang belum tahu, code editor adalah software yang digunakan untuk menulis atau mengedit codingan (makanya disebut code editor). 
@@ -809,7 +809,7 @@ Dalam Vim, kita bisa menggunakan beberapa mode, antara lain:
 
 <br />
 
-##Bash Script
+# Bash Script
 Sebelumnya kita sudah belajar mengenai bash command, seperti ls, cd, cp, dll. 
 
 Permasalahannya adalah: kita harus menulis setiap command yang mau kita gunakan. Akan sangat merepotkan jika harus menulis command yang sama berkali-kali. 
