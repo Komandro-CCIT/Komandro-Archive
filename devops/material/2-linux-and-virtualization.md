@@ -782,3 +782,256 @@ Selamat kalian sudah sejauh ini belajar dan sekali lagi maju satu langkah untuk 
 Author: mawlibrahim
 
 # VIM
+Kalau command ditulis di terminal, script biasanya ditulis di code editor.
+
+Bagi yang belum tahu, code editor adalah software yang digunakan untuk menulis atau mengedit codingan (makanya disebut code editor). 
+
+Terus, apa sih code editor yang paling cocok buat bash scripting? Ada banyak, salah satunya Vim. Vim tidak memiliki GUI (tampilan grafis), sehingga cocok digunakan oleh setiap jenis Linux.
+
+Pada sistem operasi Linux biasanya sudah terinstal Vim. Namun jika belum, bisa diinstal dengan command berikut:
+```
+sudo apt update
+sudo apt install vim
+```
+
+Karena tidak menggunakan GUI, navigasi di Vim sepenuhnya menggunakan keyboard.
+
+Cara membuka Vim untuk menulis atau mengedit file:
+```
+vim nama_file
+```
+
+Dalam Vim, kita bisa menggunakan beberapa mode, antara lain:
+1. Normal: saat kita baru membuka Vim.
+2. Insert: mode untuk memasukkan teks. Tekan "i" untuk masuk ke mode ini.
+3. Visual: mode untuk memilih teks. Tekan "v" untuk masuk ke mode ini.
+4. Command: mode untuk memberikan perintah pada Vim, seperti untuk menyimpan atau keluar dari file. Tekan ":" di mode normal untuk masuk ke mode ini.
+
+<br />
+
+##Bash Script
+Sebelumnya kita sudah belajar mengenai bash command, seperti ls, cd, cp, dll. 
+
+Permasalahannya adalah: kita harus menulis setiap command yang mau kita gunakan. Akan sangat merepotkan jika harus menulis command yang sama berkali-kali. 
+
+Solusinya bagaimana? Yaitu dengan membuat script. Sederhananya, script itu command yang ditulis di dalam file. 
+
+Jadi, tidak perlu ribet menulis ulang command, cukup menjalankan filenya saja.
+
+Bagaimana caranya? Ikuti penjelasan di bawah ini.
+
+Pertama-tama, ketikkan command berikut ini ke terminal.
+`vim bash_script_pertamaku`
+
+Lalu akan muncul tampilan dari Vim. Ketik i untuk masuk ke mode insert.
+
+Di baris pertama, kita gunakan shebang `#!`. Tujuannya untuk menentukan interpreter apa yang akan digunakan. Jika kita ingin menulis dalam bahasa Bash, tentu kita perlu menggunakan interpreter (penerjemah) Bash.
+
+`#!/bin/bash`
+Baris shebang di atas menggunakan bash sebagai interpreter script. (Kita bisa juga menggunakan interpreter lain, misalnya Python, jika ingin membuat Python script. Caranya adalah dengan mengganti /bin/bash dengan lokasi Python diinstal.)
+
+Kemudian di baris setelahnya, kita bisa tulis command Linux yang mau dijalankan. Misalnya: `echo "Hello, Komanders!"`
+
+Dengan demikian, isi script secara keseluruhan adalah sebagai berikut:
+```
+#!/bin/bash
+
+echo "Hello, Komanders!"
+```
+
+Setelah itu, keluar dari Vim dengan menekan esc dan mengetikkan :wq. Tekan enter.
+
+Ketik ls, akan muncul file bash_script_pertamaku.
+![[Screenshot 2024-08-29 140052.png]]
+
+Sebelum menjalankannya, kita perlu mengetikkan command ini terlebih dahulu:
+```
+chmod u+x bash_script_pertamaku
+```
+Karena Linux sangat ketat dalam masalah keamanan, tidak semua orang bisa mengeksekusi file tersebut. Karena itu kita gunakan command di atas guna mendapatkan izin untuk mengeksekusinya.
+
+Gunakan command di bawah ini untuk menjalankannya:
+```
+./bash_script_pertamaku
+```
+
+Output yang dihasilkan adalah sebagai berikut:
+![[Screenshot 2024-08-29 144611.png]]
+Sama hasilnya dengan menggunakan command `echo "Hello, Komanders"` melalui shell secara langsung.
+
+**Variable**
+Selain menyimpan command, Bash script juga bisa menyimpan variable. 
+
+```
+#!/bin/bash
+
+# Mendeklarasikan variabel
+nama="King Mawan"
+umur=19
+
+# Mengakses variabel
+echo "Nama: $nama"
+echo "Umur: $umur"
+
+```
+
+### Conditional Statements
+Conditional statements adalah salah satu upaya untuk mengontrol alur program. Misal, jika variabel `umur` bernilai 10, maka tampilkan tulisan "Anak-anak". Jika `umur` adalah 90, maka tampilkan kata "lansia".
+
+Ada dua jenis conditional statements, yakni if dan switch.
+
+**If**
+Untuk menuliskan if statements, tidak jauh berbeda dengan bahasa pemrograman lain.
+```
+#!/bin/bash
+
+nama="Mawan"
+umur=19
+
+# if statements di bawah ini menanyakan apakah nama anda adalah Mawan
+if [ "$nama" = "Mawan" ]; then
+	echo "Halo $nama"
+else
+	echo "Gak Mawan jadi gak halo"
+fi
+
+# if statements di bawah ini menanyakan apakah umur anda 19 tahun
+if [ $umur -eq 19 ]; then
+    echo "Anda berumur sembilan belas tahun."
+else
+    echo "Anda bukan sembilan belas tahun."
+fi
+
+# output
+# Halo Mawan
+# Anda berumur sembilan belas tahun.
+```
+
+Untuk memulai sebuah if statement, harus dimulai dengan kata `if` dan diakhiri dengan kata `fi`. 
+
+Kita menuliskan kondisi di dalam kurung siku `[]`. Dalam if statement yang pertama, kita membandingkan variabel nama dengan kata "Mawan". Jika nilai dari variabel tersebut adalah "Mawan", maka kondisi tersebut bernilai True. Jika kondisinya True, maka command `echo "Halo $nama"` akan dijalankan.
+
+Sebaliknya jika namanya ternyata bukan Mawan, maka command tersebut tidak akan dijalankan. Command tersebut akan dilewati saja, sehingga yang tereksekusi adalah command `else` yakni `echo "Gak Mawan jadi gak halo"`.
+
+Di if statement yang pertama, saat membandingkan antara dua string, kita menggunakan operator seperti =, <, > untuk mengevaluasi kondisi. 
+
+Sedangkan saat membandingkan integer, seperti di if statement kedua, kita perlu menggunakan operator -eq, -lt, -gt.
+
+Untuk lebih jelasnya, comparison operator di Bash antara lain:
+
+| String operator | Integer operator | Artinya                                                      |
+| --------------- | ---------------- | ------------------------------------------------------------ |
+| =               | -eq              | equal to (sama dengan)                                       |
+| !=              | -ne              | not equal to (tidak sama dengan)                             |
+| <               | -lt              | less than (lebih kecil dari)                                 |
+| <=              | -le              | less than or equal to (lebih kecil dari atau sama dengan)    |
+| >               | -gt              | greater than (lebih besar dari)                              |
+| >=              | -ge              | greater than or equal to (lebih besar dari atau sama dengan) |
+
+
+**Switch**
+Selain if, ada lagi conditional statement yang lain, yaitu switch. 
+
+### Loop
+Loop adalah kondisi untuk mengulangi blok kode.
+Ada dua jenis loop: while dan for.
+
+**While loop**
+```
+#!/bin/bash
+
+# while loop
+i=1
+while [ $i -le 5 ]; do
+    echo "Hitungan: $i"
+    i=$((i+1))
+done
+
+# output
+# Hitungan: 1
+# Hitungan: 2
+# Hitungan: 3
+# Hitungan: 4
+# Hitungan: 5
+```
+Seperti yang sudah disebutkan sebelumnya, kondisi ditulis dalam kurung siku `[]`. Dalam script di atas, kondisinya adalah saat i bernilai lebih kecil atau sama dengan 5. 
+
+Saat script mulai dijalankan, nilai i sama dengan 1. Jadi command `echo "Hitungan: $i"` dan `i=$((i+1))` akan dijalankan.
+
+Setelahnya, apa yang terjadi? Tidak sama dengan if statement yang langsung ke baris selanjutnya, while loop kembali ke baris sebelumnya dan menanyakan lagi kondisinya.
+
+Dia bertanya lagi, apakah i lebih kecil atau sama dengan 5? Jawabannya masih True, karena i saat ini nilainya adalah 2. 
+
+Command tersebut akan terus dijalankan sampai nilai i lebih besar dari 5.
+
+
+**For loop**
+```
+#!/bin/bash
+
+# Loop sederhana
+for angka in 1 2 3 4 5; do
+    echo "Angka: $angka"
+done
+
+# output
+# Hitungan: 1
+# Hitungan: 2
+# Hitungan: 3
+# Hitungan: 4
+# Hitungan: 5
+```
+
+### Menerima input dari pengguna
+Jika sebelumnya nilai dari variabel ditulis oleh sang programmer, kali ini kita akan meminta user mengisi nilai dari variabel tersebut.
+```
+#!/bin/bash
+
+echo "Masukkan nama Anda:"
+read nama
+
+echo "Nama yang Anda masukkan adalah: $nama"
+
+```
+Kita menggunakan sintaks `read` untuk meminta input dari user. Jadi di sini variabel nama tidak lagi bernilai "Mawan", tetapi apa pun yang diisi oleh si user.
+
+Kita pun juga bisa menerima input sebelum program tersebut dijalankan, yakni menggunakan command-line argument. Untuk scriptnya bisa dilihat di bawah ini.
+```
+#!/bin/bash
+
+# $1 adalah argumen pertama yang dimasukkan ke script
+echo "Nama yang Anda masukkan: $1"
+
+```
+Bagaimana cara memasukkan inputnya? Saat ingin menjalankan program, kalian bisa menuliskan command di bawah ini.
+```
+./judul_script.sh masukkan_nama_di_sini
+```
+
+Misal, jika script tersebut kalian save dengan judul contohargumen.sh, dan nama yang ingin kalian masukkan adalah Kheyral, maka kalian bisa tulis command di bawah ini.
+```
+./contohargumen.sh Kheyral
+```
+
+### Function
+Jika kita ingin menggunakan blok kode berulang-ulang dalam satu script, bisa dengan menggunakan function.
+```
+#!/bin/bash
+
+# Menulis function yang menerima 1 parameter
+sapa() {
+	# menanyakan apakah si user sudah memberikan argumen
+    if [ -z "$1" ]; then
+        echo "Cara pakai: ./sapa.sh <nama>"
+        return 1
+    fi
+    echo "Halo $1!"
+}
+
+# Memanggil function
+sapa "$1"
+
+```
+Seperti yang terlihat di atas, untuk menjalankan blok kode dalam function, kita cukup memanggilnya dengan menuliskan `sapa "$1"`. Dan function tersebut pun bisa kita panggil berkali-kali, jadi tidak perlu bersusah payah menulis kembali baris-baris kode yang ada di dalam function tersebut.
+
+<br />
