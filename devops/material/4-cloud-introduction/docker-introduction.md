@@ -579,4 +579,3 @@ Oke kalian barusan sudah belajar gimana sih cara pakai docker dengan command yan
 
 - Docker merupakan sebuah platform untuk melakukan containerization.
 - Containerization merupakan sebuah konsep membuat sebuah "wadah" untuk menyimpan aplikasi dan dependencies-nya secara terisolasi.
-- WIP
