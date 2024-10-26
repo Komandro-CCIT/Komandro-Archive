@@ -9,20 +9,22 @@
   - [Redis](#redis)
     - [Hubungan IMDB dan Redis](#hubungan-imdb-dan-redis)
     - [Kapan dan Mengapa Butuh Redis?](#kapan-dan-mengapa-butuh-redis)
-    - [Install Redis](#install-redis)
-    - [Menghubungkan Redis](#menghubungkan-redis)
-    - [Dasar Syntax Redis](#dasar-syntax-redis)
-      - [Key-Value](#key-value)
-      - [Databases](#databases)
-      - [Menghubungkan Python dengan server Redis](#menghubungkan-python-dengan-server-redis)
-      - [Menambah Key+value dan mengubah value yang ada](#menambah-keyvalue-dan-mengubah-value-yang-ada)
-      - [Mendapatkan Nilai dari Sebuah Kunci](#mendapatkan-nilai-dari-sebuah-kunci)
-      - [Menghapus data](#menghapus-data)
-      - [Expiration](#expiration)
+  - [Instalasi Redis](#instalasi-redis)
+  - [Menghubungkan Redis](#menghubungkan-redis)
+  - [Sintaks Dasar Redis](#sintaks-dasar-redis)
+    - [Key-Value](#key-value)
+    - [Databases](#databases)
+  - [Menghubungkan Python dengan server Redis](#menghubungkan-python-dengan-server-redis)
+  - [Menambah Key dan value dan mengubah value yang ada](#menambah-key-dan-value-dan-mengubah-value-yang-ada)
+  - [Mendapatkan Nilai dari Sebuah Kunci](#mendapatkan-nilai-dari-sebuah-kunci)
+  - [Menghapus data](#menghapus-data)
+  - [Expiration](#expiration)
+
+Author: Ali Ikhwan Habibie (@al_ikhwan.h)
 
 ## Overview
 
-Setelah kalian membaca [pengenalan IoT](1-introduction.md) pada bab sebelumnya, next step adalahmempelajari di materi In-memory database.
+Setelah kalian membaca [pengenalan IoT](1-introduction.md) pada bab sebelumnya, next step adalah mempelajari materi In-memory database.
 
 ## In-Memory Database
 
@@ -87,7 +89,7 @@ Berikut adalah beberapa fitur utama Redis:
 
 - Penyimpanan cache: Redis dapat digunakan untuk menyimpan data yang sering diakses, seperti data produk atau data pengguna. Hal ini dapat meningkatkan kinerja aplikasi web.
 
-s- Database nilai-kunci: Redis dapat digunakan untuk menyimpan data dalam format nilai-kunci. Hal ini dapat digunakan untuk menyimpan data seperti token otentikasi atau data konfigurasi.
+- Database nilai-kunci: Redis dapat digunakan untuk menyimpan data dalam format nilai-kunci. Hal ini dapat digunakan untuk menyimpan data seperti token otentikasi atau data konfigurasi.
 
 - Publisher/subscriber: Redis dapat digunakan untuk mengirim pesan dari satu proses ke proses lain. Hal ini dapat digunakan untuk membangun sistem real-time, seperti sistem notifikasi atau sistem obrolan.
 
@@ -121,53 +123,108 @@ Redis seringkali menjadi pilihan utama dalam pengembangan aplikasi Internet of T
 
 Dukungan Komunitas yang Kuat: Redis memiliki komunitas pengguna yang besar dan aktif. Ini berarti ada banyak sumber daya, dokumentasi, dan dukungan komunitas yang dapat diandalkan untuk membantu pengembang IoT saat menghadapi masalah atau mencari solusi. Ketika membangun aplikasi IoT, pengembang sering mencari solusi yang dapat menangani volume data tinggi dengan latensi rendah, dan Redis memenuhi kriteria tersebut dengan baik.
 
-### Install Redis
+## Instalasi Redis
 
 Redis merupakan aplikasi yang dibuat menggunakan Bahasa pemrograman C, untuk menggunakan Redis kita harus kompilasi kode program redisnya. Oleh karena itu disarankan menggunakan OS Linux atau Mac karena sudah ada compiler C. Jika menggunakan Windows kalian bisa pakai Docker yang sudah menyediakan distribusi bawaan untuk Bahasa pemrograman C.
 
 Sebelumnya kita telah menginstall OS Ubuntu melalui Multipass Virtual Machine dan menghubungkannya ke Visual Studio Code. Jadi, pada kesempatan kali ini kita akan menginstall Redis didalam OS Ubuntu yang telah kita buat pada instance Multipass dengan mudah dan simpel melalui Visual Studio Code.
 
-Pertama, hubungkan VSCode kalian dengan instance multipass yang telah kita buat sebelumnya. (Cek bab sebelumnya jika kalian lupa cara untuk menghubungkan instance multipass ke VSCode)
+Pertama, hubungkan VSCode kalian dengan instance multipass yang telah kita buat sebelumnya. Berikut langkah langkahnya (Lihat GIF dibawah untuk lebih jelasnya) :
+1. Buka PowerShell kalian lalu ketik `multipass list`
+2. Copy Alamat IP instance kalian (Jika instance Stopped, jalankan dengan perintah `multipass start [nama instance]`)
+3. Buka VSCode, lalu klik tombol warna biru di pojok kiri bawah
+4. Pilih `Connect to Host`
+5. Ketik `ubuntu@[Alamat IP Instance kalian]` misalnya : `ubuntu@172.17.138.199`. Lalu pencet tombol Enter.
+6. Pilih `Linux` (Jika ada)
+7. Jika ada peringatan `"[Alamat IP kalian]" has fingerprint "[Kode unik]"`, pilih opsi `Continue`
+8. Masukkan password instance Ubuntu kalian
+9. Berhasil (Ditandai dengan ditampilkannya alamat IP instance kamu di pojok kiri bawah)
+
+![Alt Text](./assets/2-inMemoryDatabase/2.gif)
 
 Jika sudah terhubung, buka terminal pada VSCode dengan cara pencet titik tiga di tab atas > Terminal > New Terminal
 
-Sebelum kita install redis, mari kita install redis-server dan venv.
+![Alt Text](./assets/2-inMemoryDatabase/3.png)
 
-> [!NOTE]
-> Virtualenv (venv) adalah alat yang digunakan untuk membuat lingkungan Python yang terisolasi. Lingkungan ini memiliki direktori instalasinya sendiri yang tidak berbagi pustaka dengan lingkungan virtualenv lainnya (dan secara opsional juga tidak mengakses pustaka yang diinstal secara global).
 
-Silahkan masukkan kode dibawah ini satu persatu setiap barisnya:
+Sebelum kita install `redis`, mari kita install `redis-server` dan `venv`. `Venv` (Virtualenv) adalah alat yang digunakan untuk membuat lingkungan Python yang terisolasi. Lingkungan ini memiliki direktori instalasinya sendiri yang tidak berbagi pustaka dengan lingkungan virtualenv lainnya (dan secara opsional juga tidak mengakses pustaka yang diinstal secara global).
+
+Setelah berada di terminal instance kalian, silahkan masukkan kode dibawah ini satu persatu setiap barisnya untuk mengunduh redis, masukkan huruf `y` lalu pencet tombol `enter` untuk melakukan konfirmasi pada saat install.
 
 ```bash
-sudo su
+sudo apt-get update
+sudo apt-get install redis-server
+```
 
-apt-get update
+Sekarang kita buka folder yang telah kita buat sebelumnya, yaitu `projek1`. Berikut langkah-langkah untuk membuka folder kita sebelumnya (Lihat GIF dibawah untuk lebih jelasnya) :
+1. Klik tombol tulisan `Open Folder`
+2. Pilih folder yang ingin kita pakai, yaitu `projek1`. Lalu pencet tombol biru tulisan `OK` disampingnya
+3. Pilih opsi `Linux` (Jika ada)
+4. Masukkan password instance kalian
+5. Jika ada popup peringatan `Do you trust the authors of the files in this folder?`, Cekliskan opsi "Trust the authors of all files in the parent folder", lalu klik tombol biru "Yes, I trust the authors"
+6. Berhasil (Ditandai dengan adanya file-file disebelah kiri)
 
-apt-get install redis-server
+![Alt Text](./assets/2-inMemoryDatabase/4.gif)
 
+Jika sudah berada di dalam folder kalian yaitu `projek1`, buka terminal pada VSCode dengan cara pencet titik tiga di tab atas > Terminal > New Terminal
+
+![Alt Text](./assets/2-inMemoryDatabase/5.png)
+
+Setelah berada di dalam terminalnya, masukkan perintah berikut:
+
+```bash
 python3 -m venv venv
 ```
-Jika ada perintah seperti dibawah ini, silahkan install terlebih dahulu sesuai yang diperintahkan
+
+Perintah di atas dijalankan untuk membuat virtual environment.
+
+Jika ada tulisan seperti dibawah ini, silahkan install terlebih dahulu library yang diminta.
 
 ![Alt Text](./assets/2-inMemoryDatabase/req.png)
 
-Misalnya, pada gambar diatas kita diperintahkan untuk menginstall "python3.10-venv" terlebih dahulu. Setelah install, kita akan mengaktifkan venvnya dan install redis didalamnya. Ikuti kode dibawah ini satu persatu setiap barisnya :
+Misalnya, pada gambar diatas kita diperintahkan untuk menginstall `python3.10-venv` terlebih dahulu.
+
+Masukkan perintah berikut:
 
 ```bash
-apt install python3.10-venv
-
-source venv/bin/activate
-
-pip install redis
-
-apt install redis-tools
+sudo apt install python3.10-venv
 ```
 
-Sekarang kalian sudah selesai menginstall Redis pada venv di Ubuntu kalian. Sangat mudah dan cepat bukan? Setelah itu mari kita coba apakah Redis sudah terhubung atau belum.
+Setelah berhasil diinstall kita sudah dapat kembali membuat venv di dalam folder belajar-redis.
 
-### Menghubungkan Redis
+```bash
+python3 -m venv venv
+```
 
-Pertama, kalian ketik kode dibawah ini pada terminal **setiap kalian ingin membuka redis di terminal Ubuntu kalian** :
+Untuk mengaktifkannya, masukkan perintah berikut:
+
+```bash
+source venv/bin/activate
+```
+
+Pastikan kamu melihat tulisan venv di samping host kamu, contoh:
+
+```bash
+(venv) ubuntu@komandro:~/projek1$
+```
+
+Terakhir, kita perlu menginstall library `redis` untuk menghubungkan python dengan redis yang telah kita siapkan. Masukkan kode dibawah ini untuk menginstall library `redis` untuk python :
+
+```bash
+python -m pip install redis
+```
+
+Sekarang kamu sudah menginstall semua dependency yang dibutuhkan. Silahkan lanjut ke materi selanjutnyaa ^^
+
+## Menghubungkan Redis
+
+**Setiap kalian ingin membuka redis di terminal Ubuntu kalian**, kalian aktifkan `venv` kalian terlebih dahulu (Jika belum diaktifkan) dengan memasukan kode dibawah ini :
+
+```bash
+source venv/bin/activate
+```
+
+Jika `venv` sudah aktif, ketik kode dibawah ini pada terminal  :
 
 ```bash
 redis-cli
@@ -178,24 +235,18 @@ Setelah itu akan muncul IP Address kalian serta tempat untuk kalian input perint
 Contohnya seperti ini:
 
 ```bash
-hudya@perogeremmer-pc:~$ redis-cli
+(venv) ubuntu@komandro:~/projek1$ redis-cli
 127.0.0.1:6379> PING
 PONG
 127.0.0.1:6379> 
 ```
 
-Kali ini, kita akan install redis-py agar kita dapat menggunakan redis dengan melalui Python. Jika kalian masih dalam redis-cli, pencet CTRL+C untuk keluar dari redis di terminal dan kembali ke shellnya. Jika kalian sudah di terminal utamanya (shell), masukkan perintah dibawah ini :
-
-```bash
-sudo apt -y install python3-redis
-```
-
 Selamatt, kalian sudah install redis di Ubuntu kalian ^^
 Sekarang, mari kita mempelajari tentang Redis lebih lanjut lagi ~~
 
-### Dasar Syntax Redis
+## Sintaks Dasar Redis
 
-#### Key-Value
+### Key-Value
 
 Kalau temen temen masih ingat tadi redis adalah system basis data key- value berbasis memory.
 
@@ -205,7 +256,7 @@ Dalam Redis, kunci **(key)** adalah string yang digunakan untuk mengidentifikasi
 
 Nilai **(value)** dalam Redis dapat berbagai jenis data, termasuk string, angka, daftar (list), himpunan (set), hash, dan struktur data lainnya. Redis mendukung berbagai jenis operasi pada nilai-nilai ini, seperti menetapkan nilai baru untuk kunci, mengambil nilai yang terkait dengan kunci, dan melakukan manipulasi data terperinci berdasarkan jenis nilai yang digunakan.
 
-#### Databases
+### Databases
 
 Kita dapat membuat/memakai lebih dari 1 database didalam Redis. Pada Redis, kita menggunakan angka untuk memberi identitas/nama pada database-databasenya.  Secara default, Redis menyediakan 16 database kosong (database ke 0-15 karena memakai nomor indeks) dan akan otomatis memakai database ke 0. Lantas bagaimana caranya agar kita dapat memakai database yang kita ingin? Coba kalian buka redis-cli pada terminal kalian (Caranya telah dijelaskan di subbab sebelumnya) lalu masukkan perintah dibawah ini :
 
@@ -221,23 +272,18 @@ select 2
 
 Nah begitulah cara untuk memilih database yang kita mau. Ingat, kita hanya bisa memilih hanya sampai database ke 15 dikarenakan memakai sistem nomor indeks (0-(database tertinggi-1)).
 
-#### Menghubungkan Python dengan server Redis
+## Menghubungkan Python dengan server Redis
 
-Jika kita ingin menggunakan Redis pada file Python kita, kita harus memanggil Redisnya terlebih dahulu dengan perintah :
+Kita akan mencoba untuk menghubungkan projek python kita dengan Redis, pastikan kamu berada pada folder yang sama lalu buat file baru dengan nama `main.py`, lalu masukkan kode berikut.
 
 ```python
 import redis
-```
-
-Setelah itu, kita panggil Server redisnya dengan memasukkan perintah :
-
-```python
 r = redis.Redis(host='127.0.0.1', port=6379, db=0)
 ```
 
 Dalam perintah tersebut, kita akan membuat variabel 'r' untuk memanggil server redis untuk memberinya perintah dari Python. Didalam parameternya, terdapat host, port dan db. Untuk host dan portnya kita biarkan begitu saja karna host dan port yang itu merupakan host dan port default dari Redis. Lalu di bagian db, kalian bisa mengubah angka '0' dengan nomor database yang ingin kalian panggil. Kita akan menggunakan 2 perintah ini untuk perjalanan kita selanjutnya.
 
-#### Menambah Key+value dan mengubah value yang ada
+## Menambah Key dan value dan mengubah value yang ada
 
 Sintaks yang akan kita pelajari itu bakal terbagi menjadi 2 tempat, yaitu melalui terminal dan melalui Python.
 
@@ -300,7 +346,7 @@ Setelah program dijalankan, maka kunci "CCIT" dengan nilai "FTUI" akan disimpan 
 
 Kita telah mempelajari bagaimana caranya menambah key-value kedalama server redis kita. Lantas bagaimana caranya untuk mendapatkan nilai sesuai dengan kuncinya? kita akan pelajari setelah ini.
 
-#### Mendapatkan Nilai dari Sebuah Kunci
+## Mendapatkan Nilai dari Sebuah Kunci
 
 **Terminal**
 
@@ -349,7 +395,7 @@ print(r.get('CCIT'))
 Pada kode diatas, kita menggunakan perintah print() untuk mengubahnya menjadi output Python.
 Setelah program dijalankan, maka akan muncul nilai dari kunci "CCIT" yaitu "FTUI" pada terminal kalian.
 
-#### Menghapus data
+## Menghapus data
 
 **Terminal**
 
@@ -391,8 +437,8 @@ Misalnya kalian ingin menghapus data kunci "Komandro" :
 
 ```python
 import redis
-r = redis.Redis(host='127.0.0.1', port=6379, db=0)
 
+r = redis.Redis(host='127.0.0.1', port=6379, db=0)
 r.del('Komandro')
 ```
 
@@ -403,7 +449,7 @@ r.flushdb
 r.flushall
 ```
 
-#### Expiration
+## Expiration
 
 Seperti namanya, Expiration itu Kadaluarsa. Maksud kadaluarsa disini yaitu memberi batas waktu pada kunci di Redis. Saat sebuah kunci sudah pada batas waktunya, maka kunci tersebut akan otomatis dihapus oleh Redis. Redis akan menyimpan permanen sampai kita menghapusnya (biasanya kita menghapus sesuai waktu yg kita mau). Kenapa kita harus melakukan expiration? karena memori kita itu terbatas dan agar datanya tidak terlalu lama di Redis yang menyebabkan proses semakin melambat.
 
