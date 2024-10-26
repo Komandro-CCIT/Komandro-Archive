@@ -1,33 +1,38 @@
-4.2 Docker Compose
+# 5. Introduction to Docker Compose
 
 ---
 
-</br>
-
 ## Overview
 
-Pada materi ini kita akan belajar lebih banyak tentang paus docker yang OP ini, sebelumnya kalian sudah belajar gimana sih cara menjalankan docker dengan command dasar seperti membuat container dan melakukan port forwarding pada container agar dapat diakses dari luar. Sekarang disini kalian akan diajarkan gimana caranya menggunakan fitur yang bernama **Docker Compose** untuk memudahkan kalian menjalankan docker. Selain belajar `Docker Compose` pada bab ini kalian akan belajar cara build dan juga push image buatan kalian sendiri ke
+Pada materi ini kita akan belajar lebih banyak tentang paus docker yang akan memudahkan penyamaan environment pada komputer, sebelumnya kalian sudah belajar gimana sih cara menjalankan docker dengan command dasar seperti membuat container dan melakukan port forwarding pada container agar dapat diakses dari luar. 
+
+Sekarang kalian akan belajar gimana caranya menggunakan fitur yang bernama **Docker Compose** untuk memudahkan kalian menjalankan docker. 
+
+<!-- Selain belajar `Docker Compose` pada materi ini kalian akan belajar bagaimana cara build dan push image buatan kalian sendiri ke Docker Container Registry. -->
 
 ## Docker Compose
 
-[![](../assets/docker-compose.png)](https://docs.docker.com/compose/)
+[![](./assets/docker-compose.png)](https://docs.docker.com/compose/)
+
 Docker compose adalah alat yang digunakan untuk kalian menjalankan satu atau lebih container docker yang saling terkait dengan menggunakan script. Untuk menggunakan fitur ini kalian dapat membuat file berkekstensi `.yml` atau `.yaml`
 
-## Kenapa Pakai Docker Compose?
+## Kenapa Docker Compose?
 
-Docker Compose ini sangat berguna kalau kamu punya aplikasi yang terdiri dari beberapa service/container. Misalnya aplikasi web yang butuh database, cache, atau bahkan worker buat background job. Daripada jalankan dan atur semuanya secara manual, Docker Compose bikin semua jadi gampang dan otomatis.
+Docker Compose ini sangat berguna kalau kamu punya aplikasi yang terdiri dari beberapa service / container. 
+
+Misalnya aplikasi web yang butuh database, cache, atau bahkan worker buat background job. Daripada menjalankan dan mengatur semuanya secara manual, Docker Compose membuat manajemen dan konfigurasinya menjadi lebih mudah.
 
 Beberapa situasi di mana Docker Compose berguna:
 
-- <strong>Aplikasi web yang punya backend, frontend, dan database: </strong>
+- Aplikasi web yang punya backend, frontend, dan database:
 
   Dengan Compose, semuanya bisa diatur dan jalan bareng dengan satu command.
 
-- <strong>Lingkungan development multi-container: </strong>
+- Lingkungan development multi-container:
 
   Buat development lokal, Docker Compose bikin kita bisa ngejalanin semua service yang dibutuhkan aplikasi dengan cepat.
 
-- <strong>Testing environment multi-container: </strong>
+- Testing environment multi-container:
 
   Sebelum deployment ke production, kita bisa testing semua service di environment lokal pakai Docker Compose.
 
@@ -51,100 +56,91 @@ Beberapa situasi di mana Docker Compose berguna:
 
    Jika ada perubahan pada Dockerfile atau dependensi baru yang ingin dimasukkan, perintah ini harus dijalankan untuk membangun ulang image.
 
-## How to Docker Compose
+## How to use Docker Compose
 
-1. Buat Dockerfile terlebih dahulu
+Step Pertama adalah dengan membuat Dockerfile untuk membuat image baru, pada sebuah direktori buatlah file bernama Dockerfile lalu masukakn kode di bawah ini
 
-   Step Pertama adalah dengan membuat Dockerfile untuk membuat image baru
+```Dockerfile
+FROM nginx:latest
+COPY ./index.html /usr/share/nginx/html/index.html
+```
 
-   ```Dockerfile
-   FROM nginx:latest
-   COPY ./index.html /usr/share/nginx/html/index.html
-   ```
+Setelah itu buat file `index.html` untuk mengganti file default yang ada pada nginx
 
-   Setelah itu buat file index.html untuk mengganti file default yang ada pada nginx
+```
+vim index.html
+```
 
-   ```
-   vim index.html
-   ```
+Lalu tuliskan bahasa html sesuka kalian. Contoh
 
-   Lalu tuliskan bahasa html sesuka kalian. Contoh
+```html
+<h1>Hello World!</h1>
+```
 
-   ```html
-   <h1>AKU MAU GAJI 100JUTA</h1>
-   ```
+Kemudian buat file baru bernama `docker-compose.yml` dengan perintah baru:
 
-2. Buat file `docker-compose.yml`
+```vim
+vim docker-compose.yml
+```
 
-   Lalu kalian bisa mulai buat file `docker-compose.yml` dengan memasukkan command
+Setelah itu kalian bisa memasukkan file script dari docker compose sesuai dengan yang ada dibawah.
 
-   ```vim
-   vim docker-compose.yml
-   ```
+```yml
+version: "3.8"
 
-   Setelah itu kalian bisa memasukkan file script dari docker compose sesuai dengan yang ada dibawah.
+services:
+web:
+  build: .
+  ports:
+    - "8080:80"
+  volumes:
+    - ./html:/usr/share/nginx/html
 
-   ```yml
-   version: "3.8"
+db:
+  image: mysql:8
+  environment:
+  MYSQL_ROOT_PASSWORD: password123
+  volumes:
+    - db_data:/var/lib/mysql
 
-   services:
-   web:
-     build: .
-     ports:
-       - "8080:80"
-     volumes:
-       - ./html:/usr/share/nginx/html
+volumes:
+  db_data:
+```
 
-   db:
-     image: mysql:5.7
-     environment:
-     MYSQL_ROOT_PASSWORD: password123
-     volumes:
-       - db_data:/var/lib/mysql
+Oke sebelum lanjut kita bedah dulu script diatas agar kalian paham apa aja sih yang dimasukin tadi.
 
-   volumes:
-   db_data:
-   ```
+- `version: '3.8'` : Ini menandakan versi docker-compose yang kalian pakai, setiap versi dapat memiliki syntax yang berbeda.
+- `services` : Berisi list dari service ataupun container yang akan dijalankan saat user menjalankan docker-compose. `web` dan `db` merupakan istilah yang digunakan untuk menandakan container yang memiliki service yang berbeda
+- `volumes` : ini tempat kita simpan data di luar container, jadi kalau container dimatikan atau dihapus, datanya nggak hilang. Di sini kita pakai db_data buat simpan data MySQL.
 
-   Oke sebelum lanjut kita bedah dulu script diatas agar kalian paham apa aja sih yang dimasukin tadi.
+Selanjutnya kita akan coba Build dan Jalankan Aplikasi. Jalankan aplikasi dengan menggunakan command
 
-   - `version: '3.8'` : Ini menandakan versi docker-compose yang kalian pakai, setiap versi dapat memiliki syntax yang berbeda.
-   - `services` : Berisi list dari service ataupun container yang akan dijalankan saat user menjalankan docker-compose. `web` dan `db` merupakan istilah yang digunakan untuk menandakan container yang memiliki service yang berbeda
-   - `volumes` : ini tempat kita simpan data di luar container, jadi kalau container dimatikan atau dihapus, datanya nggak hilang. Di sini kita pakai db_data buat simpan data MySQL.
+```bash
+docker-compose up -d
+```
 
-3. Build dan Jalankan Aplikasi
+`-d` artinya menjalankan container dalam mode detach, alias di background, jadi kita bisa tetap ngelakuin hal lain di terminal.
 
-   Jalankan aplikasi dengan menggunakan command
+Untuk melihat log dari docker-compose kamu bisa dapat menggunakan perintah ini:
 
-   ```bash
-   docker-compose up -d
-   ```
+```bash
+docker-compose ps
+```
 
-   `-d` artinya menjalankan container dalam mode detach, alias di background, jadi kita bisa tetap ngelakuin hal lain di terminal.
+Ini akan ngasih info soal container-container yang sedang jalan, port-port yang di-forward, dan statusnya.
 
-4. Lihat Log dari Dockercompose
 
-   Selanjutnya untuk memastikan container hasil docker-compose sudah berjalan kalian bisa menggunakan command ini :
+Apabila sudah dan mau matiin semuanya, tinggal pakai command ini:
 
-   ```bash
-   docker-compose ps
-   ```
+```bash
+docker-compose down
+```
 
-   Ini akan ngasih info soal container-container yang lagi jalan, port-port yang di-forward, dan statusnya.
-
-5. Stop Docker Compose
-
-   Kalau udah selesai dan mau matiin semuanya, tinggal pakai command ini:
-
-   ```bash
-   docker-compose down
-   ```
-
-   Dengan ini, semua container, network, dan volume yang dibuat akan dihentikan dan dihapus.
+Dengan ini, semua container, network, dan volume yang dibuat akan dihentikan dan dihapus.
 
 ## Real Case Practice
 
-Sekarang kalian akan belajar bagaimana cara menggunakan `docker-compose` untuk project yang sedikit lebih kompleks menggunakan project yang berbasis adonis.js, pada praktek ini kalian akan membuat 2 kontainer berupa kontainer untuk web-nya dan satu lagi untuk database, selain kontainer kalian juga akan membuat network untuk menghubungkan kedua kontainer itu. Yuk kita langsung aja ke prakteknya
+Sekarang kalian akan belajar bagaimana cara menggunakan `docker-compose` untuk project yang sedikit lebih kompleks menggunakan project yang berbasis Adonis.Js, pada praktek ini kalian akan membuat dua kontainer berupa kontainer untuk web-nya dan satu lagi untuk database, selain kontainer kalian juga akan membuat network untuk menghubungkan kedua kontainer itu. Yuk kita langsung aja ke prakteknya
 
 1. Clone project dari repository
 
@@ -293,7 +289,7 @@ Sekarang kalian akan belajar bagaimana cara menggunakan `docker-compose` untuk p
 6. Cek Website
 
    Setelah itu kalian bisa melakukan pengecekan website-nya apakah sudah berjalan atau belum dengan mengikuti gif dibawah ini.
-   ![](../assets/docker-compose.gif)
+   ![](./assets/docker-compose.gif)
 
 ## Summary
 
