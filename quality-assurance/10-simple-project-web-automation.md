@@ -1,4 +1,4 @@
-# 5. Proyek Sederhana Web Automation Testing
+# 10. Proyek Web Automation Testing
 
 Author: Fajar Triady Putra (@fajartriadyp)
 
