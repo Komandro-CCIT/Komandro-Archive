@@ -202,3 +202,32 @@ test_sample.py ..                                               [100%]
 ```
 
 Jalankan perintah dengan `pytest --headed` apabila kamu ingin melihat automation membuka sebuah browser untuk mencoba.
+
+## Penjelasan
+
+
+Perhatikan fungsi `test_has_title`, hal yang dilakukan pada fungsi tersebut adalah membuka URL https://playwright.dev, kemduain program diberi ekspektasi bahwa halaman tersebut memiliki judul yang ada tulisan **Playwright** di dalamnya.
+
+Coba cek GIF di bawah ini, kamu dapat melihat bahwa judul websitenya memiliki teks **Playwright**. Sehingga ekspektasinya menjadi benar.
+
+![](./assets/8-introduction-to-automation-testing/1.gif)
+
+> [!NOTE]
+> Sintaks `re.compile("Playwright")` menggunakan library regex pada python yang memeriksa apakah teks tersebut memiliki tulisan Playwright.
+
+<br />
+
+Kemudian periksa fungsi `test_get_started_link`, hal yang dilakukan pada fungsi tersebut adalah membuka URL https://playwright.dev, kemduain program diberi ekspektasi bahwa halaman tersebut memiliki judul yang ada tulisan **Playwright** di dalamnya.
+
+Kemudian program mencari URL yang bertuliskan Get Started, dimana URL tersebut berada pada tag `anchor <a></a>` pada HTML. Setelahnya tombol tersebut diberi aksi klik sehingga akan pergi ke halaman selanjutnya.
+
+Kemudian pada bagian ekspektasi, kamu dapat melihat bahwa program diberi ekspektasi bahwa halaman tersebut memiliki tag `heading <h1></h1> (h1 dan sejenisnya)` yang memiliki tulisan **Installation**. Perintah ekspektasinya adalah to be visible, artinya memastikan bahwa teksnya bisa dilihat dengan mata manusia.
+
+Perhatikan GIF di bawah ini.
+
+![Alt text](./assets/8-introduction-to-automation-testing/2.gif)
+
+> [!NOTE]
+> Untuk memastikan apakah tulisan installation memiliki tag heading silahkan klik kanan > inspect element.
+
+Sekarang kamu sudah bisa melakukan testing dasar bukan? Tentu ini belum sulit karena kamu akan mencoba melakukan testing dengan website [saucedemo](https://www.saucedemo.com/v1/) secara automation.

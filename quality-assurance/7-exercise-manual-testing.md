@@ -19,11 +19,11 @@ Dikarenakan ini merupakan ujicoba secara manual, maka kamu harus mencobanya seca
 
 Tambahkan beberapa kolom pada bagian kanan dengan kolom sebagai berikut:
 
-- Actual_Result: Hasil akhir, kamu bisa menjelaskan hasil akhir sebagai contoh: **"same as expected"**, atau kamu bisa menjelaskan beberapa perbedaan apabila terdapat perbedaan dengan ekspektasi.
-- Evidance: Bukti pengujian, kamu dapat melakukan screenshot dan menaruhnya pada kolom ini.
-- Notes: Tulis apabila ada catatan dari perilaku yang mempengaruhi, misalnya apabila diam di halaman selama 1 menit tanpa melakukan klik apapun maka akan muncul tampilan yang berbeda
-- Tested by: Tulis nama penguji (nama kamu)
-- Timestamp: Tulis tanggal lengkap hingga waktu kamu menguji, misalnya, 10-12-2024 10:23:45 WIB
+- **Actual_Result**: Hasil akhir, kamu bisa menjelaskan hasil akhir sebagai contoh: **"same as expected"**, atau kamu bisa menjelaskan beberapa perbedaan apabila terdapat perbedaan dengan ekspektasi.
+- **Evidance**: Bukti pengujian, kamu dapat melakukan screenshot dan menaruhnya pada kolom ini.
+- **Notes**: Tulis apabila ada catatan dari perilaku yang mempengaruhi, misalnya apabila diam di halaman selama 1 menit tanpa melakukan klik apapun maka akan muncul tampilan yang berbeda
+- **Tested by**: Tulis nama penguji (nama kamu)
+- **Timestamp**: Tulis tanggal lengkap hingga waktu kamu menguji, misalnya, 10-12-2024 10:23:45 WIB
 
 ## Test Plan
 
@@ -40,7 +40,6 @@ Fungsi yang akan di uji adalah:
 - carts
 - checkout
 - logout
--
 
 ### Skenario Pengujian
 
