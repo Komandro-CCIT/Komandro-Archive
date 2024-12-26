@@ -1,4 +1,4 @@
-# 6. Introduction to Localstack
+# 7. Introduction to Localstack
 
 Author: Hudya
 
@@ -18,7 +18,7 @@ AWS memiliki tools yang disebut AWS CLI (Command Line Interface) dimana tools in
 
 Layanan S3 bisa dikatakan sebagai Google Drive versi AWS, bedanya S3 tidak memiliki tampilan yang intuitif karena memang tidak diperuntukkan bagi pengguna biasa. Layanan S3 biasanya digunakan oleh software engineer untuk membackup data, menyiapkan release version bundle, dan hal lainnya.
 
-## Praktek
+## Konfigurasi Docker
 
 Kita akan menggunakan server multipass dan [dokumentasi](https://docs.localstack.cloud/getting-started/installation/) berikut.
 
@@ -80,7 +80,6 @@ ubuntu@latihan-multipass:~$
 
 ```
 
-
 Masukkan perintah berikut step by step:
 
 ```bash
@@ -99,6 +98,8 @@ Status: Image is up to date for hello-world:latest
 docker.io/library/hello-world:latest
 ubuntu@latihan-multipass:~$ 
 ```
+
+## Instalasi Localstack
 
 Setelah beres mengurus docker, kita perlu instalasi localstack, masukkan perintah berikut baris perbaris:
 
@@ -204,6 +205,8 @@ ubuntu@latihan-multipass:~$ localstack status services
 └──────────────────────────┴─────────────┘
 ubuntu@latihan-multipass:~$ 
 ```
+
+## Instalasi AWS CLI
 
 Sekarang kita perlu menginstall AWS CLI agar bisa berinteraksi, masukkan perintah berikut:
 
